@@ -1,0 +1,25 @@
+#header {
+    background-color: #2F3C7E;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    height: 5rem;
+    display: grid;
+    margin-right: 4rem;
+    color: #FBEAEB;
+}
+
+#sparkmart {
+    border: 3px solid #FBEAEB;
+    width: 13rem;
+    height: 2em;
+    padding-top: 8px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#login {
+    position:absolute;
+    bottom: 0.5em;
+    right: 2em;
+}

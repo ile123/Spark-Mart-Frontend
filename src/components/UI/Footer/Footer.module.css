@@ -1,0 +1,9 @@
+#footer {
+    background-color: #2F3C7E;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    display: grid;
+    height: 5rem;
+    color: #FBEAEB;
+}
