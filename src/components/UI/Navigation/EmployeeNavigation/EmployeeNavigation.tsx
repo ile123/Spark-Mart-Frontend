@@ -1,20 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './EmployeeNavigation.module.css'
 import { Link } from 'react-router-dom'
-import { useGetUserDetailsQuery } from '../../../../auth/authService';
-import { setCredentials } from '../../../../auth/authSlice';
 import { useEffect } from 'react';
 
-export default function Navigation() {
+export default function EmployeeNavigation() {
 
     return(
         <>
             <nav id={styles.navigation}>
-                <Link to="/" className='btn btn-primary'>Home</Link>
-                <Link to="/users" className='btn btn-secondary'>Users</Link>
-                <a href="#" className='btn btn-danger'>Addresses</a>
-                <a href="#" className='btn btn-warning'>Orders</a>
-                <a href="#" className='btn btn-secondary'>Products</a>
+                <Link to="/" className={styles.button}>Home</Link>
+                <Link to="/users" className={styles.button}>Users</Link>
+                <a href="#" className={styles.button}>Addresses</a>
+                <a href="#" className={styles.button}>Orders</a>
+                <a href="#" className={styles.button}>Products</a>
             </nav>
         </>
     );

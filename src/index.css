@@ -1,3 +1,13 @@
 body {
     background-color: #FBEAEB;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+@font-face {
+    font-family: "Technology";
+    src: local("Technology"),
+        url("./assets/fonts/Technology/Technology.ttf") format("truetype");
 }

@@ -8,19 +8,19 @@ export const authApi = createApi({
       //@ts-ignore
       const token = getState().auth.userToken
       if (token) {
-        headers.set('authorization', `Bearer ${token}`)  
+        headers.set('Authorization', `Bearer ${token}`)
         return headers
       }
     },
   }),
   endpoints: (builder) => ({
-    getUserDetails: builder.query({
+    getDetails: builder.query({
       query: () => ({
-        url: 'auth/getUserByToken',
+        url: 'auth/getUserInfo',
         method: 'GET',
       }),
     }),
   }),
 })
 
-export const { useGetUserDetailsQuery } = authApi
+export const { useGetDetailsQuery } = authApi
