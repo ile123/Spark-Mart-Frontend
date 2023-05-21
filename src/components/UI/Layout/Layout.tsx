@@ -6,8 +6,10 @@ export default function Layout(props: any) {
     return(
         <>
             <Header/>
-                <main><Outlet /></main>
+                <main>
+                    {props.children}
+                </main>
             <Footer/>
         </>
     );
-}
+}//{props.children}

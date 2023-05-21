@@ -1,9 +1,38 @@
 #footer {
+    margin-top: auto;
     background-color: #2F3C7E;
     width: 100%;
-    position: fixed;
-    bottom: 0;
+    position: absolute;
+    bottom: 0rem;
+    left: 0rem;
     display: grid;
-    height: 5rem;
+    height: 5.5rem;
     color: #FBEAEB;
+}
+
+#grid {
+    display: flex;
+    flex-direction: row;
+}
+
+.item {
+    margin-left: 10rem;
+    margin-right: 5rem;
+}
+
+#email {
+    margin-left: 5rem;
+    margin-top: 2rem;
+    margin-right: 25.5rem;
+    width: 16rem;
+}
+
+#thunderbolt {
+    margin-top: 1.5rem;
+}
+
+#copyright {
+    margin-top: 1.5rem;
+    margin-left: 28rem;
+    width: 16rem;
 }

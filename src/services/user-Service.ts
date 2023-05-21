@@ -1,42 +1,41 @@
 import axios from "axios";
-import authHeader from "../auth/authHeader";
 
-const API_URL = "http://localhost:8080/api/users/";
+const API_URL = "http://localhost:8080/spark-mart/api/users/";
+const userToken = localStorage.getItem('userToken');
 
-const getAllUsers = () => {
-    return axios.get(API_URL, { headers: authHeader() });
+export const getAllUsers = () => {
+    return axios.get(API_URL, { headers: { Authorization: `Bearer ${userToken}` } });
 }
 
-const getUserById = (userId: string) => {
-    return axios.get(API_URL + userId, { headers: authHeader() });
+export const getUserById = (userId: string) => {
+    return axios.get(API_URL + userId, { headers: { Authorization: `${userToken}` } });
 }
 
-const updateUser = (userId: string, userInformation: any) => {
-    return axios.put(API_URL + '/update-user/' + userId, {
+export const updateUser = (userId: string, userInformation: any) => {
+    return axios.put(API_URL + 'update-user/' + userId, {
         firstName: userInformation.firstName,
         lastName: userInformation.lastName,
         phoneNumber: userInformation.phoneNumber,
-    }, { headers: authHeader()});
+    }, { headers: { Authorization: `${userToken}` } });
 }
 
-const changeUserAddress = (userId: string, addressInformation: any) => {
-    return axios.put(API_URL + '/change-address/' + userId, {
+export const changeUserPassword = (userId: string, password: any) => {
+    return axios.patch(API_URL + 'change-password/' + userId, {
+        newPassword: password
+    }, { headers: { Authorization: `${userToken}` } })
+}
+
+export const changeUserAddress = (userId: string, addressInformation: any) => {
+    return axios.put(API_URL + 'change-address/' + userId, {
+        id: addressInformation.id,
         streetAddress: addressInformation.streetAddress,
         city: addressInformation.city,
         postalCode: addressInformation.postalCode,
         province: addressInformation.province,
         country: addressInformation.country
-    }, { headers: authHeader()});
+    }, { headers: { Authorization: `${userToken}` } });
 }
 
-const deleteUser = (userId: string) => {
-    return axios.delete(API_URL + userId, { headers: authHeader() });
-}
-
-export default {
-    getAllUsers,
-    getUserById,
-    updateUser,
-    changeUserAddress,
-    deleteUser
+export const deleteUser = (userId: string) => {
+    return axios.delete(API_URL + userId, { headers: { Authorization: `${userToken}` } });
 }

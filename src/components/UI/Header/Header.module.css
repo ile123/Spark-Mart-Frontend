@@ -1,11 +1,11 @@
 #header {
     background-color: #2F3C7E;
     width: 100%;
-    position: fixed;
+    position: absolute;
+    left: 0;
     top: 0;
     height: 5rem;
     display: grid;
-    margin-right: 4rem;
     color: #FBEAEB;
 }
 
@@ -16,10 +16,60 @@
     padding-top: 8px;
     text-align: center;
     margin-top: 10px;
+    margin-left: 4rem;
 }
 
-#login {
-    position:absolute;
-    bottom: 0.5em;
-    right: 2em;
+.login {
+    overflow: hidden;
+    position: absolute;
+    margin-left: 60rem;
+    margin-top: 2rem;
+}
+
+.button {
+    position: absolute;
+    text-decoration: none;
+    font-size: 20px;
+    padding-bottom: 1px;
+    margin-bottom: 10px;
+    display: inline-block;
+    position: relative;
+    color: white;
+}
+
+.button:hover {
+    color: white;
+}
+  
+.button::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+  
+.button:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+#grid {
+    display: flex;
+    flex-direction: row;
+}
+
+.item {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+#loading {
+    margin-left: 62rem;
+    margin-top: 2rem;
 }

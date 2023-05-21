@@ -5,7 +5,7 @@ export default function ThunderBolt(props: any) {
     return(
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
             width={width} height={height} viewBox="0 0 1280.000000 1280.000000"
-            preserveAspectRatio="xMidYMid meet">
+            preserveAspectRatio="xMidYMid meet" id={props.id}>
             <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)"
             fill="#000000" stroke="none">
             <path d="M6110 12794 c-137 -9 -342 -26 -420 -35 -1670 -194 -3226 -1044
