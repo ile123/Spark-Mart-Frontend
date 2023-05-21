@@ -12,9 +12,9 @@ export default function Users() {
     else {
         return(
             <>
-            <Layout>
-                <h1 id={styles.users}>USERS</h1>
-            </Layout>
+                <Layout>
+                    <h1 id={styles.users}>USERS</h1>
+                </Layout>
             </>
         );
     }

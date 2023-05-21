@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { registerUser, userLogin } from "./authActions";
 import jwt_decode from "jwt-decode";
+import axios from "axios";
 
 const getUserToken = () => {
     if(!localStorage.getItem('userToken')) return null;
@@ -28,10 +29,9 @@ const authSlice = createSlice({
     initialState,
     reducers: {
     logout: (state) => {
+            axios.post('http://localhost:8080/spark-mart/api/auth/logout');
             localStorage.removeItem('userToken')
             state.loading = false
-            //window.location.reload();
-            //@ts-ignore
             state.userInfo = {}
             state.userToken = null
             state.error = null

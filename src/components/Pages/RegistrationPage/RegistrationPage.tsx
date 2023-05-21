@@ -9,6 +9,7 @@ import ErrorModal from '../../UI/ErrorModal/ErrorModal';
 import { registerUser } from '../../../auth/authActions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 export default function RegistrationPage() {
 
@@ -17,7 +18,7 @@ export default function RegistrationPage() {
     
     const { register, handleSubmit, formState: { errors }, getValues } = useForm();
 
-    const submitForm = (data: any) => {
+    async function submitForm(data: any) {
         const submitData = {
             firstName: data.firstName,
             lastName: data.lastName,
@@ -26,8 +27,18 @@ export default function RegistrationPage() {
             password: data.password,
             role: "CUSTOMER"
         };
-        //@ts-ignore
-        dispatch(registerUser(submitData));
+        await axios.post("http://localhost:8080/spark-mart/api/auth/emailExists", { email: data.email })
+        .then((response: any) => {
+            if(response.data === true) {
+                setFormErrors(["ERROR: Email already in use!"]);
+                setShowErrorModal(true);
+            } else {
+                //@ts-ignore
+                dispatch(registerUser(submitData));
+                navigate("/login");
+            }
+        })
+        .catch((error: any) => console.log(error));;
     }
 
     const handleError = (errors: any) => {
@@ -44,7 +55,7 @@ export default function RegistrationPage() {
         setShowErrorModal(false);
     }
 
-    const { loading, userInfo, success } = useSelector(
+    const { loading, userInfo, success, error } = useSelector(
         (state: any) => state.auth
     );
     
@@ -53,8 +64,7 @@ export default function RegistrationPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (success) navigate('/login')
-        if (Object.keys(userInfo).length !== 0) navigate('/profile');
+        if (JSON.stringify(userInfo) !== '{}') navigate('/');
     }, [navigate, userInfo, success]);
 
     return(

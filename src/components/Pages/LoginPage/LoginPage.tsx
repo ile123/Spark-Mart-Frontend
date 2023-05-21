@@ -7,19 +7,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import ErrorModal from '../../UI/ErrorModal/ErrorModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faL } from '@fortawesome/free-solid-svg-icons';
 import { userLogin } from '../../../auth/authActions';
 
 export default function LoginPage() {
 
     const [showErrorModal, setShowErrorModal] = useState(false);
     const [formErrors, setFormErrors] = useState<string[]>([]);
+    let counter = 0;
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const submitForm = (data: any) => {
         //@ts-ignore
         dispatch(userLogin(data));
+        navigate("/");
     }
 
     const handleError = (errors: any) => {
@@ -36,12 +38,12 @@ export default function LoginPage() {
         setShowErrorModal(false);
     }
 
-    const { loading, userInfo, error } = useSelector((state: any) => state.auth);
+    const { loading, userInfo, success } = useSelector((state: any) => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (Object.keys(userInfo).length !== 0) navigate('/');
+        if (JSON.stringify(userInfo) !== '{}') navigate('/');
       }, [navigate, userInfo])
 
     return(

@@ -5,12 +5,14 @@ import CustomerNavigation from '../Navigation/CustomerNavigation/CustomerNavigat
 import { logout } from '../../../auth/authSlice';
 import { useEffect, useState } from 'react';
 import EmployeeNavigation from '../Navigation/EmployeeNavigation/EmployeeNavigation';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCog, faL } from '@fortawesome/free-solid-svg-icons';
 
 export default function Header() {
   
-    const { userInfo, userToken } = useSelector((state: any) => state.auth);
+    const { userInfo, loading } = useSelector((state: any) => state.auth);
     const dispatch = useDispatch();
-//Object.keys(userInfo).length !== 0
+
     return(
         <>
             <header id={styles.header}>
@@ -19,10 +21,13 @@ export default function Header() {
                         <h3 id={styles.sparkmart}>SPARK MART</h3>
                     </div>
                     <div className={styles.item}>
-                        {(userToken !== null) ? (userInfo.role !== "CUSTOMER" ? <EmployeeNavigation /> : <CustomerNavigation />) : <CustomerNavigation />}
+                        {(JSON.stringify(userInfo) !== '{}') ? (userInfo.role !== "CUSTOMER" ? <EmployeeNavigation /> : <CustomerNavigation />) : <CustomerNavigation />}
                     </div>
                     <div className={styles.item}>
-                        {(userToken !== null) ? 
+                        {loading === true ? 
+                            <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="2x" />
+                            :
+                        (JSON.stringify(userInfo) !== '{}') ? 
                         (
                             <div className={styles.login}>
                                 <Link to='/profile' className={styles.button}>Profile</Link>
