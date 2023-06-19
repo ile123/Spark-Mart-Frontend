@@ -1,7 +1,15 @@
-#navigation {
+#navigationAdmin {
     overflow: hidden;
     position: absolute;
-    margin-left: 15rem;
+    margin-left: 10rem;
+    margin-top: 2rem;
+    padding: -20px;
+}
+
+#navigationEmployee {
+    overflow: hidden;
+    position: absolute;
+    margin-left: 13rem;
     margin-top: 2rem;
     padding: -20px;
 }

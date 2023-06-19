@@ -1,18 +1,34 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/spark-mart/api/users/";
+const API_URL = "http://localhost:8080/spark-mart/api/users";
 const userToken = localStorage.getItem('userToken');
 
-export const getAllUsers = () => {
-    return axios.get(API_URL, { headers: { Authorization: `Bearer ${userToken}` } });
+export const getAllUsers = (pageNum: number, pageSize: number, sortBy: string, sortDir: string, userType: string, searchValue: string) => {
+    if(searchValue === '') {
+        return axios.get(API_URL + '?page=' + pageNum 
+            + '&pageSize=' + pageSize 
+            + '&sortBy=' + sortBy 
+            + '&sortDir=' + sortDir
+            + "&userType=" + userType
+            , { headers: { Authorization: `${userToken}` } });
+    } else {
+        return axios.get(API_URL + '?page=' + pageNum 
+            + '&pageSize=' + pageSize 
+            + '&sortBy=' + sortBy 
+            + '&sortDir=' + sortDir
+            + "&userType=" + userType
+            + '&keyword=' + searchValue
+            , { headers: { Authorization: `${userToken}` } });
+    }
+    
 }
 
 export const getUserById = (userId: string) => {
-    return axios.get(API_URL + userId, { headers: { Authorization: `${userToken}` } });
+    return axios.get(API_URL + '/' + userId, { headers: { Authorization: `${userToken}` } });
 }
 
 export const updateUser = (userId: string, userInformation: any) => {
-    return axios.put(API_URL + 'update-user/' + userId, {
+    return axios.put(API_URL + '/update-user/' + userId, {
         firstName: userInformation.firstName,
         lastName: userInformation.lastName,
         phoneNumber: userInformation.phoneNumber,
@@ -20,13 +36,13 @@ export const updateUser = (userId: string, userInformation: any) => {
 }
 
 export const changeUserPassword = (userId: string, password: any) => {
-    return axios.patch(API_URL + 'change-password/' + userId, {
+    return axios.patch(API_URL + '/change-password/' + userId, {
         newPassword: password
     }, { headers: { Authorization: `${userToken}` } })
 }
 
 export const changeUserAddress = (userId: string, addressInformation: any) => {
-    return axios.put(API_URL + 'change-address/' + userId, {
+    return axios.put(API_URL + '/change-address/' + userId, {
         id: addressInformation.id,
         streetAddress: addressInformation.streetAddress,
         city: addressInformation.city,
@@ -37,5 +53,5 @@ export const changeUserAddress = (userId: string, addressInformation: any) => {
 }
 
 export const deleteUser = (userId: string) => {
-    return axios.delete(API_URL + userId, { headers: { Authorization: `${userToken}` } });
+    return axios.delete(API_URL + '/' + userId, { headers: { Authorization: `${userToken}` } });
 }
