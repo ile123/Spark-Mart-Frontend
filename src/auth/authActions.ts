@@ -46,7 +46,7 @@ export const userLogin = createAsyncThunk(
         const getConfig = {
           headers: { Authorization: `Bearer ${data.token}` }
         };
-        const userInfo = await axios.get(`${backendURL}/auth/getUserInfo`,
+        const userInfo = await axios.get(`${backendURL}/auth/get-user-info`,
           getConfig
         );
         return userInfo.data;

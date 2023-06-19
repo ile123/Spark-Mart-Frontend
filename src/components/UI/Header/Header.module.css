@@ -19,10 +19,17 @@
     margin-left: 4rem;
 }
 
-.login {
+#login {
     overflow: hidden;
     position: absolute;
     margin-left: 60rem;
+    margin-top: 2rem;
+}
+
+#logout {
+    overflow: hidden;
+    position: absolute;
+    margin-left: 59rem;
     margin-top: 2rem;
 }
 

@@ -94,3 +94,7 @@
     transform: scale(1.04);
     background-color: rgb(253, 8, 8);   
 }
+
+.input {
+    box-shadow: 1px black;
+}
