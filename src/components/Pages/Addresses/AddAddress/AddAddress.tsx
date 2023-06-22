@@ -1,21 +1,19 @@
-import styles from "./EditAddress.module.css";
-import { useState, useEffect } from "react";
+import styles from './AddAddress.module.css'
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ErrorModal from "../../../UI/ErrorModal/ErrorModal";
 import { Card } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog } from "@fortawesome/free-solid-svg-icons";
-import { changeUserAddress } from "../../../../services/user-Service";
-import { getAddressById } from "../../../../services/address-Service";
+import { createNewAddress } from "../../../../services/address-Service";
 import Button from "../../../UI/Button/Button";
-import { Address } from "../../../../types/Address";
 import { Errors } from "../../../../types/Errors";
 
-export default function EditUser() {
+export default function AddAddress() {
+
+  const navigate = useNavigate();
+
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [formErrors, setFormErrors] = useState<Errors>();
-  const [address, setAddress] = useState<Address>();
 
   const {
     register,
@@ -26,16 +24,15 @@ export default function EditUser() {
   } = useForm();
 
   async function submitForm(data: any) {
-    const submitData: Address = {
-      id: addressId,
+    const submitData = {
       streetAddress: data.streetAddress,
       city: data.city,
       postalCode: data.postalCode,
       province: data.province,
       country: data.country,
     };
-    changeUserAddress(userId, submitData);
-    navigate("/");
+    createNewAddress(submitData);
+    navigate("/addresses");
   }
 
   const handleError = (errors: any) => {
@@ -54,32 +51,6 @@ export default function EditUser() {
     setShowErrorModal(false);
   };
 
-  const navigate = useNavigate();
-  const {
-    state: { userId, addressId },
-  } = useLocation();
-
-  useEffect(() => {
-    //@ts-ignore
-    getAddressById(addressId).then((result: any) => setAddress(result.data));
-  }, []);
-
-  useEffect(() => {
-    if (address) {
-      setValue("streetAddress", address.streetAddress);
-      setValue("city", address.city);
-      setValue("postalCode", address.postalCode);
-      setValue("province", address.province);
-      setValue("country", address.country);
-    }
-  }, [address]);
-
-  if (JSON.stringify(address) === "{}") {
-    return (
-      <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
-    );
-  }
-
   return (
     <>
       {showErrorModal && (
@@ -87,7 +58,7 @@ export default function EditUser() {
       )}
       <form onSubmit={handleSubmit(submitForm, handleError)}>
         <Card id={styles.card}>
-          <Card.Header id={styles.header}>Change Address</Card.Header>
+          <Card.Header id={styles.header}>Add New Address</Card.Header>
           <Card.Body>
             <div className={styles.grid}>
               <div className={styles.item}>
@@ -95,7 +66,6 @@ export default function EditUser() {
                 <input
                   type="text"
                   className={styles.input}
-                  defaultValue={address?.streetAddress}
                   {...register("streetAddress", {
                     required: {
                       value: true,
@@ -109,7 +79,6 @@ export default function EditUser() {
                 <input
                   type="text"
                   className={styles.input}
-                  defaultValue={address?.city}
                   {...register("city", {
                     required: {
                       value: true,
@@ -125,7 +94,6 @@ export default function EditUser() {
                 <input
                   type="text"
                   className={styles.input}
-                  defaultValue={address?.postalCode}
                   {...register("postalCode", {
                     required: {
                       value: true,
@@ -139,7 +107,6 @@ export default function EditUser() {
                 <input
                   type="text"
                   className={styles.input}
-                  defaultValue={address?.province}
                   {...register("province", {
                     required: {
                       value: true,
@@ -155,7 +122,6 @@ export default function EditUser() {
                 <input
                   type="text"
                   className={styles.input}
-                  defaultValue={address?.country}
                   {...register("country", {
                     required: {
                       value: true,

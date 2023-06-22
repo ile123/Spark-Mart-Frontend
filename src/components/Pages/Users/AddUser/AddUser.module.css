@@ -55,3 +55,8 @@
 #inputs {
     margin-top: 3.5rem;
 }
+
+#genderSelect {
+    margin-left: 3rem;
+    text-align: center;
+}

@@ -21,7 +21,7 @@
 #userCard {
     margin-left: 15rem;
     margin-top: 4rem;
-    height: 40rem;
+    height: 42rem;
     width: 30rem;
 }
 
@@ -56,11 +56,6 @@
 }
 
 .label {
-    margin-top: 1.5rem;
-    margin-left: 1rem;
-}
-
-.addressLabel {
     margin-top: 0.7rem;
     margin-left: 1rem;
 }

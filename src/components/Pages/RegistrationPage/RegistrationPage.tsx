@@ -29,6 +29,7 @@ export default function RegistrationPage() {
       phoneNumber: data.phoneNumber,
       email: data.email.toLowerCase(),
       password: data.password,
+      gender: data.gender,
       role: "customer",
     };
     await axios
@@ -102,22 +103,46 @@ export default function RegistrationPage() {
                 },
               })}
             />
-            <h3 className={styles.label}>Phone Number</h3>
-            <input
-              type="text"
-              className={styles.input}
-              placeholder="Enter phone number..."
-              {...register("phoneNumber", {
-                required: {
-                  value: true,
-                  message: "ERROR: Phone Number is required!",
-                },
-                pattern: {
-                  value: /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g,
-                  message: "ERROR: Invalid phone number!",
-                },
-              })}
-            />
+            <div className="row">
+              <div className="col">
+                <h3 className={styles.label}>Phone Number</h3>
+                <input
+                  type="text"
+                  className={styles.input}
+                  placeholder="Enter phone number..."
+                  {...register("phoneNumber", {
+                    required: {
+                      value: true,
+                      message: "ERROR: Phone Number is required!",
+                    },
+                    pattern: {
+                      value: /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g,
+                      message: "ERROR: Invalid phone number!",
+                    },
+                  })}
+                />
+              </div>
+              <div className="col">
+                <h3 className={styles.label}>Gender</h3>
+                <select
+                  id={styles.genderSelect}
+                  {...register("gender", {
+                    required: {
+                      value: true,
+                      message: "ERROR: Choose the gender!",
+                    },
+                    pattern: {
+                      value: /^(male|female)$/i,
+                      message: "ERROR: Gender is invalid!",
+                    },
+                  })}
+                >
+                  <option defaultValue={""}>Please select an option</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+            </div>
             <div className="row">
               <div className="col">
                 <h3 className={styles.label}>First Name</h3>

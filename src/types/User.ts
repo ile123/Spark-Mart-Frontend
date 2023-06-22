@@ -6,6 +6,7 @@ type User = {
     phoneNumber: string,
     email: string,
     role: string,
+    gender: string,
     addressId: string
 }
   

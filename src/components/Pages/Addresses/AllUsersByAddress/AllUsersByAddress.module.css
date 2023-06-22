@@ -1,5 +1,5 @@
 #table {
-    margin-top: 1rem;
+    margin-top: 10rem;
     margin-bottom: 4rem;
     margin-left: 9rem;
     width: 80rem;
@@ -67,14 +67,28 @@
     background-color: #9baaf4;
 }
 
+#addUserIcon {
+    margin-left: 0.5rem;
+}
+
 #searchBar {
-    margin-left: 58.5rem;
+    margin-left: 64rem;
     margin-top: 3rem;
 }
 
 #noUsers {
-    margin-left: 30rem;
-    margin-top: 8rem;
+    margin-left: 32rem;
+    margin-top: 18rem;
     font-size: 4rem;
     font-family: Technology;
+}
+
+#row {
+    background-color: rgb(230, 228, 228);
+    text-align: center;
+    height: 4rem;
+}
+
+.rowItem {
+    padding-right: 3.5rem;
 }

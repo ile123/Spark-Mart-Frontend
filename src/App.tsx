@@ -22,6 +22,12 @@ import ProtectedRoute from "./components/Pages/Users/ProtectedRoute/ProtectedRou
 import EditAddress from "./components/Pages/Addresses/EditAddress/EditAddress";
 import ChangePassword from "./components/Pages/ChangePassword/ChangePassword";
 import Addresses from "./components/Pages/Addresses/Addresses";
+import AddAddress from "./components/Pages/Addresses/AddAddress/AddAddress";
+import AllUsersByAddress from "./components/Pages/Addresses/AllUsersByAddress/AllUsersByAddress";
+import Products from "./components/Pages/Products/Products";
+import Brands from "./components/Pages/Brands/Brands";
+import Categories from "./components/Pages/Categories/Categories";
+import AddBrand from "./components/Pages/Brands/AddBrand/AddBrand";
 
 //korist combineReducer u auth(ili u store/store.ts) ako triba dodat jos redux stvari
 //nadi nacin da grupiras sve ove putanje(postoji nesto zaboravia sam kako se radi)
@@ -36,6 +42,8 @@ const router = createBrowserRouter(
       </Route>
       <Route path="/addresses" element={<Outlet />}>
         <Route index element={<Addresses />} />
+        <Route path="newAddress" element={<AddAddress />} />
+        <Route path="getAllUsersByAddress/:id" element={<AllUsersByAddress />} />
       </Route>
       <Route element={<ProtectedRoute />}>
         <Route path="/profile" element={<Outlet />}>
@@ -44,6 +52,19 @@ const router = createBrowserRouter(
         <Route path="/editUserInformation" element={<EditUser />} />
         <Route path="/editUserAddress" element={<EditAddress />} />
         <Route path="/changePassword" element={<ChangePassword />} />
+      </Route>
+      <Route path="/products" element={<Outlet />}>
+        <Route index element={<Products />} />
+        {/* Add later */}
+      </Route>
+      <Route path="/brands" element={<Outlet />}>
+        <Route index element={<Brands />} />
+        <Route path="addNewBrand" element={<AddBrand />} />
+        {/* Add later */}
+      </Route>
+      <Route path="/categories" element={<Outlet />}>
+        <Route index element={<Categories />} />
+        {/* Add rest later */}
       </Route>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegistrationPage />} />
