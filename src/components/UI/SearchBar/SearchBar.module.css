@@ -13,7 +13,7 @@
 
 #searchButton {
     border: 1px solid black;
-    background-color: #6e84f0;
+    background-color: #c4caeb;
     width: 2rem;
     height: 2rem;
     border-radius: 100%;
@@ -21,5 +21,5 @@
 }
 
 #searchButton:hover {
-    background-color: #acb8f3;
+    background-color: #9baaf4;
 }

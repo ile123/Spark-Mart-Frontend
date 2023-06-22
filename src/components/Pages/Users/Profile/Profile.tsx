@@ -47,6 +47,8 @@ export default function UserProfile() {
               <h4 className={styles.infoField}>{user?.lastName}</h4>
               <h4 className={styles.label}>Email</h4>
               <h4 className={styles.infoField}>{user?.email}</h4>
+              <h4 className={styles.label}>Gender</h4>
+              <h4 className={styles.infoField}>{user?.gender}</h4>
               <h4 className={styles.label}>Role</h4>
               <h4 className={styles.infoField}>{user?.role}</h4>
             </Card.Body>
@@ -69,15 +71,15 @@ export default function UserProfile() {
             <Card.Body>
               {address?.streetAddress !== "" ? (
                 <div>
-                  <h4 className={styles.addressLabel}>Street Address</h4>
+                  <h4 className={styles.label}>Street Address</h4>
                   <h4 className={styles.infoField}>{address?.streetAddress}</h4>
-                  <h4 className={styles.addressLabel}>City</h4>
+                  <h4 className={styles.label}>City</h4>
                   <h4 className={styles.infoField}>{address?.city}</h4>
-                  <h4 className={styles.addressLabel}>Postal Code</h4>
+                  <h4 className={styles.label}>Postal Code</h4>
                   <h4 className={styles.infoField}>{address?.postalCode}</h4>
-                  <h4 className={styles.addressLabel}>Role</h4>
+                  <h4 className={styles.label}>Role</h4>
                   <h4 className={styles.infoField}>{address?.province}</h4>
-                  <h4 className={styles.addressLabel}>Country</h4>
+                  <h4 className={styles.label}>Country</h4>
                   <h4 className={styles.infoField}>{address?.country}</h4>
                 </div>
               ) : (

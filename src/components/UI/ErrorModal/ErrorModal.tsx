@@ -22,7 +22,7 @@ const ModalOverlay = (props: any) => {
       </div>
       <Card.Footer className={styles.actions}>
         <Button style={styles.button} onClick={props.onConfirm} type={"button"}>
-          Submit
+          Close
         </Button>
       </Card.Footer>
     </Card>

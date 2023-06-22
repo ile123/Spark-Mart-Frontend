@@ -1,29 +1,24 @@
 //@ts-nocheck
 import { useEffect, useState } from "react";
-import Layout from "../../UI/Layout/Layout";
-import Forbidden from "../Errors/Forbidden/Forbidden";
-import styles from "./Users.module.css";
+import Layout from "../../../UI/Layout/Layout";
+import styles from './AllUsersByAddress.module.css'
 import { useSelector } from "react-redux";
-import { getAllUsers } from "../../../services/user-Service";
-import UserItem from "./UserItem/UserItem";
+import Forbidden from "../../Errors/Forbidden/Forbidden";
 import { Pagination } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSort, faCirclePlus } from "@fortawesome/free-solid-svg-icons";
-import Button from "../../UI/Button/Button";
+import { faSort } from "@fortawesome/free-solid-svg-icons";
+import Button from "../../../UI/Button/Button";
 import { User } from "../../../types/User";
-import { Link, useParams, useHistory } from "react-router-dom";
-import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
-import SearchBar from "../../UI/SearchBar/SearchBar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { getAllUsersByAddress } from "../../../../services/address-Service";
 
-export default function Users() {
-  const { type } = useParams();
+export default function AllUsersByAddress() {
+  const { id } = useParams();
   const { userInfo } = useSelector((state: any) => state.auth);
   const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
-  const [searchValue, setSearchValue] = useState("");
   const [sortDir, setSortDir] = useState("asc");
   const [sortBy, setSortBy] = useState("firstName");
   const [users, setUsers] = useState<User[]>([{}]);
@@ -43,14 +38,9 @@ export default function Users() {
     );
   }
 
-  const userDeletionHandler = (data: any, totalPages: number) => {
-    setUsers(data);
-    setTotalPages(totalPages);
-  };
-
   const changePageHandler = (page: number) => {
     setCurrentPage(page - 1);
-    getAllUsers(page - 1, pageSize, sortBy, sortDir, type, searchValue).then(
+    getAllUsersByAddress(id, page - 1, pageSize, sortBy, sortDir).then(
       (result: any) => {
         setUsers(result.data.content);
         setTotalPages(result.data.totalPages);
@@ -63,44 +53,33 @@ export default function Users() {
     setSortDir(sortDir === "asc" ? "desc" : "asc");
     setSortBy(sortByField);
     setCurrentPage(nextPage);
-    getAllUsers(
+    getAllUsersByAddress(
+      id,
       nextPage,
       pageSize,
       sortByField,
-      sortDir === "asc" ? "desc" : "asc",
-      type,
-      searchValue
+      sortDir === "asc" ? "desc" : "asc"
     ).then((result: any) => {
       setUsers(result.data.content);
       setTotalPages(result.data.totalPages);
     });
   };
 
-  const searchHandler = (searchString: string) => {
-    const keyword = searchString === undefined ? "" : searchString;
-    setSearchValue(keyword);
-    getAllUsers(0, pageSize, sortBy, sortDir, type, keyword)
-      .then((result: any) => {
-        setNoUsersFound(false);
-        setUsers(result.data.content);
-        setTotalPages(result.data.totalPages);
-      })
-      .catch(() => {
-        setNoUsersFound(true);
-      });
-  };
-
   useEffect(() => {
-    getAllUsers(currentPage, pageSize, "firstName", "asc", type, "")
+    getAllUsersByAddress(id, currentPage, pageSize, "firstName", "asc")
       .then((result: any) => {
-        setNoUsersFound(false);
+        if(result.data.content.length === 0) {
+            setNoUsersFound(true);
+        } else {
+            setNoUsersFound(false);
+        }
         setUsers(result.data.content);
         setTotalPages(result.data.totalPages);
       })
       .catch(() => {
         setNoUsersFound(true);
       });
-  }, [type]);
+  }, []);
 
   if (JSON.stringify(userInfo) === "{}") navigate("/");
 
@@ -110,23 +89,6 @@ export default function Users() {
     return (
       <>
         <Layout>
-          <div>
-            <div id={styles.optionsGrid}>
-              <div>
-                <Link to="newUser" state={{ userType: type }}>
-                  <Button style={styles.circleButton}>
-                    <FontAwesomeIcon
-                      icon={faCirclePlus}
-                      size={"2xl"}
-                    />
-                  </Button>
-                </Link>
-              </div>
-              <div id={styles.searchBar}>
-                <SearchBar onSubmit={searchHandler} />
-              </div>
-            </div>
-          </div>
           {!noUsersFound ? (
             <div>
               <table id={styles.table}>
@@ -190,28 +152,18 @@ export default function Users() {
                         </Button>
                       </div>
                     </th>
-                    <th id={styles.optionsRow}>Options</th>
                   </tr>
                 </thead>
                 <tbody>
                   {users.map((user: any, index: number) => {
-                      return (
-                        <UserItem
-                          key={index}
-                          id={user.id}
-                          firstName={user.firstName}
-                          lastName={user.lastName}
-                          email={user.email}
-                          phoneNumber={user.phoneNumber}
-                          pageNo={currentPage}
-                          pageSize={pageSize}
-                          sortDir={sortDir}
-                          sortBy={sortBy}
-                          keyword={searchValue}
-                          userType={type}
-                          onUserDeletion={userDeletionHandler}
-                        />
-                      );
+                    return (
+                      <tr id={styles.row} key={index}>
+                        <td className={styles.rowItem}>{user.firstName}</td>
+                        <td className={styles.rowItem}>{user.lastName}</td>
+                        <td className={styles.rowItem}>{user.email}</td>
+                        <td className={styles.rowItem}>{user.phoneNumber}</td>
+                      </tr>
+                    );
                   })}
                 </tbody>
               </table>

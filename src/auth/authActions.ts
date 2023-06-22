@@ -5,7 +5,7 @@ const backendURL = 'http://localhost:8080/spark-mart/api'
 
 export const registerUser = createAsyncThunk(
     'auth/register',
-    async ({ firstName, lastName, phoneNumber, email, password, role }: any, { rejectWithValue }) =>  {
+    async ({ firstName, lastName, phoneNumber, email, password, gender, role }: any, { rejectWithValue }) =>  {
         try {
             const config = {
                 headers: {
@@ -14,7 +14,7 @@ export const registerUser = createAsyncThunk(
             }
             await axios.post(
                 `${backendURL}/auth/register`,
-                { firstName, lastName, phoneNumber, email, password, role },
+                { firstName, lastName, phoneNumber, email, password, gender, role },
                 config
             )
         } 

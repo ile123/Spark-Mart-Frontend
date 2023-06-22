@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import CustomerNavigation from "../Navigation/CustomerNavigation/CustomerNavigation";
 import { logout } from "../../../auth/authSlice";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import EmployeeNavigation from "../Navigation/EmployeeNavigation/EmployeeNavigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog, faL } from "@fortawesome/free-solid-svg-icons";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { getUserById } from "../../../services/user-Service";
 
 export default function Header() {
