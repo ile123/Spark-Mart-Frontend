@@ -11,14 +11,7 @@ import { getUserById } from "../../../services/user-Service";
 
 export default function Header() {
   const { userInfo, loading } = useSelector((state: any) => state.auth);
-  const [user, setUser] = useState({});
   const dispatch = useDispatch();
-
-  if (JSON.stringify(user) === "{}") {
-    if (userInfo.userId !== undefined) {
-      getUserById(userInfo.userId).then((result: any) => setUser(result.data));
-    }
-  }
 
   return (
     <>
@@ -49,9 +42,9 @@ export default function Header() {
             ) : JSON.stringify(userInfo) !== "{}" ? (
               <div id={styles.logout}>
                 <Link to="/profile" className={styles.button}>
-                  {JSON.stringify(user) === "{}" && <h5>Profile</h5>}
-                  {JSON.stringify(user) !== "{}" && (
-                    <h5>Profile({user?.firstName})</h5>
+                  {JSON.stringify(userInfo) === "{}" && <h5>Profile</h5>}
+                  {JSON.stringify(userInfo) !== "{}" && (
+                    <h5>Profile({userInfo?.firstName})</h5>
                   )}
                 </Link>
                 <Link
