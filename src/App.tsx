@@ -28,6 +28,7 @@ import Products from "./components/Pages/Products/Products";
 import Brands from "./components/Pages/Brands/Brands";
 import Categories from "./components/Pages/Categories/Categories";
 import AddBrand from "./components/Pages/Brands/AddBrand/AddBrand";
+import EditBrand from "./components/Pages/Brands/EditBrand/EditBrand";
 
 //korist combineReducer u auth(ili u store/store.ts) ako triba dodat jos redux stvari
 //nadi nacin da grupiras sve ove putanje(postoji nesto zaboravia sam kako se radi)
@@ -59,8 +60,8 @@ const router = createBrowserRouter(
       </Route>
       <Route path="/brands" element={<Outlet />}>
         <Route index element={<Brands />} />
-        <Route path="addNewBrand" element={<AddBrand />} />
-        {/* Add later */}
+        <Route path="newBrand" element={<AddBrand />} />
+        <Route path="editBrand" element={<EditBrand />} />
       </Route>
       <Route path="/categories" element={<Outlet />}>
         <Route index element={<Categories />} />

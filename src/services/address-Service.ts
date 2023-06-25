@@ -26,7 +26,7 @@ export const getAddressById = (addressId: string) => {
 }
 
 export const createNewAddress = (newAddress: any) => {
-    return axios.post(API_URL, newAddress, { headers: { Authorization: `${userToken}` } })
+    return axios.post(API_URL, newAddress, { headers: { Authorization: `${userToken}` } });
 }
 
 export const getAllUsersByAddress = (id: string, pageNum: number, pageSize: number, sortBy: string, sortDir: string) => {
