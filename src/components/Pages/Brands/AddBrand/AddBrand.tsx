@@ -36,6 +36,11 @@ export default function AddBrand() {
   };
 
   async function submitForm(data: any) {
+    if(data.image[0].size > 512000) {
+      setFormErrors(["ERROR: Maximum image size exceeded(500kb)!"]);
+      setShowErrorModal(true);
+      return;
+    }
     const params = {
         name: data.name,
         image: data.image[0]

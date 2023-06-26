@@ -22,6 +22,7 @@ export default function BrandItem(props: any) {
       console.error("Error retrieving image:", error);
     }
   };
+
   async function deleteUserHandler() {
     await deleteBrand(props.id);
     await getAllBrands(
@@ -35,21 +36,17 @@ export default function BrandItem(props: any) {
     );
   }
 
-  useEffect(() => {
+  if(imagePath === null) {
     getImageUrl();
-  }, [props.key])
-
-  /* if (imagePath === null) {
-    getImageUrl();
-  } */
+  }
 
   return (
     <>
-      <tr id={styles.row}>
+      <tr id={styles.row} key={props.keyId}>
         <td>{props.name}</td>
         <td>
-          {imagePath ? (
-            <img src={imagePath} width={90} height={60} />
+          { imagePath ? (
+            <img src={imagePath} width={90} height={60} onError={() => {}}/>
           ) : (
             <div>Loading image...</div>
           )}

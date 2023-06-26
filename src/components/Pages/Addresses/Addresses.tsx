@@ -202,6 +202,7 @@ export default function Addresses() {
                     return (
                       <AddressItem
                         key={index}
+                        keyId={index}
                         id={address.id}
                         streetAddress={address.streetAddress}
                         city={address.city}

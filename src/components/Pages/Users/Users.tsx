@@ -198,6 +198,7 @@ export default function Users() {
                       return (
                         <UserItem
                           key={index}
+                          keyId={index}
                           id={user.id}
                           firstName={user.firstName}
                           lastName={user.lastName}

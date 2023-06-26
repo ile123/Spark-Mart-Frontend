@@ -27,13 +27,13 @@ export default function EmployeeNavigation(props: any) {
             Addresses
           </Link>
         )}
-        <Link to="/products" className={styles.button}>
+        <Link to="/adminProducts" className={styles.button}>
           Products
         </Link>
-        <Link to="/brands" className={styles.button}>
+        <Link to="/adminBrands" className={styles.button}>
           Brands
         </Link>
-        <Link to="/categories" className={styles.button}>
+        <Link to="/adminCategories" className={styles.button}>
           Categories
         </Link>
       </nav>

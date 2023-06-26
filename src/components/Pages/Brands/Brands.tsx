@@ -25,7 +25,7 @@ export default function Brands() {
   const [sortBy, setSortBy] = useState("name");
   const [brands, setBrands] = useState<Brand[]>([{}]);
   const [totalPages, setTotalPages] = useState(0);
-  const [noBrandsFound, setNoBrandsFound] = useState(false);
+  const [noBrandsFound, setNoBrandsFound] = useState(true);
 
   const searchHandler = (searchString: string) => {
     const keyword = searchString === undefined ? "" : searchString;
@@ -42,9 +42,11 @@ export default function Brands() {
   };
 
   const changePageHandler = (page: number) => {
+    setNoBrandsFound(true);
     setCurrentPage(page - 1);
     getAllBrands(page - 1, pageSize, sortBy, sortDir, searchValue).then(
       (result: any) => {
+        setNoBrandsFound(false);
         setBrands(result.data.content);
         setTotalPages(result.data.totalPages);
       }
@@ -53,6 +55,7 @@ export default function Brands() {
 
   const changeSortingHander = (page: number, sortByField: string) => {
     const nextPage: number = page - 1 < 0 ? 0 : page - 1;
+    setNoBrandsFound(true);
     setSortDir(sortDir === "asc" ? "desc" : "asc");
     setSortBy(sortByField);
     setCurrentPage(nextPage);
@@ -63,6 +66,7 @@ export default function Brands() {
       sortDir === "asc" ? "desc" : "asc",
       searchValue
     ).then((result: any) => {
+      setNoBrandsFound(false);
       setBrands(result.data.content);
       setTotalPages(result.data.totalPages);
     });
@@ -114,7 +118,7 @@ export default function Brands() {
               </div>
             </div>
           </div>
-          {!noBrandsFound ? (
+          {(noBrandsFound === false && brands.length !== 0)? (
             <div>
               <table id={styles.table}>
                 <thead id={styles.tableHead}>
@@ -138,10 +142,10 @@ export default function Brands() {
                 </thead>
                 <tbody>
                   {brands.map((brand: any, index: number) => {
-                    console.log(brand);
                     return (
                       <BrandItem
                         key={index}
+                        keyId={index}
                         id={brand.id}
                         name={brand.name}
                         imageName={brand.imageName}
@@ -155,7 +159,7 @@ export default function Brands() {
               </Pagination>
             </div>
           ) : (
-            <h3 id={styles.noBrands}>No brands were found!</h3>
+            <h3 id={styles.noBrands}>Loading...</h3>
           )}
         </Layout>
       </>

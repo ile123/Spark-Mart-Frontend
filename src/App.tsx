@@ -29,6 +29,8 @@ import Brands from "./components/Pages/Brands/Brands";
 import Categories from "./components/Pages/Categories/Categories";
 import AddBrand from "./components/Pages/Brands/AddBrand/AddBrand";
 import EditBrand from "./components/Pages/Brands/EditBrand/EditBrand";
+import AddCategory from "./components/Pages/Categories/AddCategory/AddCategory";
+import EditCategory from "./components/Pages/Categories/EditCategory/EditCategory";
 
 //korist combineReducer u auth(ili u store/store.ts) ako triba dodat jos redux stvari
 //nadi nacin da grupiras sve ove putanje(postoji nesto zaboravia sam kako se radi)
@@ -54,17 +56,19 @@ const router = createBrowserRouter(
         <Route path="/editUserAddress" element={<EditAddress />} />
         <Route path="/changePassword" element={<ChangePassword />} />
       </Route>
-      <Route path="/products" element={<Outlet />}>
+      <Route path="/adminProducts" element={<Outlet />}>
         <Route index element={<Products />} />
         {/* Add later */}
       </Route>
-      <Route path="/brands" element={<Outlet />}>
+      <Route path="/adminBrands" element={<Outlet />}>
         <Route index element={<Brands />} />
         <Route path="newBrand" element={<AddBrand />} />
         <Route path="editBrand" element={<EditBrand />} />
       </Route>
-      <Route path="/categories" element={<Outlet />}>
+      <Route path="/adminCategories" element={<Outlet />}>
         <Route index element={<Categories />} />
+        <Route path="newCategory" element={<AddCategory />} />
+        <Route path="editCategory" element={<EditCategory />} />
         {/* Add rest later */}
       </Route>
       <Route path="/login" element={<LoginPage />} />

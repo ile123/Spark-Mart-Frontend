@@ -6,7 +6,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 export default function AddressItem(props: any) {
       return (
         <>
-          <tr id={styles.row}>
+          <tr id={styles.row} key={props.keyId}>
             <td>{props.streetAddress}</td>
             <td>{props.city}</td>
             <td>{props.postalCode}</td>
