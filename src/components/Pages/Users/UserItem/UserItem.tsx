@@ -15,7 +15,7 @@ export default function UserItem(props: any) {
 
   return (
     <>
-      <tr id={styles.row}>
+      <tr id={styles.row} key={props.keyId}>
         <td>{props.firstName}</td>
         <td>{props.lastName}</td>
         <td>{props.email}</td>
