@@ -27,8 +27,8 @@ export default function EditBrand() {
   } = useForm();
 
   async function submitForm(data: any) {
-    if(data.image[0].size > 512000) {
-      setFormErrors(["ERROR: Maximum image size exceeded(500kb)!"]);
+    if(data.image[0].size > 1048576) {
+      setFormErrors(["ERROR: Maximum image size exceeded(1MB)!"]);
       setShowErrorModal(true);
       return;
     }
@@ -38,7 +38,7 @@ export default function EditBrand() {
         image: data.image[0]
     }
     updateBrand(params);
-    navigate("/brands");
+    navigate("/adminBrands");
   }
 
   const handleError = (errors: any) => {
@@ -93,10 +93,6 @@ export default function EditBrand() {
                 required: {
                     value: true,
                     message: "ERROR: Name is required!"
-                },
-                pattern: {
-                    value: /^[a-zA-Z\s-]+$/,
-                    message: "ERROR: Invalid name!",
                 }
             })}/>
             <h3 className={styles.label}>Photo: </h3>

@@ -11,9 +11,9 @@ export default function CustomerNavigation() {
         <Link to="/products" className={styles.button}>
           Products
         </Link>
-        <a href="#" className={styles.button}>
-          Categories
-        </a>
+        <Link to="/brands" className={styles.button}>
+          Brands
+        </Link>
         <a href="#" className={styles.button}>
           About Us
         </a>

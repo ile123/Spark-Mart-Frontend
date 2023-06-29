@@ -43,7 +43,7 @@ export default function CategoryItem(props: any) {
     <>
       <tr id={styles.row} key={props.keyId}>
         <td>{props.name}</td>
-        <td>{props.description}</td>
+        <td><h6 id={styles.description}>{props.description}</h6></td>
         <td>
           { imagePath ? (
             <img src={imagePath} width={90} height={60} onError={() => {}}/>

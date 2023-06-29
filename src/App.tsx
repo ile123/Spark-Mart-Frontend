@@ -1,7 +1,7 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/fonts/Technology/Technology.ttf";
-
+//neka homepage prikaziva listu kategorija kada si nelogiran ili kada si logirna ko kupac, ko na elipsu
 import {
   Outlet,
   Route,
@@ -31,7 +31,10 @@ import AddBrand from "./components/Pages/Brands/AddBrand/AddBrand";
 import EditBrand from "./components/Pages/Brands/EditBrand/EditBrand";
 import AddCategory from "./components/Pages/Categories/AddCategory/AddCategory";
 import EditCategory from "./components/Pages/Categories/EditCategory/EditCategory";
-
+import AddProduct from "./components/Pages/Products/AddProduct/AddProduct";
+import EditProduct from "./components/Pages/Products/EditProduct/EditProduct";
+import CustomerProducts from "./components/Pages/CustomerProducts/CustomerProducts";
+import CustomerBrand from "./components/Pages/CustomerBrand/CustomerBrand";
 //korist combineReducer u auth(ili u store/store.ts) ako triba dodat jos redux stvari
 //nadi nacin da grupiras sve ove putanje(postoji nesto zaboravia sam kako se radi)
 const router = createBrowserRouter(
@@ -58,6 +61,8 @@ const router = createBrowserRouter(
       </Route>
       <Route path="/adminProducts" element={<Outlet />}>
         <Route index element={<Products />} />
+        <Route path="newProduct" element={<AddProduct />} />
+        <Route path="editProduct/:id" element={<EditProduct />} />
         {/* Add later */}
       </Route>
       <Route path="/adminBrands" element={<Outlet />}>
@@ -70,6 +75,10 @@ const router = createBrowserRouter(
         <Route path="newCategory" element={<AddCategory />} />
         <Route path="editCategory" element={<EditCategory />} />
         {/* Add rest later */}
+      </Route>
+      <Route path="/products" element={<CustomerProducts />} />
+      <Route path="/brands" element={<Outlet />}>
+        <Route index element={<CustomerBrand />} />
       </Route>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegistrationPage />} />

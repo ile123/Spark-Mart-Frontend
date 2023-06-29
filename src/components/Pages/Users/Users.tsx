@@ -12,7 +12,6 @@ import { faSort, faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../UI/Button/Button";
 import { User } from "../../../types/User";
 import { Link, useParams, useHistory } from "react-router-dom";
-import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "../../UI/SearchBar/SearchBar";
 import { useNavigate } from "react-router-dom";
 

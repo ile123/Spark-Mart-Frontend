@@ -27,12 +27,11 @@ export default function EditCategory() {
   } = useForm();
 
   async function submitForm(data: any) {
-    if(data.image[0].size > 512000) {
-      setFormErrors(["ERROR: Maximum image size exceeded(500kb)!"]);
+    if(data.image[0].size > 1048576) {
+      setFormErrors(["ERROR: Maximum image size exceeded(1MB)!"]);
       setShowErrorModal(true);
       return;
     }
-    console.log(data.image[0].size);
     const params = {
         id: categoryId,
         name: data.name,
@@ -40,7 +39,7 @@ export default function EditCategory() {
         image: data.image[0]
     }
     updateCategory(params);
-    navigate("/categories");
+    navigate("/adminCategories");
   }
 
   const handleError = (errors: any) => {
@@ -96,10 +95,6 @@ export default function EditCategory() {
                 required: {
                     value: true,
                     message: "ERROR: Name is required!"
-                },
-                pattern: {
-                    value: /^[a-zA-Z\s-]+$/,
-                    message: "ERROR: Invalid name!",
                 }
             })}/>
             <h3 id={styles.descriptionCategory}>Description: </h3>

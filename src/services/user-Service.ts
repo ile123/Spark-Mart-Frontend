@@ -28,11 +28,7 @@ export const getUserById = (userId: string) => {
 }
 
 export const updateUser = (userId: string, userInformation: any) => {
-    return axios.put(API_URL + '/update-user/' + userId, {
-        firstName: userInformation.firstName,
-        lastName: userInformation.lastName,
-        phoneNumber: userInformation.phoneNumber,
-    }, { headers: { Authorization: `${userToken}` } });
+    return axios.put(API_URL + '/update-user/' + userId, userInformation, { headers: { Authorization: `${userToken}` } });
 }
 
 export const changeUserPassword = (userId: string, password: any) => {
@@ -42,14 +38,7 @@ export const changeUserPassword = (userId: string, password: any) => {
 }
 
 export const changeUserAddress = (userId: string, addressInformation: any) => {
-    return axios.put(API_URL + '/change-address/' + userId, {
-        id: addressInformation.id,
-        streetAddress: addressInformation.streetAddress,
-        city: addressInformation.city,
-        postalCode: addressInformation.postalCode,
-        province: addressInformation.province,
-        country: addressInformation.country
-    }, { headers: { Authorization: `${userToken}` } });
+    return axios.put(API_URL + '/change-address/' + userId, addressInformation, { headers: { Authorization: `${userToken}` } });
 }
 
 export const deleteUser = (userId: string) => {

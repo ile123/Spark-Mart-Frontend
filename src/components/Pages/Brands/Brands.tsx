@@ -23,7 +23,7 @@ export default function Brands() {
   const [searchValue, setSearchValue] = useState("");
   const [sortDir, setSortDir] = useState("asc");
   const [sortBy, setSortBy] = useState("name");
-  const [brands, setBrands] = useState<Brand[]>([{}]);
+  const [brands, setBrands] = useState<Brand[]>([]);
   const [totalPages, setTotalPages] = useState(0);
   const [noBrandsFound, setNoBrandsFound] = useState(true);
 
