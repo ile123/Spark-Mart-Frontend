@@ -24,3 +24,11 @@
 #editButton {
     color: rgb(110, 169, 20);
 }
+
+#description {
+    width: 500px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -23,7 +23,7 @@ export const getAllBrands = (pageNum: number, pageSize: number, sortBy: string, 
 }
 
 export const createNewBrand = (newBrand: any ) => {
-    return axios.post(API_URL, { image: newBrand.image, name: newBrand.name }, { headers: { Authorization: `${userToken}`, 'Content-Type': 'multipart/form-data' } });
+    return axios.post(API_URL, newBrand, { headers: { Authorization: `${userToken}`, 'Content-Type': 'multipart/form-data' } });
 }
 
 export const getBrandById = (brandId: string) => {
@@ -35,5 +35,5 @@ export const deleteBrand = (brandId: string) => {
 }
 
 export const updateBrand = (newBrand: any) => {
-    return axios.put(API_URL + "/" + newBrand.id, { image: newBrand.image, name: newBrand.name } , { headers: { Authorization: `${userToken}`, 'Content-Type': 'multipart/form-data' } });
+    return axios.put(API_URL + "/" + newBrand.id, newBrand , { headers: { Authorization: `${userToken}`, 'Content-Type': 'multipart/form-data' } });
 }

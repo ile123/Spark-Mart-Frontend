@@ -23,7 +23,7 @@ export const getAllCategories = (pageNum: number, pageSize: number, sortBy: stri
 }
 
 export const createNewCategory = (newCategory: any ) => {
-    return axios.post(API_URL, { image: newCategory.image, name: newCategory.name, description: newCategory.description }, { headers: { Authorization: `${userToken}`, 'Content-Type': 'multipart/form-data' } });
+    return axios.post(API_URL, newCategory, { headers: { Authorization: `${userToken}`, 'Content-Type': 'multipart/form-data' } });
 }
 
 export const getCategoryById = (categoryId: string) => {
@@ -35,5 +35,5 @@ export const deleteCategory = (categoryId: string) => {
 }
 
 export const updateCategory = (newCategory: any) => {
-    return axios.put(API_URL + "/" + newCategory.id, { image: newCategory.image, name: newCategory.name, description: newCategory.description } , { headers: { Authorization: `${userToken}`, 'Content-Type': 'multipart/form-data' } });
+    return axios.put(API_URL + "/" + newCategory.id, newCategory , { headers: { Authorization: `${userToken}`, 'Content-Type': 'multipart/form-data' } });
 }
