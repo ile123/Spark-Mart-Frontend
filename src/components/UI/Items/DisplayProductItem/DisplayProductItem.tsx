@@ -1,16 +1,17 @@
 import { Card } from "react-bootstrap";
-import styles from "./BrandItem.module.css";
+import styles from "./DisplayProductItem.module.css";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
-export default function BrandItem(props: any) {
+export default function DisplayProductItem(props: any) {
   const [imagePath, setImagePath] = useState(null);
 
   const getImageUrl = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/spark-mart/api/images/brand/${props.imageName}`
+        `http://localhost:8080/spark-mart/api/images/product/${props.imageName}`
       );
       const blob = await response.blob();
       const imageUrl: any = URL.createObjectURL(blob);
@@ -23,17 +24,20 @@ export default function BrandItem(props: any) {
   if (imagePath === null) {
     getImageUrl();
   }
-
-  return (
-    <>
-      <Card id={styles.card} key={props.keyId}>
-        {imagePath ? (
-          <Card.Img variant="top" src={imagePath} id={styles.image} />
+  return(
+  <>
+    <Card id={styles.card}>
+    {imagePath ? (
+          <Card.Img variant="top" src={imagePath} height={250} />
         ) : (
           <FontAwesomeIcon icon={faCog} />
         )}
-        <Card.Footer id={styles.footer}><h3>{props.name}</h3></Card.Footer>
-      </Card>
-    </>
+        <Card.Title>
+          <h5 id={styles.title}>
+            <Link to={"/product/" + props.id} id={styles.button}>{props.name}</Link>
+          </h5>
+        </Card.Title>
+    </Card>
+  </>
   );
 }

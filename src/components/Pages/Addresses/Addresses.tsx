@@ -12,7 +12,7 @@ import Button from "../../UI/Button/Button";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSort, faCirclePlus } from "@fortawesome/free-solid-svg-icons";
-import AddressItem from "./AddressItem/AddressItem";
+import AddressItem from "../../UI/Items/AddressItem/AddressItem";
 import { useNavigate } from "react-router-dom";
 
 export default function Addresses() {

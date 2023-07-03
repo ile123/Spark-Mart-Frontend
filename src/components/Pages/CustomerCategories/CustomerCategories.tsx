@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Layout from "../../UI/Layout/Layout";
-import styles from "./Home.module.css";
+import styles from "./CustomerCategories.module.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { DisplayCategory } from "../../../types/DisplayCategory";
@@ -9,7 +9,7 @@ import { getAllCategories } from "../../../services/category-service";
 import DisplayCategoryItem from "../../UI/Items/DisplayCategoryItem/DisplayCategoryItem";
 import { Category } from "../../../types/Category";
 
-export default function Home() {
+export default function CustomerCategories() {
   const { userInfo, loading } = useSelector((state: any) => state.auth);
   const [list, setList] = useState<Category[]>([]);
 

@@ -1,0 +1,57 @@
+#card {
+    margin-left: 11rem;
+    margin-bottom: 3rem;
+    width: 19rem;
+    height: 21rem;
+    background-color: #92a1eb;
+}
+
+#footer {
+    height: 1rem;
+    background-color: #92a1eb;
+    font-family: Technology;
+    text-align: center;
+}
+
+#image {
+    width: 18.9rem;
+    height: 15rem;
+}
+
+#button {
+    text-decoration: none;
+    font-size: 20px;
+    padding-bottom: 1px;
+    margin-bottom: 10px;
+    display: inline-block;
+    position: relative;
+    color: white;
+}
+
+#button:hover {
+    color: white;
+}
+  
+#button::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+  
+#button:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+#title {
+    margin-top: 1rem;
+    text-align: center;
+    font-family: Technology;
+}

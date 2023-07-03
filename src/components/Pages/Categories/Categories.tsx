@@ -7,7 +7,7 @@ import { faSort, faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "../../UI/SearchBar/SearchBar";
 import { useState, useEffect } from "react";
 import { getAllCategories } from "../../../services/category-service";
-import CategoryItem from "./CategoryItem/CategoryItem";
+import CategoryItem from "../../UI/Items/CategoryItem/CategoryItem";
 import { Pagination } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -104,7 +104,7 @@ export default function Categories() {
     return (
       <>
         <Layout>
-        <div>
+          <div>
             <div className={styles.optionsGrid}>
               <div>
                 <Link to="newCategory">
@@ -118,22 +118,24 @@ export default function Categories() {
               </div>
             </div>
           </div>
-          {(noCategoriesFound === false && categories.length !== 0) ? (
+          {noCategoriesFound === false && categories.length !== 0 ? (
             <div>
               <table id={styles.table}>
                 <thead id={styles.tableHead}>
                   <tr>
                     <th className={styles.tableRow}>
                       <div className={styles.grid}>
-                        <h6 className={styles.fieldName}>Name
-                        <Button
-                          style={styles.buttonSort}
-                          onClick={() =>
-                            changeSortingHander(currentPage, "name")
-                          }
-                        >
-                          <FontAwesomeIcon icon={faSort} />
-                        </Button></h6>
+                        <h6 className={styles.fieldName}>
+                          Name
+                          <Button
+                            style={styles.buttonSort}
+                            onClick={() =>
+                              changeSortingHander(currentPage, "name")
+                            }
+                          >
+                            <FontAwesomeIcon icon={faSort} />
+                          </Button>
+                        </h6>
                       </div>
                     </th>
                     <th className={styles.tableRow}>Description</th>
@@ -161,7 +163,9 @@ export default function Categories() {
               </Pagination>
             </div>
           ) : (
-            <h3 id={styles.noCategories}>Loading...</h3> /* Zamini Loading sa onim kolutom */
+            <h3 id={styles.noCategories}>
+              Loading...
+            </h3> /* Zamini Loading sa onim kolutom */
           )}
         </Layout>
       </>

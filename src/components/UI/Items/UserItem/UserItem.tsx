@@ -3,7 +3,7 @@ import styles from "./UserItem.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faEdit, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { deleteUser, getAllUsers } from "../../../../services/user-Service";
-import Button from "../../../UI/Button/Button";
+import Button from "../../Button/Button";
 
 export default function UserItem(props: any) {
   async function deleteUserHandler() {

@@ -1,19 +1,18 @@
-import { useEffect, useState } from "react";
-import styles from "./BrandItem.module.css";
+import { useState } from "react";
+import styles from "./CategoryItem.module.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboardList, faTrashCan, faEdit } from "@fortawesome/free-solid-svg-icons";
-import Button from "../../../UI/Button/Button";
-import { deleteBrand } from "../../../../services/brand-Service";
-import { getAllBrands } from "../../../../services/brand-Service";
+import Button from "../../Button/Button";
+import { deleteCategory, getAllCategories } from "../../../../services/category-service";
 
-export default function BrandItem(props: any) {
+export default function CategoryItem(props: any) {
   const [imagePath, setImagePath] = useState(null);
 
   const getImageUrl = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/spark-mart/api/images/brand/${props.imageName}`
+        `http://localhost:8080/spark-mart/api/images/category/${props.imageName}`
       );
       const blob = await response.blob();
       const imageUrl: any = URL.createObjectURL(blob);
@@ -24,15 +23,15 @@ export default function BrandItem(props: any) {
   };
 
   async function deleteUserHandler() {
-    await deleteBrand(props.id);
-    await getAllBrands(
+    await deleteCategory(props.id);
+    await getAllCategories(
       props.pageNo,
       props.pageSize,
       props.sortDir,
       props.sortBy,
       props.keyword
     ).then((result: any) =>
-      props.onBrandDeletion(result.data.content, result.data.totalPages)
+      props.onCategoryDeletion(result.data.content, result.data.totalPages)
     );
   }
 
@@ -44,6 +43,7 @@ export default function BrandItem(props: any) {
     <>
       <tr id={styles.row} key={props.keyId}>
         <td>{props.name}</td>
+        <td><h6 id={styles.description}>{props.description}</h6></td>
         <td>
           { imagePath ? (
             <img src={imagePath} width={90} height={60} onError={() => {}}/>
@@ -56,7 +56,7 @@ export default function BrandItem(props: any) {
           <Link to="#" id={styles.allProductsList}>
             <FontAwesomeIcon icon={faClipboardList} size="xl" />
           </Link>
-          <Link to="editBrand" state={{ brandId: props.id }} >
+          <Link to="editCategory" state={{ categoryId: props.id }} >
             <FontAwesomeIcon icon={faEdit} size="xl" id={styles.editButton} />
           </Link>
           <Button onClick={deleteUserHandler} style={styles.deleteButton}>

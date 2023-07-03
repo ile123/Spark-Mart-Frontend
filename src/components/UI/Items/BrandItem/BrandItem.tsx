@@ -1,18 +1,19 @@
-import { useState } from "react";
-import styles from "./CategoryItem.module.css";
+import { useEffect, useState } from "react";
+import styles from "./BrandItem.module.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboardList, faTrashCan, faEdit } from "@fortawesome/free-solid-svg-icons";
-import Button from "../../../UI/Button/Button";
-import { deleteCategory, getAllCategories } from "../../../../services/category-service";
+import Button from "../../Button/Button";
+import { deleteBrand } from "../../../../services/brand-Service";
+import { getAllBrands } from "../../../../services/brand-Service";
 
-export default function CategoryItem(props: any) {
+export default function BrandItem(props: any) {
   const [imagePath, setImagePath] = useState(null);
 
   const getImageUrl = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/spark-mart/api/images/category/${props.imageName}`
+        `http://localhost:8080/spark-mart/api/images/brand/${props.imageName}`
       );
       const blob = await response.blob();
       const imageUrl: any = URL.createObjectURL(blob);
@@ -23,15 +24,15 @@ export default function CategoryItem(props: any) {
   };
 
   async function deleteUserHandler() {
-    await deleteCategory(props.id);
-    await getAllCategories(
+    await deleteBrand(props.id);
+    await getAllBrands(
       props.pageNo,
       props.pageSize,
       props.sortDir,
       props.sortBy,
       props.keyword
     ).then((result: any) =>
-      props.onCategoryDeletion(result.data.content, result.data.totalPages)
+      props.onBrandDeletion(result.data.content, result.data.totalPages)
     );
   }
 
@@ -43,7 +44,6 @@ export default function CategoryItem(props: any) {
     <>
       <tr id={styles.row} key={props.keyId}>
         <td>{props.name}</td>
-        <td><h6 id={styles.description}>{props.description}</h6></td>
         <td>
           { imagePath ? (
             <img src={imagePath} width={90} height={60} onError={() => {}}/>
@@ -56,7 +56,7 @@ export default function CategoryItem(props: any) {
           <Link to="#" id={styles.allProductsList}>
             <FontAwesomeIcon icon={faClipboardList} size="xl" />
           </Link>
-          <Link to="editCategory" state={{ categoryId: props.id }} >
+          <Link to="editBrand" state={{ brandId: props.id }} >
             <FontAwesomeIcon icon={faEdit} size="xl" id={styles.editButton} />
           </Link>
           <Button onClick={deleteUserHandler} style={styles.deleteButton}>

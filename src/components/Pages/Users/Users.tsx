@@ -5,7 +5,7 @@ import Forbidden from "../Errors/Forbidden/Forbidden";
 import styles from "./Users.module.css";
 import { useSelector } from "react-redux";
 import { getAllUsers } from "../../../services/user-Service";
-import UserItem from "./UserItem/UserItem";
+import UserItem from "../../UI/Items/UserItem/UserItem";
 import { Pagination } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSort, faCirclePlus } from "@fortawesome/free-solid-svg-icons";

@@ -8,7 +8,7 @@ import SearchBar from "../../UI/SearchBar/SearchBar";
 import { useState, useEffect } from "react";
 import { Brand } from "../../../types/Brand";
 import { getAllBrands } from "../../../services/brand-Service";
-import BrandItem from "./BrandItem/BrandItem";
+import BrandItem from "../../UI/Items/BrandItem/BrandItem";
 import { Pagination } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";

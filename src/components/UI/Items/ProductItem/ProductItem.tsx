@@ -1,12 +1,12 @@
 import { getAllProducts, deleteProduct } from '../../../../services/product-Service';
-import styles from './DisplayProductItem.module.css'
+import styles from './ProductItem.module.css'
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboardList, faTrashCan, faEdit, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
-import Button from '../../../UI/Button/Button';
+import Button from '../../Button/Button';
 
-export default function DisplayProductItem(props: any) {
+export default function ProductItem(props: any) {
     const [imagePath, setImagePath] = useState(null);
 
   const getImageUrl = async () => {

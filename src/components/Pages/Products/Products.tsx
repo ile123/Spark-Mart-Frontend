@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Forbidden from "../Errors/Forbidden/Forbidden";
 import { DisplayProduct } from "../../../types/DisplayProduct";
-import DisplayProductItem from "./DisplayProductItem/DisplayProductItem";
+import DisplayProductItem from "../../UI/Items/ProductItem/ProductItem";
 
 export default function Brands() {
   const { userInfo } = useSelector((state: any) => state.auth);
@@ -23,7 +23,7 @@ export default function Brands() {
   const [searchValue, setSearchValue] = useState("");
   const [sortDir, setSortDir] = useState("asc");
   const [sortBy, setSortBy] = useState("name");
-  const [products, setProducts] = useState<DisplayProduct[]>([{}]);
+  const [products, setProducts] = useState<DisplayProduct[]>([]);
   const [totalPages, setTotalPages] = useState(0);
   const [noProductsFound, setNoProductsFound] = useState(true);
 

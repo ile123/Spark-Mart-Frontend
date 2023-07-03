@@ -35,6 +35,10 @@ import AddProduct from "./components/Pages/Products/AddProduct/AddProduct";
 import EditProduct from "./components/Pages/Products/EditProduct/EditProduct";
 import CustomerProducts from "./components/Pages/CustomerProducts/CustomerProducts";
 import CustomerBrand from "./components/Pages/CustomerBrand/CustomerBrand";
+import AllProductsByBrand from "./components/Pages/CustomerBrand/AllProductsByBrand/AllProductsByBrand";
+import CustomerCategories from "./components/Pages/CustomerCategories/CustomerCategories";
+import AllProductsByCategory from "./components/Pages/CustomerCategories/AllProductsByCategory/AllProductsByCategory";
+import ProductInformation from "./components/Pages/CustomerProducts/ProductInformation/ProductInformation";
 //korist combineReducer u auth(ili u store/store.ts) ako triba dodat jos redux stvari
 //nadi nacin da grupiras sve ove putanje(postoji nesto zaboravia sam kako se radi)
 const router = createBrowserRouter(
@@ -79,7 +83,13 @@ const router = createBrowserRouter(
       <Route path="/products" element={<CustomerProducts />} />
       <Route path="/brands" element={<Outlet />}>
         <Route index element={<CustomerBrand />} />
+        <Route path="allProducts/:brand" element={<AllProductsByBrand />}/>
       </Route>
+      <Route path="/categories" element={<Outlet />}>
+        <Route index element={<CustomerCategories />} />
+        <Route path="allProducts/:category" element={<AllProductsByCategory />} />
+      </Route>
+      <Route path="/product/:product" element={<ProductInformation />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegistrationPage />} />
       <Route path="*" element={<NotFound />} />
