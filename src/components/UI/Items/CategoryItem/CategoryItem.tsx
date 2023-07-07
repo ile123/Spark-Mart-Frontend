@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboardList, faTrashCan, faEdit } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../Button/Button";
-import { deleteCategory, getAllCategories } from "../../../../services/category-service";
+import { deleteCategory, getAllCategories } from "../../../../services/category-Service";
 
 export default function CategoryItem(props: any) {
   const [imagePath, setImagePath] = useState(null);

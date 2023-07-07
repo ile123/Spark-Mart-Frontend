@@ -33,12 +33,13 @@ import AddCategory from "./components/Pages/Categories/AddCategory/AddCategory";
 import EditCategory from "./components/Pages/Categories/EditCategory/EditCategory";
 import AddProduct from "./components/Pages/Products/AddProduct/AddProduct";
 import EditProduct from "./components/Pages/Products/EditProduct/EditProduct";
-import CustomerProducts from "./components/Pages/CustomerProducts/CustomerProducts";
-import CustomerBrand from "./components/Pages/CustomerBrand/CustomerBrand";
-import AllProductsByBrand from "./components/Pages/CustomerBrand/AllProductsByBrand/AllProductsByBrand";
-import CustomerCategories from "./components/Pages/CustomerCategories/CustomerCategories";
-import AllProductsByCategory from "./components/Pages/CustomerCategories/AllProductsByCategory/AllProductsByCategory";
-import ProductInformation from "./components/Pages/CustomerProducts/ProductInformation/ProductInformation";
+import CustomerProducts from "./components/Pages/Customer/CustomerProducts/CustomerProducts";
+import CustomerBrand from "./components/Pages/Customer/CustomerBrand/CustomerBrand";
+import AllProductsByBrand from "./components/Pages/Customer/CustomerBrand/AllProductsByBrand/AllProductsByBrand";
+import CustomerCategories from "./components/Pages/Customer/CustomerCategories/CustomerCategories";
+import AllProductsByCategory from "./components/Pages/Customer/CustomerCategories/AllProductsByCategory/AllProductsByCategory";
+import ProductInformation from "./components/Pages/Customer/ProductInformation/ProductInformation";
+import ShoppingCart from "./components/Pages/Customer/ShoppingCart/ShoppingCart";
 //korist combineReducer u auth(ili u store/store.ts) ako triba dodat jos redux stvari
 //nadi nacin da grupiras sve ove putanje(postoji nesto zaboravia sam kako se radi)
 const router = createBrowserRouter(
@@ -90,6 +91,7 @@ const router = createBrowserRouter(
         <Route path="allProducts/:category" element={<AllProductsByCategory />} />
       </Route>
       <Route path="/product/:product" element={<ProductInformation />} />
+      <Route path="/cart" element={<ShoppingCart />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegistrationPage />} />
       <Route path="*" element={<NotFound />} />

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSort, faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "../../UI/SearchBar/SearchBar";
 import { useState, useEffect } from "react";
-import { getAllCategories } from "../../../services/category-service";
+import { getAllCategories } from "../../../services/category-Service";
 import CategoryItem from "../../UI/Items/CategoryItem/CategoryItem";
 import { Pagination } from "react-bootstrap";
 import { useSelector } from "react-redux";

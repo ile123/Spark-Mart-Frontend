@@ -20,17 +20,15 @@
 }
 
 #login {
-    overflow: hidden;
-    position: absolute;
-    margin-left: 60rem;
-    margin-top: 2rem;
+    margin-right: 2rem;
+    display: flex; 
+    justify-content: end;
 }
 
 #logout {
-    overflow: hidden;
-    position: absolute;
-    margin-left: 59rem;
-    margin-top: 2rem;
+    margin-right: 2rem;
+    display: flex; 
+    justify-content: end;
 }
 
 .button {
@@ -68,15 +66,27 @@
 
 #grid {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .item {
-    margin-left: 1rem;
-    margin-right: 1rem;
+    flex-basis: 33.33%;
+    align-items: center;
 }
 
 #loading {
-    margin-left: 62rem;
-    margin-top: 2rem;
+    margin: 0 auto;
+    margin-right: 6rem;
+    display: flex; 
+    justify-content: center;
+}
+
+.profileName {
+    margin-top: 0.5rem;
+}
+
+#shoppingCart {
+    margin-top: 0.5rem;
+    color: #FBEAEB;
 }

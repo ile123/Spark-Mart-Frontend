@@ -27,7 +27,9 @@
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.2",
-    "styled-components": "^5.3.9"
+    "stripe-card-validator": "^1.0.1",
+    "styled-components": "^5.3.9",
+    "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

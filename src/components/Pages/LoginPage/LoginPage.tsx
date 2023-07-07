@@ -13,7 +13,6 @@ import { userLogin } from "../../../auth/authActions";
 export default function LoginPage() {
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [formErrors, setFormErrors] = useState<string[]>([]);
-  let counter = 0;
 
   const {
     register,

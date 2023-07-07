@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { DisplayCategory } from "../../../types/DisplayCategory";
 import axios from "axios";
-import { getAllCategories } from "../../../services/category-service";
+import { getAllCategories } from "../../../services/category-Service";
 import DisplayCategoryItem from "../../UI/Items/DisplayCategoryItem/DisplayCategoryItem";
 import { Category } from "../../../types/Category";
 
