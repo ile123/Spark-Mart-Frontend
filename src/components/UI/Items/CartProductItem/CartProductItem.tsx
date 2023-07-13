@@ -1,12 +1,21 @@
+import styles from "./CartProductItem.module.css";
 import { Card } from "react-bootstrap";
-import styles from "./ProductCartItem.module.css";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../Button/Button";
+import { useDispatch } from "react-redux";
+import { removeFromCart } from "../../../../auth/customerSlice";
 
-export default function ProductCartItem(props: any) {
+export default function CartProductItem(props: any) {
   const [imagePath, setImagePath] = useState(null);
+
+  const dispatch = useDispatch();
+
+   const removeFromCartHandler = () => {
+    dispatch(removeFromCart({ userId: props.userId, productId: props.id }));
+    props.onRemoveFromCart();
+   }
 
   const getImageUrl = async () => {
     try {
@@ -30,27 +39,25 @@ export default function ProductCartItem(props: any) {
       <Card id={styles.card}>
         <div id={styles.grid}>
           <div className={styles.item}>
-            <div>
             {imagePath ? (
-              <Card.Img
-                variant="top"
-                src={imagePath}
-                height={20}
-                id={styles.image}
-              />
+              <img src={imagePath} width={220} height={158} />
             ) : (
-              <FontAwesomeIcon icon={faCog} />
+              <div>Loading image...</div>
             )}
-            </div>
-            <div><h3>{props.name}</h3></div>
           </div>
           <div className={styles.item}>
-            <h3>{props.price}</h3>
+            <h4>{props.name}</h4>
           </div>
           <div className={styles.item}>
-            <Button>
-                <FontAwesomeIcon icon={faTrash} />
-            </Button>
+            <h4>{props.amount}</h4>
+          </div>
+          <div className={styles.item}>
+            <h4>{props.price}$</h4>
+          </div>
+          <div className={styles.item}>
+          <Button onClick={removeFromCartHandler} style={styles.deleteButton}>
+            <FontAwesomeIcon icon={faTrashCan} size="xl" id={styles.delete} />
+          </Button>
           </div>
         </div>
       </Card>

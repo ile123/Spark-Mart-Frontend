@@ -50,6 +50,7 @@ export default function ProductItem(props: any) {
             <div>Loading image...</div>
           )}
         </td>
+        { (props.isWishlistAdmin !== undefined && props.isWishlistAdmin !== true) &&
         <td>
           {/* add view all products */}
           <Link to="viewProduct">
@@ -62,6 +63,7 @@ export default function ProductItem(props: any) {
             <FontAwesomeIcon icon={faTrashCan} size="xl" id={styles.delete} />
           </Button>
         </td>
+        }
       </tr>
     </>
   );

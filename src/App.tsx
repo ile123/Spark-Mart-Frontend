@@ -40,6 +40,8 @@ import CustomerCategories from "./components/Pages/Customer/CustomerCategories/C
 import AllProductsByCategory from "./components/Pages/Customer/CustomerCategories/AllProductsByCategory/AllProductsByCategory";
 import ProductInformation from "./components/Pages/Customer/ProductInformation/ProductInformation";
 import ShoppingCart from "./components/Pages/Customer/ShoppingCart/ShoppingCart";
+import UserWishlists from "./components/Pages/Users/UserWishlists/UserWishlists";
+import UserOrders from "./components/Pages/Users/UserOrders/UserOrders";
 //korist combineReducer u auth(ili u store/store.ts) ako triba dodat jos redux stvari
 //nadi nacin da grupiras sve ove putanje(postoji nesto zaboravia sam kako se radi)
 const router = createBrowserRouter(
@@ -50,11 +52,16 @@ const router = createBrowserRouter(
         <Route index element={<Users />} />
         <Route path="newUser" element={<AddUser />} />
         <Route path="viewUser" element={<ViewUser />} />
+        <Route path="viewUserOrders" element={<UserOrders />} />
+        <Route path="viewUserWishlists" element={<UserWishlists />} />
       </Route>
       <Route path="/addresses" element={<Outlet />}>
         <Route index element={<Addresses />} />
         <Route path="newAddress" element={<AddAddress />} />
-        <Route path="getAllUsersByAddress/:id" element={<AllUsersByAddress />} />
+        <Route
+          path="getAllUsersByAddress/:id"
+          element={<AllUsersByAddress />}
+        />
       </Route>
       <Route element={<ProtectedRoute />}>
         <Route path="/profile" element={<Outlet />}>
@@ -84,13 +91,19 @@ const router = createBrowserRouter(
       <Route path="/products" element={<CustomerProducts />} />
       <Route path="/brands" element={<Outlet />}>
         <Route index element={<CustomerBrand />} />
-        <Route path="allProducts/:brand" element={<AllProductsByBrand />}/>
+        <Route path="allProducts/:brand" element={<AllProductsByBrand />} />
       </Route>
       <Route path="/categories" element={<Outlet />}>
         <Route index element={<CustomerCategories />} />
-        <Route path="allProducts/:category" element={<AllProductsByCategory />} />
+        <Route
+          path="allProducts/:category"
+          element={<AllProductsByCategory />}
+        />
       </Route>
       <Route path="/product/:product" element={<ProductInformation />} />
+      {/* <Route path="/cart" element={<Outlet />}>
+        <Route index element={<ShoppingCart />} />
+      </Route> */}
       <Route path="/cart" element={<ShoppingCart />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegistrationPage />} />

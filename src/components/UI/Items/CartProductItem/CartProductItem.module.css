@@ -1,0 +1,32 @@
+#card {
+    height: 10rem;
+    width: 78rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    border-radius: 10px;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+}
+
+.item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#delete {
+    color: red;
+}
+
+#deleteButton {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: transparent;
+    margin-left: 1.5rem;
+}

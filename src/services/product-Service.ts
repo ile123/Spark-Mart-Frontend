@@ -1,4 +1,5 @@
 import axios from "axios";
+import qs from 'qs';
 
 const API_URL = "http://localhost:8080/spark-mart/api/products";
 const userToken = localStorage.getItem('userToken');
@@ -62,8 +63,8 @@ export const createNewProduct = (newProduct: any ) => {
     return axios.post(API_URL, newProduct, { headers: { Authorization: `${userToken}`, 'Content-Type': 'multipart/form-data' } });
 }
 
-export const getProductById = (productId: string) => {
-    return axios.get(API_URL + "/" + productId, { headers: { Authorization: `${userToken}` } });
+export const getProductById = async (productId: string) => {
+    return await axios.get(API_URL + "/" + productId, { headers: { Authorization: `${userToken}` } });
 }
 
 export const deleteProduct = (productId: string) => {
@@ -73,3 +74,4 @@ export const deleteProduct = (productId: string) => {
 export const updateProduct = (newProduct: any) => {
     return axios.put(API_URL + "/" + newProduct.id, newProduct , { headers: { Authorization: `${userToken}`, 'Content-Type': 'multipart/form-data' } });
 }
+

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./UserItem.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faEdit, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faEdit, faTrashCan, faHeart, faTableList } from "@fortawesome/free-solid-svg-icons";
 import { deleteUser, getAllUsers } from "../../../../services/user-Service";
 import Button from "../../Button/Button";
 
@@ -27,6 +27,15 @@ export default function UserItem(props: any) {
           <Button onClick={deleteUserHandler} style={styles.deleteButton}>
             <FontAwesomeIcon icon={faTrashCan} size="xl" id={styles.delete} />
           </Button>
+          {props.userType === "customer" && 
+          <div id={styles.customerRow}>
+            <Link to="viewUserOrders" state={{ userId: props.id }} id={styles.orders}>
+              <FontAwesomeIcon icon={faTableList} size="xl" />
+            </Link>
+            <Link to="viewUserWishlists" state={{ userId: props.id }} id={styles.wishlists}>
+              <FontAwesomeIcon icon={faHeart} size="xl" />
+            </Link>
+          </div>}
         </td>
       </tr>
     </>

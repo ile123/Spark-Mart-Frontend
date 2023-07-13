@@ -3,7 +3,7 @@ import styles from "./Products.module.css";
 import { Link } from "react-router-dom";
 import Button from "../../UI/Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSort, faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import { faSort, faCirclePlus, faL } from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "../../UI/SearchBar/SearchBar";
 import { useState, useEffect } from "react";
 import { getAllProducts } from "../../../services/product-Service";
@@ -149,6 +149,7 @@ export default function Brands() {
                         id={brand.id}
                         name={brand.name}
                         imageName={brand.imageName}
+                        isWishlistAdmin={false}
                       />
                     );
                   })}

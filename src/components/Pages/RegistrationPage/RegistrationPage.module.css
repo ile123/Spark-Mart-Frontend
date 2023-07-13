@@ -1,12 +1,12 @@
 #card {
-    margin-left: 25rem;
+    margin: auto;
+    margin-top: 5%;
     width: 45%;
     height: 43rem;
-    margin-top: 2rem;
 }
 
 #button {
-    margin-left: 15.5rem;
+    margin-left: 20.2rem;
     display: inline-block;
     outline: none;
     cursor: pointer;

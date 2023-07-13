@@ -31,7 +31,7 @@ export default function Home() {
           })}
         </div>
       ) : (
-        <h3 id={styles.welcome}>Welcome to Spark Mart!</h3>
+        <h3 id={styles.welcome}>Welcome to Spark Mart Admin Panel!</h3>
       )}
     </Layout>
   );

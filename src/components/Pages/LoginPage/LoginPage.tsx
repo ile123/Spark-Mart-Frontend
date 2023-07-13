@@ -88,7 +88,7 @@ export default function LoginPage() {
             />
             <br />
           </Card.Body>
-          <Card.Footer>
+          <Card.Footer id={styles.footer}>
             <Button style={styles.button} type={"submit"}>
               {loading ? (
                 <FontAwesomeIcon icon={faCog} pulse size="lg" />

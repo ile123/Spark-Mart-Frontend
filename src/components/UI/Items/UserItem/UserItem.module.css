@@ -20,3 +20,15 @@
     color: transparent;
     margin-left: 1.5rem;
 }
+
+#customerRow {
+    margin-top: 0.5rem;
+}
+
+#orders {
+    color: rgb(93, 173, 14);
+}
+
+#wishlists {
+    color: rgb(218, 154, 37);
+}

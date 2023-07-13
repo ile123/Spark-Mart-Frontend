@@ -18,7 +18,6 @@
 
 .item {
     flex-basis: 33.33%;
-    align-items: center;
 }
 
 #email {
@@ -28,11 +27,12 @@
 }
 
 #thunderbolt {
-    margin-left: 22rem;
+    display: block;
+    margin: auto;
 }
 
 #copyright {
     margin-top: 1.5rem;
-    margin-left: 30rem;
     width: 16rem;
+    float: right;
 }
