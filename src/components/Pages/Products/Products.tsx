@@ -3,7 +3,7 @@ import styles from "./Products.module.css";
 import { Link } from "react-router-dom";
 import Button from "../../UI/Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSort, faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import { faSort, faCirclePlus, faL } from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "../../UI/SearchBar/SearchBar";
 import { useState, useEffect } from "react";
 import { getAllProducts } from "../../../services/product-Service";
@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Forbidden from "../Errors/Forbidden/Forbidden";
 import { DisplayProduct } from "../../../types/DisplayProduct";
-import DisplayProductItem from "./DisplayProductItem/DisplayProductItem";
+import DisplayProductItem from "../../UI/Items/ProductItem/ProductItem";
 
 export default function Brands() {
   const { userInfo } = useSelector((state: any) => state.auth);
@@ -23,7 +23,7 @@ export default function Brands() {
   const [searchValue, setSearchValue] = useState("");
   const [sortDir, setSortDir] = useState("asc");
   const [sortBy, setSortBy] = useState("name");
-  const [products, setProducts] = useState<DisplayProduct[]>([{}]);
+  const [products, setProducts] = useState<DisplayProduct[]>([]);
   const [totalPages, setTotalPages] = useState(0);
   const [noProductsFound, setNoProductsFound] = useState(true);
 
@@ -149,6 +149,7 @@ export default function Brands() {
                         id={brand.id}
                         name={brand.name}
                         imageName={brand.imageName}
+                        isWishlistAdmin={false}
                       />
                     );
                   })}

@@ -12,27 +12,27 @@
 
 #grid {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .item {
-    margin-left: 10rem;
-    margin-right: 5rem;
+    flex-basis: 33.33%;
 }
 
 #email {
-    margin-left: 5rem;
-    margin-top: 2rem;
-    margin-right: 25.5rem;
+    margin-top: 1rem;
+    margin-left: 4rem;
     width: 16rem;
 }
 
 #thunderbolt {
-    margin-top: 1.5rem;
+    display: block;
+    margin: auto;
 }
 
 #copyright {
     margin-top: 1.5rem;
-    margin-left: 28rem;
     width: 16rem;
+    float: right;
 }

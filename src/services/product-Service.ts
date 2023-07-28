@@ -22,13 +22,52 @@ export const getAllProducts = (pageNum: number, pageSize: number, sortBy: string
     
 }
 
+export const getAllProductsByBrand = (pageNum: number, pageSize: number, sortBy: string, sortDir: string, searchValue: string, brandName: string) => {
+    if(searchValue === '') {
+        return axios.get(API_URL + "/brand/" + brandName + '?page=' + pageNum 
+            + '&pageSize=' + pageSize 
+            + '&sortBy=' + sortBy 
+            + '&sortDir=' + sortDir
+            , { headers: { Authorization: `${userToken}` } });
+    } else {
+        return axios.get(API_URL + "/brand/" + brandName + '?page=' + pageNum 
+            + '&pageSize=' + pageSize 
+            + '&sortBy=' + sortBy 
+            + '&sortDir=' + sortDir
+            + '&keyword=' + searchValue
+            , { headers: { Authorization: `${userToken}` } });
+    }
+    
+}
+
+export const getAllProductsByCategory = (pageNum: number, pageSize: number, sortBy: string, sortDir: string, searchValue: string, categoryName: string) => {
+    if(searchValue === '') {
+        return axios.get(API_URL + "/category/" + categoryName + '?page=' + pageNum 
+            + '&pageSize=' + pageSize 
+            + '&sortBy=' + sortBy 
+            + '&sortDir=' + sortDir
+            , { headers: { Authorization: `${userToken}` } });
+    } else {
+        return axios.get(API_URL + "/category/" + categoryName + '?page=' + pageNum 
+            + '&pageSize=' + pageSize 
+            + '&sortBy=' + sortBy 
+            + '&sortDir=' + sortDir
+            + '&keyword=' + searchValue
+            , { headers: { Authorization: `${userToken}` } });
+    }
+    
+}
+
+export const getProductStatistics = async (productId:string) => {
+    return axios.get(API_URL + "/product-information/" + productId, {headers: { Authorization: `${userToken}` }});
+}
+
 export const createNewProduct = (newProduct: any ) => {
     return axios.post(API_URL, newProduct, { headers: { Authorization: `${userToken}`, 'Content-Type': 'multipart/form-data' } });
 }
 
-export const getProductById = (productId: string) => {
-    console.log(productId);
-    return axios.get(API_URL + "/" + productId, { headers: { Authorization: `${userToken}` } });
+export const getProductById = async (productId: string) => {
+    return await axios.get(API_URL + "/" + productId, { headers: { Authorization: `${userToken}` } });
 }
 
 export const deleteProduct = (productId: string) => {
@@ -38,3 +77,4 @@ export const deleteProduct = (productId: string) => {
 export const updateProduct = (newProduct: any) => {
     return axios.put(API_URL + "/" + newProduct.id, newProduct , { headers: { Authorization: `${userToken}`, 'Content-Type': 'multipart/form-data' } });
 }
+

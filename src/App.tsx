@@ -33,10 +33,20 @@ import AddCategory from "./components/Pages/Categories/AddCategory/AddCategory";
 import EditCategory from "./components/Pages/Categories/EditCategory/EditCategory";
 import AddProduct from "./components/Pages/Products/AddProduct/AddProduct";
 import EditProduct from "./components/Pages/Products/EditProduct/EditProduct";
-import CustomerProducts from "./components/Pages/CustomerProducts/CustomerProducts";
-import CustomerBrand from "./components/Pages/CustomerBrand/CustomerBrand";
-//korist combineReducer u auth(ili u store/store.ts) ako triba dodat jos redux stvari
-//nadi nacin da grupiras sve ove putanje(postoji nesto zaboravia sam kako se radi)
+import CustomerBrand from "./components/Pages/Customer/CustomerBrand/CustomerBrand";
+import AllProductsByBrand from "./components/Pages/Customer/CustomerBrand/AllProductsByBrand/AllProductsByBrand";
+import CustomerCategories from "./components/Pages/Customer/CustomerCategories/CustomerCategories";
+import AllProductsByCategory from "./components/Pages/Customer/CustomerCategories/AllProductsByCategory/AllProductsByCategory";
+import ProductInformation from "./components/Pages/Customer/ProductInformation/ProductInformation";
+import ShoppingCart from "./components/Pages/Customer/ShoppingCart/ShoppingCart";
+import UserWishlists from "./components/Pages/Users/UserWishlists/UserWishlists";
+import UserOrders from "./components/Pages/Users/UserOrders/UserOrders";
+import Orders from "./components/Pages/Customer/Orders/Orders";
+import Wishlist from "./components/Pages/Customer/Wishlist/Wishlist";
+import AllProductsByOrder from "./components/Pages/Customer/AllProductsByOrder/AllProductsByOrder";
+import ProductStatistics from "./components/Pages/Products/ProductStatistics/ProductStatistics";
+import 'chart.js/auto';
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Outlet />}>
@@ -45,11 +55,16 @@ const router = createBrowserRouter(
         <Route index element={<Users />} />
         <Route path="newUser" element={<AddUser />} />
         <Route path="viewUser" element={<ViewUser />} />
+        <Route path="viewUserOrders" element={<UserOrders />} />
+        <Route path="viewUserWishlists" element={<UserWishlists />} />
       </Route>
       <Route path="/addresses" element={<Outlet />}>
         <Route index element={<Addresses />} />
         <Route path="newAddress" element={<AddAddress />} />
-        <Route path="getAllUsersByAddress/:id" element={<AllUsersByAddress />} />
+        <Route
+          path="getAllUsersByAddress/:id"
+          element={<AllUsersByAddress />}
+        />
       </Route>
       <Route element={<ProtectedRoute />}>
         <Route path="/profile" element={<Outlet />}>
@@ -63,6 +78,7 @@ const router = createBrowserRouter(
         <Route index element={<Products />} />
         <Route path="newProduct" element={<AddProduct />} />
         <Route path="editProduct/:id" element={<EditProduct />} />
+        <Route path="productStatictics/:id" element={<ProductStatistics />} />
         {/* Add later */}
       </Route>
       <Route path="/adminBrands" element={<Outlet />}>
@@ -76,10 +92,25 @@ const router = createBrowserRouter(
         <Route path="editCategory" element={<EditCategory />} />
         {/* Add rest later */}
       </Route>
-      <Route path="/products" element={<CustomerProducts />} />
       <Route path="/brands" element={<Outlet />}>
         <Route index element={<CustomerBrand />} />
+        <Route path="allProducts/:brand" element={<AllProductsByBrand />} />
       </Route>
+      <Route path="/categories" element={<Outlet />}>
+        <Route index element={<CustomerCategories />} />
+        <Route
+          path="allProducts/:category"
+          element={<AllProductsByCategory />}
+        />
+      </Route>
+      <Route path="/product/:product" element={<ProductInformation />} />
+      <Route path="/cart" element={<ShoppingCart />} />
+      <Route path="/orders" element={<Orders />} />
+      <Route path="/orders" element={<Outlet />}>
+        <Route index element={<Orders />} />
+        <Route path="allProductsByOrder/:orderId" element={<AllProductsByOrder />} />
+      </Route>
+      <Route path="/wishlists" element={<Wishlist />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegistrationPage />} />
       <Route path="*" element={<NotFound />} />

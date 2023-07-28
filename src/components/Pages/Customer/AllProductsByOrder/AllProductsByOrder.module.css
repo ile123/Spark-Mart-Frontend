@@ -1,0 +1,66 @@
+#page {
+    position: absolute;
+    top: 15%;
+    left: 20%;
+    width: 65%;
+    height: 0 auto;
+}
+
+#noProductsInCart {
+    margin-left: 25%;
+    margin-top: 25%;
+}
+
+#paymentCard {
+    height: 30rem;
+    width: 50rem;
+    margin-bottom: 4rem;
+    margin-left: 14rem;
+}
+
+#paymentTitle {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 1rem;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+}
+
+.item {
+    margin-left: 4rem;
+    margin-top: 3rem;
+}
+
+#submitButton{
+    width: 12rem;
+    text-decoration: none;
+    margin-left: 19rem;
+    margin-top: 5rem;
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    border-radius: 500px;
+    transition-property: background-color,border-color,color,box-shadow,filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    white-space: normal;
+    font-weight: 700;
+    text-align: center;
+    padding: 5px 5px;
+    color: #fff;
+    background-color: #1ED760;
+    height: 48px;
+}
+
+#submitButton:hover {
+    transform: scale(1.04);
+    background-color: #21e065;
+}

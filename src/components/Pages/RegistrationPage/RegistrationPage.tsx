@@ -1,6 +1,5 @@
-import { Card } from "react-bootstrap";
-import styles from "./RegistrationPage.module.css";
 import Button from "../../UI/Button/Button";
+import styles from './RegistrationPage.module.css'
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -10,6 +9,8 @@ import { registerUser } from "../../../auth/authActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import { Container, Box, Avatar, Typography, Grid, TextField, Select, MenuItem } from "@mui/material";
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 export default function RegistrationPage() {
   const [showErrorModal, setShowErrorModal] = useState(false);
@@ -22,14 +23,20 @@ export default function RegistrationPage() {
     getValues,
   } = useForm();
 
-  async function submitForm(data: any) {
+  const [gender, setGender] = useState("");
+
+  async function formSubmit(data: any) {
+    if(gender == "") {
+      setFormErrors(["ERROR: Gender is required!"]);
+      setShowErrorModal(true);
+    }
     const submitData = {
       firstName: data.firstName,
       lastName: data.lastName,
       phoneNumber: data.phoneNumber,
       email: data.email.toLowerCase(),
       password: data.password,
-      gender: data.gender,
+      gender: gender,
       role: "customer",
     };
     await axios
@@ -38,7 +45,7 @@ export default function RegistrationPage() {
       })
       .then((response: any) => {
         if (response.data === true) {
-          setFormErrors(["ERROR: Email already in use!"]);
+          setFormErrors(["ERROR: Email or Phone Number already in use!"]);
           setShowErrorModal(true);
         } else {
           //@ts-ignore
@@ -82,78 +89,33 @@ export default function RegistrationPage() {
       {showErrorModal && (
         <ErrorModal errors={formErrors} onConfirm={errorHandler} />
       )}
-      <form onSubmit={handleSubmit(submitForm, handleError)}>
-        <Card id={styles.card}>
-          <Card.Header id={styles.pageName}>REGISTER</Card.Header>
-          <Card.Body id={styles.inputs}>
-            <h3 className={styles.label}>Email</h3>
-            <input
-              type="email"
-              className={styles.input}
-              placeholder="Enter email...."
-              autoComplete={"off"}
-              {...register("email", {
-                required: {
-                  value: true,
-                  message: "ERROR: Email is required!",
-                },
-                pattern: {
-                  value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
-                  message: "ERROR: Invalid email!",
-                },
-              })}
-            />
-            <div className="row">
-              <div className="col">
-                <h3 className={styles.label}>Phone Number</h3>
-                <input
-                  type="text"
-                  className={styles.input}
-                  placeholder="Enter phone number..."
-                  {...register("phoneNumber", {
-                    required: {
-                      value: true,
-                      message: "ERROR: Phone Number is required!",
-                    },
-                    pattern: {
-                      value: /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g,
-                      message: "ERROR: Invalid phone number!",
-                    },
-                  })}
-                />
-              </div>
-              <div className="col">
-                <h3 className={styles.label}>Gender</h3>
-                <select
-                  id={styles.genderSelect}
-                  {...register("gender", {
-                    required: {
-                      value: true,
-                      message: "ERROR: Choose the gender!",
-                    },
-                    pattern: {
-                      value: /^(male|female)$/i,
-                      message: "ERROR: Gender is invalid!",
-                    },
-                  })}
-                >
-                  <option defaultValue={""}>Please select an option</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                <h3 className={styles.label}>First Name</h3>
-                <input
-                  type="text"
-                  className={styles.input}
-                  placeholder="Enter first name..."
+       <Container component="main" maxWidth="xs">
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
+          <Box component="form" noValidate onSubmit={handleSubmit(formSubmit, handleError)} sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  label="First Name"
+                  autoComplete="off"
                   {...register("firstName", {
                     required: {
                       value: true,
-                      message: "ERROR: You must specify your first name!",
+                      message: "ERROR: First Name is required!",
                     },
                     pattern: {
                       value: /^[a-zA-Z]+$/,
@@ -161,13 +123,13 @@ export default function RegistrationPage() {
                     },
                   })}
                 />
-              </div>
-              <div className="col">
-                <h3 className={styles.label}>Last Name</h3>
-                <input
-                  type="text"
-                  className={styles.input}
-                  placeholder="Enter last name..."
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  label="Last Name"
+                  autoComplete="off"
                   {...register("lastName", {
                     required: {
                       value: true,
@@ -179,15 +141,64 @@ export default function RegistrationPage() {
                     },
                   })}
                 />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                <h3 className={styles.label}>Password</h3>
-                <input
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  autoComplete="off"
+                  label="Phone Number"
+                  {...register("phoneNumber", {
+                    required: {
+                      value: true,
+                      message: "ERROR: Phone Number is required!",
+                    },
+                    pattern: {
+                      value: /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g,
+                      message: "ERROR: Invalid phone number!",
+                    },
+                  })}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+              <Select
+                displayEmpty
+                required
+                fullWidth
+                value={gender}
+                onChange={(e: any) => setGender(e.target.value)}
+              >
+                <MenuItem disabled value="">Please Select a Gender</MenuItem>
+                <MenuItem value={"male"}>Male</MenuItem>
+                <MenuItem value={"female"}>Female</MenuItem>
+              </Select>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  autoComplete="off"
+                  type="email"
+                  label="Email Address"
+                  {...register("email", {
+                    required: {
+                      value: true,
+                      message: "ERROR: Email is required!",
+                    },
+                    pattern: {
+                      value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+                      message: "ERROR: Invalid email!",
+                    },
+                  })}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  autoComplete="off"
+                  label="Password"
                   type="password"
-                  className={styles.input}
-                  placeholder="Enter password..."
                   {...register("password", {
                     required: {
                       value: true,
@@ -200,42 +211,37 @@ export default function RegistrationPage() {
                     },
                   })}
                 />
-              </div>
-              <div className="col">
-                <h3 className={styles.label}>Repeat Password</h3>
-                <input
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  autoComplete="off"
+                  label="Repeat Password"
                   type="password"
-                  className={styles.input}
-                  placeholder="Repeat password..."
-                  {...register("repeatPassword", {
-                    validate: (match) => {
-                      const password = getValues("password");
-                      return (
-                        match === password || "ERROR: Passwords should match!"
-                      );
-                    },
+                  {...register("repeatedPassword", {
                     required: {
                       value: true,
-                      message: "ERROR: Repeat password is required!",
+                      message: "ERROR: Repeated Password is required!",
+                    },
+                    pattern: {
+                      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+                      message:
+                        "ERROR: Invalid password(It needs to contain 1 upper case letter, 1 lower case letter and a number, also min. lenght is 8)!",
                     },
                   })}
                 />
-              </div>
-            </div>
-          </Card.Body>
-          <Card.Footer>
-            <Button style={styles.button} type={"submit"}>
-              {loading ? (
-                <FontAwesomeIcon icon={faCog} pulse size="lg" />
-              ) : (
-                "Register"
-              )}
+              </Grid>
+            </Grid>
+            <Button
+              type="submit"
+              style={styles.button}
+            >
+              {!loading ? "Sign Up" : <FontAwesomeIcon icon={faCog} size="xl" /> }
             </Button>
-          </Card.Footer>
-        </Card>
-      </form>
+          </Box>
+        </Box>
+      </Container>
     </>
   );
 }
-
-//{loading ? <FontAwesomeIcon icon="fa-duotone fa-gear" spinPulse /> : "Register"}

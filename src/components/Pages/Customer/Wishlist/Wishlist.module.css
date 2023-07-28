@@ -1,0 +1,12 @@
+#grid {
+    margin-top: 9rem;
+    margin-bottom: 9rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+#pagination {
+    margin-bottom: 10rem;
+    justify-content: center;
+}

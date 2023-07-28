@@ -8,15 +8,15 @@ export default function CustomerNavigation() {
         <Link to="/" className={styles.button}>
           Home
         </Link>
-        <Link to="/products" className={styles.button}>
-          Products
-        </Link>
         <Link to="/brands" className={styles.button}>
           Brands
         </Link>
-        <a href="#" className={styles.button}>
+        <Link to="/orders" className={styles.button}>
+          Orders
+        </Link>
+        <Link to="/about-us" className={styles.button}>
           About Us
-        </a>
+        </Link>
       </nav>
     </>
   );

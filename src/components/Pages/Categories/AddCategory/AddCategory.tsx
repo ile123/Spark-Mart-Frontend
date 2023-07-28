@@ -6,7 +6,7 @@ import { Errors } from "../../../../types/Errors";
 import { useNavigate } from "react-router-dom";
 import ErrorModal from "../../../UI/ErrorModal/ErrorModal";
 import Button from "../../../UI/Button/Button";
-import { createNewCategory } from "../../../../services/category-service";
+import { createNewCategory } from "../../../../services/category-Service";
 
 export default function AddCategory() {
   const navigate = useNavigate();

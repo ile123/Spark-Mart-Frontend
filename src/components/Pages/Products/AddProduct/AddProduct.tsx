@@ -1,6 +1,6 @@
 import { Card } from "react-bootstrap";
 import { getAllBrands } from "../../../../services/brand-Service";
-import { getAllCategories } from "../../../../services/category-service";
+import { getAllCategories } from "../../../../services/category-Service";
 import styles from "./AddProduct.module.css";
 import { useEffect, useState } from "react";
 import { DisplayBrand } from "../../../../types/DisplayBrand";

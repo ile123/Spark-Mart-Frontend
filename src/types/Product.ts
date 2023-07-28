@@ -5,7 +5,7 @@ type Product = {
     shortDescription:string,
     specifications: string,
     price:number,
-    image: string,
+    picture: string,
     quantity: string,
     brand: string,
     category:string
