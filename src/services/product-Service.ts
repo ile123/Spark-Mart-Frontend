@@ -1,5 +1,4 @@
 import axios from "axios";
-import qs from 'qs';
 
 const API_URL = "http://localhost:8080/spark-mart/api/products";
 const userToken = localStorage.getItem('userToken');
@@ -57,6 +56,10 @@ export const getAllProductsByCategory = (pageNum: number, pageSize: number, sort
             , { headers: { Authorization: `${userToken}` } });
     }
     
+}
+
+export const getProductStatistics = async (productId:string) => {
+    return axios.get(API_URL + "/product-information/" + productId, {headers: { Authorization: `${userToken}` }});
 }
 
 export const createNewProduct = (newProduct: any ) => {

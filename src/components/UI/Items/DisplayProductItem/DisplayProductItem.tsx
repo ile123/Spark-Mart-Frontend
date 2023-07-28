@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 export default function DisplayProductItem(props: any) {
   const [imagePath, setImagePath] = useState(null);
 
+  console.log(props.imageName)
+
   const getImageUrl = async () => {
     try {
       const response = await fetch(

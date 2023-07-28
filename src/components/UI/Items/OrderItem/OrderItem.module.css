@@ -4,21 +4,32 @@
     height: 4rem;
 }
 
-#edit {
-    color:black
-}
-
-#delete {
-    color: red;
-}
-
-#deleteButton {
-    background: none;
-    border: none;
+#button {
+    margin-right: 1rem;
+    text-decoration: none;
+    display: inline-block;
     outline: none;
     cursor: pointer;
-    color: transparent;
-    margin-left: 1.5rem;
+    font-size: 14px;
+    line-height: 1;
+    border-radius: 500px;
+    transition-property: background-color,border-color,color,box-shadow,filter;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 2px;
+    min-width: 160px;
+    text-transform: uppercase;
+    white-space: normal;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+    background-color: #1ED760;
+    height: 48px;
+}
+
+#button:hover {
+    transform: scale(1.04);
+    background-color: #21e065;
 }
 
 #customerRow {
@@ -31,4 +42,8 @@
 
 #wishlists {
     color: rgb(218, 154, 37);
+}
+
+.buttonText {
+    font-size: medium;
 }

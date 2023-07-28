@@ -11,27 +11,22 @@ import { Category } from "../../../types/Category";
 
 export default function Home() {
   const { userInfo, loading } = useSelector((state: any) => state.auth);
-  const [list, setList] = useState<Category[]>([]);
-
-  useEffect(() => {
-      getAllCategories(0, 1000, "name", "asc", "")
-        .then((result: any) => setList(result.data.content))
-        .catch((error: any) => console.log(error));
-  }, []);
 
   return (
     <Layout>
-      {((JSON.stringify(userInfo) === '{}') || (userInfo.role === 'CUSTOMER' && list.length !== 0)) ? (
-        <div className={styles.grid}>
-          {list.map((category: DisplayCategory, index: number) => {
-            return <DisplayCategoryItem 
-              key={index} 
-              name={category.name} 
-              imageName={category.imageName} />
-          })}
+      {(JSON.stringify(userInfo) === '{}' || userInfo.role === 'CUSTOMER') ? (
+        <div id={styles.videoContainer}>
+          <video autoPlay muted loop id={styles.video}>
+            <source src="src/assets/videos/sprark_mart_home_page_looping_video_2.mp4" type="video/mp4" />
+          </video>
+          <div id={styles.videoText}>
+            <h1>Welcome to Spark Mart</h1>
+          </div>
         </div>
       ) : (
-        <h3 id={styles.welcome}>Welcome to Spark Mart Admin Panel!</h3>
+        <div>
+          <h3 id={styles.welcome}>Welcome to Spark Mart Admin Panel!</h3>
+        </div>
       )}
     </Layout>
   );

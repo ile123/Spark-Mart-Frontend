@@ -53,7 +53,7 @@ export default function ProductItem(props: any) {
         { (props.isWishlistAdmin !== undefined && props.isWishlistAdmin !== true) &&
         <td>
           {/* add view all products */}
-          <Link to="viewProduct">
+          <Link to={"productStatictics/" + props.id}>
             <FontAwesomeIcon icon={faCircleInfo} size="xl"/>
           </Link>
           <Link to={"editProduct/" + props.id} >

@@ -193,7 +193,7 @@ export default function Users() {
                   </tr>
                 </thead>
                 <tbody>
-                  {users.map((user: any, index: number) => {
+                  {users.map((user: User, index: number) => {
                       return (
                         <UserItem
                           key={index}

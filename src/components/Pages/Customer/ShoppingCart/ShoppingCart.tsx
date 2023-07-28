@@ -6,7 +6,6 @@ import { getProductById } from "../../../../services/product-Service";
 import { Product } from "../../../../types/Product";
 import CartProductItem from "../../../UI/Items/CartProductItem/CartProductItem";
 import { Card } from "react-bootstrap";
-import cardValidator from "stripe-card-validator";
 import ErrorModal from "../../../UI/ErrorModal/ErrorModal";
 import { Errors } from "../../../../types/Errors";
 import { useForm } from "react-hook-form";

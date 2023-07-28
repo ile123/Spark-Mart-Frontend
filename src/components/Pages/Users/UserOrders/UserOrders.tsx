@@ -1,21 +1,20 @@
-import styles from './UserOrders.module.css'
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import Layout from '../../../UI/Layout/Layout';
-import Button from '../../../UI/Button/Button';
-import Forbidden from '../../Errors/Forbidden/Forbidden';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState, useEffect } from 'react';
-import { Order } from '../../../../types/Order';
-import { useSelector } from 'react-redux';
-import { Pagination } from 'react-bootstrap';
-import { getAllOrdersByUser } from '../../../../services/customer-Service';
-import { useLocation } from 'react-router-dom';
-import { faSort } from '@fortawesome/free-solid-svg-icons';
-import OrderItem from '../../../UI/Items/OrderItem/OrderItem';
+import styles from "./UserOrders.module.css";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Layout from "../../../UI/Layout/Layout";
+import Button from "../../../UI/Button/Button";
+import Forbidden from "../../Errors/Forbidden/Forbidden";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState, useEffect } from "react";
+import { Order } from "../../../../types/Order";
+import { useSelector } from "react-redux";
+import { Pagination } from "react-bootstrap";
+import { getAllOrdersByUser } from "../../../../services/customer-Service";
+import { useLocation } from "react-router-dom";
+import { faSort } from "@fortawesome/free-solid-svg-icons";
+import OrderItem from "../../../UI/Items/OrderItem/OrderItem";
 
 export default function UserOrders() {
-
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
   const [sortDir, setSortDir] = useState("asc");
@@ -103,7 +102,7 @@ export default function UserOrders() {
                   <tr>
                     <th className={styles.tableRow}>
                       <div className={styles.grid}>
-                        <h6 id={styles.orderNO }>
+                        <h6 id={styles.orderNO}>
                           Order Number
                           <Button
                             style={styles.buttonSort}
@@ -172,21 +171,24 @@ export default function UserOrders() {
                         </Button>
                       </div>
                     </th>
+                    <th className={styles.tableRow}>
+                      <h6 id={styles.statusRow}>Change Status</h6>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {orders.map((order: Order, index: number) => {
-                      return (
-                        <OrderItem
-                          key={index}
-                          orderId={order.id}
-                          orderNO={order.orderNO}
-                          total={order.total}
-                          orderDate={order.orderDate}
-                          shippingDate={order.shippingDate}
-                          status={order.status}
-                        />
-                      );
+                    return (
+                      <OrderItem
+                        key={index}
+                        id={order.id}
+                        orderNO={order.orderNO}
+                        total={order.total}
+                        orderDate={order.orderDate}
+                        shippingDate={order.shippingDate}
+                        status={order.status}
+                      />
+                    );
                   })}
                 </tbody>
               </table>

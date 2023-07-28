@@ -31,3 +31,20 @@ export const getAllWishlistsByUser = async (userId: string, pageNum: number, pag
             + '&sortDir=' + sortDir
             , { headers: { Authorization: `${userToken}` } });
 }
+
+export const getOrderById = async (orderId:string) => {
+    return axios.get(API_URL + "/order/" + orderId, { headers: { Authorization: `${userToken}` } } );
+}
+
+export const getAllProductsByOrder = async(orderId: string) => {
+    return axios.get(API_URL + "/all-products-by-order/" + orderId, { headers: { Authorization: `${userToken}` } });
+}
+
+export const changeOrderStatus = async(orderId:string) => {
+    console.log(orderId);
+    return axios.patch(API_URL + "/change-order-status/" + orderId, { headers: { Authorization: `${userToken}` } });
+}
+
+export const changeOrderProductStatus = async(orderProductId: string) => {
+    return axios.patch(API_URL + "/change-product-order-status/" + orderProductId, { headers: { Authorization: `${userToken}` } });
+}
