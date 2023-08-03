@@ -7,10 +7,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import ErrorModal from "../../UI/ErrorModal/ErrorModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faC, faCog, faL } from "@fortawesome/free-solid-svg-icons";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { userLogin } from "../../../auth/authActions";
 import { Container, Box, Avatar, Typography, Grid, TextField, Select, MenuItem } from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import LoginIcon from '@mui/icons-material/Login';
+import { LoginOutlined } from "@mui/icons-material";
 
 export default function LoginPage() {
   const [showErrorModal, setShowErrorModal] = useState(false);
@@ -79,7 +81,7 @@ export default function LoginPage() {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+            <LoginOutlined />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
@@ -111,7 +113,7 @@ export default function LoginPage() {
               })}
             />
             <Button type="submit" style={styles.button}>
-              {!loading ? "Sign In" : <FontAwesomeIcon icon={faCog} size="xl" />}
+              {!loading ? "Log In" : <FontAwesomeIcon icon={faCog} size="xl" />}
             </Button>
             <Grid container>
               <Grid item>
@@ -124,48 +126,3 @@ export default function LoginPage() {
     </>
   );
 }
-
-/**
- * <form onSubmit={handleSubmit(submitForm, handleError)}>
-        <Card id={styles.card}>
-          <Card.Header id={styles.pageName}>LOGIN</Card.Header>
-          <Card.Body id={styles.inputs}>
-            <h3 className={styles.label}>Email</h3>
-            <input
-              type="email"
-              placeholder="Enter email..."
-              className={styles.input}
-              autoComplete={"off"}
-              {...register("email", {
-                required: {
-                  value: true,
-                  message: "ERROR: Email is required!",
-                },
-              })}
-            />
-            <h3 className={styles.label}>Password</h3>
-            <input
-              type="password"
-              placeholder="Enter password..."
-              className={styles.input}
-              {...register("password", {
-                required: {
-                  value: true,
-                  message: "ERROR: Password is required!",
-                },
-              })}
-            />
-            <br />
-          </Card.Body>
-          <Card.Footer id={styles.footer}>
-            <Button style={styles.button} type={"submit"}>
-              {loading ? (
-                <FontAwesomeIcon icon={faCog} pulse size="lg" />
-              ) : (
-                "Login"
-              )}
-            </Button>
-          </Card.Footer>
-        </Card>
-      </form>
- */

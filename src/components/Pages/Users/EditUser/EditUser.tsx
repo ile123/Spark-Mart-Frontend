@@ -3,13 +3,13 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import ErrorModal from "../../../UI/ErrorModal/ErrorModal";
-import { Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { getUserById, updateUser } from "../../../../services/user-Service";
-import Button from "../../../UI/Button/Button";
+import { Grid, Container, Paper, Box, TextField, Button, Avatar, Typography } from "@mui/material";
 import { User } from "../../../../types/User";
 import { Errors } from "../../../../types/Errors";
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function EditUser() {
   const [showErrorModal, setShowErrorModal] = useState(false);
@@ -24,7 +24,7 @@ export default function EditUser() {
     setValue,
   } = useForm();
 
-  async function submitForm(data: any) {
+  async function formSubmit(data: any) {
     const submitData = {
       firstName: data.firstName,
       lastName: data.lastName,
@@ -79,89 +79,149 @@ export default function EditUser() {
       {showErrorModal && (
         <ErrorModal errors={formErrors} onConfirm={errorHandler} />
       )}
-      <form onSubmit={handleSubmit(submitForm, handleError)}>
-        <Card id={styles.card}>
-          <Card.Header id={styles.header}>Edit User</Card.Header>
-          <Card.Body>
-            <div className={styles.grid}>
-              <div className={styles.item}>
-                <h3 className={styles.label}>First Name: </h3>
-                <input
-                  type="text"
-                  className={styles.input}
-                  defaultValue={user?.firstName}
-                  {...register("firstName", {
-                    required: {
-                      value: true,
-                      message: "ERROR: You must specify your first name!",
-                    },
-                    pattern: {
-                      value: /^[a-zA-Z]+$/,
-                      message: "ERROR: Invalid first name!",
-                    },
-                  })}
-                />
-              </div>
-              <div className={styles.item}>
-                <h3 className={styles.label}>Last Name: </h3>
-                <input
-                  type="text"
-                  className={styles.input}
-                  defaultValue={user?.lastName}
-                  {...register("lastName", {
-                    required: {
-                      value: true,
-                      message: "ERROR: You must specify your last name!",
-                    },
-                    pattern: {
-                      value: /^[a-zA-Z]+$/,
-                      message: "ERROR: Invalid last name!",
-                    },
-                  })}
-                />
-              </div>
-            </div>
-            <div className={styles.grid}>
-              <div className={styles.item}>
-                <h3 className={styles.label}>Phone Number: </h3>
-                <input
-                  type="text"
-                  className={styles.input}
-                  defaultValue={user?.phoneNumber}
-                  {...register("phoneNumber", {
-                    required: {
-                      value: true,
-                      message: "ERROR: Phone Number is required!",
-                    },
-                    pattern: {
-                      value: /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g,
-                      message: "ERROR: Invalid phone number!",
-                    },
-                  })}
-                />
-              </div>
-            </div>
-          </Card.Body>
-          <Card.Footer id={styles.footer}>
-            <div className={styles.grid}>
-              <div className={styles.footerItem}>
-                <Link
-                  to="/changePassword"
-                  id={styles.changePassword}
-                  state={{ userId: userId }}
+      <Container
+        sx={{
+          flexGrow: 1,
+          padding: 3,
+        }}
+      >
+        <Grid
+          container
+          spacing={2}
+          sx={{
+            marginTop: "15%",
+          }}
+          direction={"column"}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          <Box
+              component="form"
+              noValidate
+              onSubmit={handleSubmit(formSubmit, handleError)}
+              sx={{ mt: 3 }}
+            >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main', marginBottom: "1.5rem", marginLeft: "40%", width: "6rem",
+              height: "6rem" }}>
+            <EditIcon sx={{
+              width: "5.5rem",
+              height: "5.5rem",
+            }}/>
+          </Avatar>
+          <Typography variant="h4" sx={{
+            marginBottom: "2rem",
+            textAlign: "center"
+          }}>
+            Edit User Profile
+          </Typography>
+          <Paper sx={{
+            width: "36rem"
+          }}>
+              <Grid container spacing={4}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    label="First Name"
+                    autoComplete="off"
+                    InputLabelProps={{ shrink: true }}
+                    sx={{
+                      marginLeft: "1rem",
+                    }}
+                    {...register("firstName", {
+                      required: {
+                        value: true,
+                        message: "ERROR: First Name is required!",
+                      },
+                      pattern: {
+                        value: /^[a-zA-Z]+$/,
+                        message: "ERROR: Invalid first name!",
+                      },
+                    })}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    label="Last Name"
+                    autoComplete="off"
+                    InputLabelProps={{ shrink: true }}
+                    sx={{
+                      paddingRight: "1rem",
+                    }}
+                    {...register("lastName", {
+                      required: {
+                        value: true,
+                        message: "ERROR: You must specify your last name!",
+                      },
+                      pattern: {
+                        value: /^[a-zA-Z]+$/,
+                        message: "ERROR: Invalid last name!",
+                      },
+                    })}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                    required
+                    label="Phone Number"
+                    autoComplete="off"
+                    InputLabelProps={{ shrink: true }}
+                    sx={{
+                      marginLeft: "1rem",
+                      marginBottom: "1rem"
+                    }}
+                    {...register("phoneNumber", {
+                      required: {
+                        value: true,
+                        message: "ERROR: Phone Number is required!",
+                      },
+                      pattern: {
+                        value: /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g,
+                        message: "ERROR: Invalid phone number!",
+                      },
+                    })}
+                    >
+                    </TextField>
+                </Grid>
+              </Grid>
+              
+          </Paper>
+          <Grid
+          container
+          spacing={2}
+          sx={{
+            marginTop: "0.2%",
+          }}
+          direction={"row"}
+          alignItems={"center"}
+          justifyContent={"center"}
+          >
+            <Grid item>
+              <Link to="/changePassword" state={{ userId: userId }}>
+                <Button variant="outlined"
+                sx={{
+                  marginRight: "14rem",
+                  paddingTop: "0.5rem"
+                }}
                 >
                   Change Password
-                </Link>
-              </div>
-              <div className={styles.footerItem}>
-                <Button style={styles.button} type={"submit"}>
-                  Save Changes
                 </Button>
-              </div>
-            </div>
-          </Card.Footer>
-        </Card>
-      </form>
+              </Link>
+            </Grid>
+            <Grid item>
+              
+                <Button variant="outlined"
+                type="submit"
+                sx={{
+                  paddingTop: "0.5rem"
+                }}>
+                    Save Changes
+                </Button>
+            </Grid>
+          </Grid>
+          </Box>
+        </Grid>
+      </Container>
     </>
   );
 }
