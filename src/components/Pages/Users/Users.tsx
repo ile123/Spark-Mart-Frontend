@@ -45,6 +45,9 @@ export default function Users() {
   const userDeletionHandler = (data: any, totalPages: number) => {
     setUsers(data);
     setTotalPages(totalPages);
+    if(data.length == 0) {
+      setNoUsersFound(true);
+    }
   };
 
   const changePageHandler = (page: number) => {
@@ -109,91 +112,89 @@ export default function Users() {
     return (
       <>
         <Layout>
-          <div>
-            <div id={styles.optionsGrid}>
-              <div>
-                <Link to="newUser" state={{ userType: type }}>
-                  <Button style={styles.circleButton}>
-                    <FontAwesomeIcon
-                      icon={faCirclePlus}
-                      size={"2xl"}
-                    />
-                  </Button>
-                </Link>
-              </div>
-              <div id={styles.searchBar}>
-                <SearchBar onSubmit={searchHandler} />
-              </div>
-            </div>
-          </div>
-          {!noUsersFound ? (
+          {!noUsersFound && users.length != 0 ? (
             <div>
-              <table id={styles.table}>
-                <thead id={styles.tableHead}>
-                  <tr>
-                    <th className={styles.tableRow}>
-                      <div className={styles.grid}>
-                        <h6 className={styles.fieldName}>
-                          First Name
+              <div>
+                <div id={styles.optionsGrid}>
+                  <div>
+                    <Link to="newUser" state={{ userType: type }}>
+                      <Button style={styles.circleButton}>
+                        <FontAwesomeIcon icon={faCirclePlus} size={"2xl"} />
+                      </Button>
+                    </Link>
+                  </div>
+                  <div id={styles.searchBar}>
+                    <SearchBar onSubmit={searchHandler} />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <table id={styles.table}>
+                  <thead id={styles.tableHead}>
+                    <tr>
+                      <th className={styles.tableRow}>
+                        <div className={styles.grid}>
+                          <h6 className={styles.fieldName}>
+                            First Name
+                            <Button
+                              style={styles.buttonSort}
+                              onClick={() =>
+                                changeSortingHander(currentPage, "firstName")
+                              }
+                            >
+                              <FontAwesomeIcon icon={faSort} />
+                            </Button>
+                          </h6>
+                        </div>
+                      </th>
+                      <th className={styles.tableRow}>
+                        <div className={styles.grid}>
+                          <h6 className={styles.fieldName}>
+                            Last Name
+                            <Button
+                              style={styles.buttonSort}
+                              onClick={() =>
+                                changeSortingHander(currentPage, "lastName")
+                              }
+                            >
+                              <FontAwesomeIcon icon={faSort} />
+                            </Button>
+                          </h6>
+                        </div>
+                      </th>
+                      <th className={styles.tableRow}>
+                        <div className={styles.grid}>
+                          <h6 className={styles.fieldName}>
+                            Email
+                            <Button
+                              style={styles.buttonSort}
+                              onClick={() =>
+                                changeSortingHander(currentPage, "email")
+                              }
+                            >
+                              <FontAwesomeIcon icon={faSort} />
+                            </Button>
+                          </h6>
+                        </div>
+                      </th>
+                      <th className={styles.tableRow}>
+                        <div className={styles.grid}>
+                          <h6 className={styles.fieldName}>Phone Number</h6>
                           <Button
                             style={styles.buttonSort}
                             onClick={() =>
-                              changeSortingHander(currentPage, "firstName")
+                              changeSortingHander(currentPage, "phoneNumber")
                             }
                           >
                             <FontAwesomeIcon icon={faSort} />
                           </Button>
-                        </h6>
-                      </div>
-                    </th>
-                    <th className={styles.tableRow}>
-                      <div className={styles.grid}>
-                        <h6 className={styles.fieldName}>
-                          Last Name
-                          <Button
-                            style={styles.buttonSort}
-                            onClick={() =>
-                              changeSortingHander(currentPage, "lastName")
-                            }
-                          >
-                            <FontAwesomeIcon icon={faSort} />
-                          </Button>
-                        </h6>
-                      </div>
-                    </th>
-                    <th className={styles.tableRow}>
-                      <div className={styles.grid}>
-                        <h6 className={styles.fieldName}>
-                          Email
-                          <Button
-                            style={styles.buttonSort}
-                            onClick={() =>
-                              changeSortingHander(currentPage, "email")
-                            }
-                          >
-                            <FontAwesomeIcon icon={faSort} />
-                          </Button>
-                        </h6>
-                      </div>
-                    </th>
-                    <th className={styles.tableRow}>
-                      <div className={styles.grid}>
-                        <h6 className={styles.fieldName}>Phone Number</h6>
-                        <Button
-                          style={styles.buttonSort}
-                          onClick={() =>
-                            changeSortingHander(currentPage, "phoneNumber")
-                          }
-                        >
-                          <FontAwesomeIcon icon={faSort} />
-                        </Button>
-                      </div>
-                    </th>
-                    <th id={styles.optionsRow}>Options</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {users.map((user: User, index: number) => {
+                        </div>
+                      </th>
+                      <th id={styles.optionsRow}>Options</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {users.map((user: User, index: number) => {
                       return (
                         <UserItem
                           key={index}
@@ -203,25 +204,29 @@ export default function Users() {
                           lastName={user.lastName}
                           email={user.email}
                           phoneNumber={user.phoneNumber}
-                          pageNo={currentPage}
-                          pageSize={pageSize}
-                          sortDir={sortDir}
-                          sortBy={sortBy}
-                          keyword={searchValue}
                           userType={type}
                           onUserDeletion={userDeletionHandler}
                         />
                       );
-                  })}
-                </tbody>
-              </table>
-              )
-              <Pagination size="lg" id={styles.pagination}>
-                {paginationItems}
-              </Pagination>
+                    })}
+                  </tbody>
+                </table>
+                <Pagination size="lg" id={styles.pagination}>
+                  {paginationItems}
+                </Pagination>
+              </div>
             </div>
           ) : (
-            <h3 id={styles.noUsers}>No users were found!</h3>
+            <div>
+              <h3 id={styles.noUsers}>No users were found!</h3>
+              <div id={styles.noUsersButton}>
+                <Link to="newUser" state={{ userType: type }}>
+                  <Button style={styles.circleButton}>
+                    <FontAwesomeIcon icon={faCirclePlus} size={"2xl"} />
+                  </Button>
+                </Link>
+              </div>
+            </div>
           )}
         </Layout>
       </>

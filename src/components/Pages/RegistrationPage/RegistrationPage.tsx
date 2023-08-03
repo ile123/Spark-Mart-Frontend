@@ -105,7 +105,7 @@ export default function RegistrationPage() {
             Sign up
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit(formSubmit, handleError)} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
+            <Grid container spacing={5}>
               <Grid item xs={12} sm={6}>
                 <TextField
                   required

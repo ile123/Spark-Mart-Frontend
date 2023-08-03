@@ -73,8 +73,13 @@
 }
 
 #noUsers {
-    margin-left: 30rem;
-    margin-top: 8rem;
+    margin-left: 35%;
+    margin-top: 21%;
     font-size: 4rem;
     font-family: Technology;
+}
+
+#noUsersButton {
+    margin-left: 46%;
+    margin-top: 0.5rem;
 }

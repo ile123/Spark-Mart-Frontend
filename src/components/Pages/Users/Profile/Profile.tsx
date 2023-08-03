@@ -2,14 +2,22 @@
 import { Card } from "react-bootstrap";
 import styles from "./Profile.module.css";
 import { useSelector } from "react-redux";
-import Button from "../../../UI/Button/Button";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { getUserById } from "../../../../services/user-Service";
 import { getAddressById } from "../../../../services/address-Service";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
+import {
+  Grid,
+  Paper,
+  Typography,
+  Container,
+  Avatar,
+  Button,
+} from "@mui/material";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import HouseIcon from '@mui/icons-material/House';
 
 export default function UserProfile() {
   const { userInfo } = useSelector((state: any) => state.auth);
@@ -33,71 +41,100 @@ export default function UserProfile() {
   }
 
   return (
-    <>
-      <div className={styles.grid}>
-        <div className={styles.item}>
-          <Card id={styles.userCard}>
-            <Card.Header>
-              <h3 className={styles.title}>User</h3>
-            </Card.Header>
-            <Card.Body>
-              <h4 className={styles.label}>First Name</h4>
-              <h4 className={styles.infoField}>{user?.firstName}</h4>
-              <h4 className={styles.label}>Last Name</h4>
-              <h4 className={styles.infoField}>{user?.lastName}</h4>
-              <h4 className={styles.label}>Email</h4>
-              <h4 className={styles.infoField}>{user?.email}</h4>
-              <h4 className={styles.label}>Gender</h4>
-              <h4 className={styles.infoField}>{user?.gender}</h4>
-              <h4 className={styles.label}>Role</h4>
-              <h4 className={styles.infoField}>{user?.role}</h4>
-            </Card.Body>
-            <Card.Footer>
-              <Link
-                to="/editUserInformation"
-                className={styles.button}
-                state={{ userId: userInfo?.userId }}
-              >
+    <Container
+      sx={{
+        flexGrow: 1,
+        padding: 3,
+      }}
+    >
+      <Grid container spacing={5} sx={{
+        marginTop: "14rem"
+      }}>
+        <Grid item xs={6}>
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main', height: "6rem", width: "6rem", marginLeft: "42.5%", marginBottom: "0.5rem" }}>
+            <AccountCircleIcon sx={{
+              width: "6rem",
+              height: "6rem",
+            }}/>
+          </Avatar>
+          <Paper
+            sx={{
+              padding: 2,
+            }}
+          >
+            <Typography variant="h6" textAlign={"center"}>User Information</Typography>
+            <Typography variant="body1">First Name: {user.firstName}</Typography>
+            <Typography variant="body1">Last Name: {user.lastName}</Typography>
+            <Typography variant="body1">Email: {user.email}</Typography>
+            <Typography variant="body1">Gender: {user.gender}</Typography>
+            <Typography variant="body1">Role: {user.role}</Typography>
+          </Paper>
+          <Link to={"/editUserInformation"} state={{ userId: userInfo?.userId }}>
+            <Button variant="outlined" sx={{
+              height: "3.5rem",
+              width: "8rem",
+              textAlign: "center",
+              marginTop: "0.5rem",
+              marginLeft: "40%"
+            }}>
                 Edit
-              </Link>
-            </Card.Footer>
-          </Card>
-        </div>
-        <div className={styles.item}>
-          <Card id={styles.addressCard}>
-            <Card.Header>
-              <h3 className={styles.title}>Address</h3>
-            </Card.Header>
-            <Card.Body>
-              {address?.streetAddress !== "" ? (
-                <div>
-                  <h4 className={styles.label}>Street Address</h4>
-                  <h4 className={styles.infoField}>{address?.streetAddress}</h4>
-                  <h4 className={styles.label}>City</h4>
-                  <h4 className={styles.infoField}>{address?.city}</h4>
-                  <h4 className={styles.label}>Postal Code</h4>
-                  <h4 className={styles.infoField}>{address?.postalCode}</h4>
-                  <h4 className={styles.label}>Role</h4>
-                  <h4 className={styles.infoField}>{address?.province}</h4>
-                  <h4 className={styles.label}>Country</h4>
-                  <h4 className={styles.infoField}>{address?.country}</h4>
-                </div>
-              ) : (
-                <h4 id={styles.noAddress}>No address provided</h4>
-              )}
-            </Card.Body>
-            <Card.Footer>
-              <Link
-                to="/editUserAddress"
-                className={styles.button}
-                state={{ userId: userInfo?.userId, addressId: address.id }}
-              >
+            </Button>
+          </Link>
+        </Grid>
+        <Grid item xs={6}>
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main', height: "6rem", width: "6rem", marginLeft: "42.5%", marginBottom: "0.5rem" }}>
+            <HouseIcon sx={{
+              width: "6rem",
+              height: "6rem",
+            }}/>
+          </Avatar>
+          <Paper
+            sx={{
+              padding: 2,
+            }}
+          >
+            {address.streetAddress !== "" ? (
+              <div>
+                <Typography variant="h6" textAlign={"center"}>
+                  Address Information
+                </Typography>
+                <Typography variant="body1">
+                  Street Address: {address.streetAddress}
+                </Typography>
+                <Typography variant="body1">City: {address.city}</Typography>
+                <Typography variant="body1">
+                  Postal Code: {address.postalCode}
+                </Typography>
+                <Typography variant="body1">
+                  Province: {address.province}
+                </Typography>
+                <Typography variant="body1">
+                  Country: {address.country}
+                </Typography>
+              </div>
+            ) : (
+              <Typography variant="h4" sx={{
+                textAlign: "center",
+                marginTop: "11%",
+                marginBottom: "10%"
+              }}>
+                No Address
+              </Typography>
+            )}
+          </Paper>
+          <Link to="/editUserAddress" state={{ userId: userInfo?.userId, addressId: address.id }}>
+            <Button variant="outlined" sx={{
+              height: "3.5rem",
+              width: "8rem",
+              textAlign: "center",
+              marginTop: "0.5rem",
+              marginLeft: "40%"
+            }}>
                 Edit
-              </Link>
-            </Card.Footer>
-          </Card>
-        </div>
-      </div>
-    </>
+            </Button>
+          </Link>
+        </Grid>
+      </Grid>
+    </Container>
   );
 }

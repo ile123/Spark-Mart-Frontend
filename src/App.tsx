@@ -1,7 +1,6 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/fonts/Technology/Technology.ttf";
-//neka homepage prikaziva listu kategorija kada si nelogiran ili kada si logirna ko kupac, ko na elipsu
 import {
   Outlet,
   Route,

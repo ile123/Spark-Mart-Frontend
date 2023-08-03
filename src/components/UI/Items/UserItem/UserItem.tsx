@@ -7,10 +7,12 @@ import Button from "../../Button/Button";
 
 export default function UserItem(props: any) {
   async function deleteUserHandler() {
-    await deleteUser(props.id);
-    await getAllUsers(props.pageNo, props.pageSize, props.sortDir, props.sortBy, props.userType, props.keyword).then((result: any) =>
-      props.onUserDeletion(result.data.content, result.data.totalPages)
-    );
+    await deleteUser(props.id).then(() => {
+      getAllUsers(0, 10, "firstName", "asc", props.userType, "")
+        .then((result: any) => props.onUserDeletion(result.data.content, result.data.totalPages))
+        .catch((error: any) => console.log(error));
+    })
+      .catch((error: any) => console.log(error));
   }
 
   return (
