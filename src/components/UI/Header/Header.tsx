@@ -37,10 +37,10 @@ export default function Header() {
               userInfo.role !== "CUSTOMER" ? (
                 <EmployeeNavigation role={userInfo.role} />
               ) : (
-                <CustomerNavigation />
+                <CustomerNavigation user={userInfo} />
               )
             ) : (
-              <CustomerNavigation />
+              <CustomerNavigation user={userInfo} />
             )}
           </div>
           <div className={styles.item}>

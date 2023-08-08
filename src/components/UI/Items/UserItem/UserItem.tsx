@@ -7,6 +7,7 @@ import Button from "../../Button/Button";
 
 export default function UserItem(props: any) {
   async function deleteUserHandler() {
+    props.onUserDeletionLoading();
     await deleteUser(props.id).then(() => {
       getAllUsers(0, 10, "firstName", "asc", props.userType, "")
         .then((result: any) => props.onUserDeletion(result.data.content, result.data.totalPages))

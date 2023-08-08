@@ -107,3 +107,9 @@
     flex-direction: row;
     border: 1px dotted black;
 }
+
+#loading {
+    margin-left: 42%;
+    margin-top: 15%;
+    font-size: 20rem;
+}

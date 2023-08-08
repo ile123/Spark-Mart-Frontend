@@ -23,16 +23,13 @@ export default function CategoryItem(props: any) {
   };
 
   async function deleteUserHandler() {
-    await deleteCategory(props.id);
-    await getAllCategories(
-      props.pageNo,
-      props.pageSize,
-      props.sortDir,
-      props.sortBy,
-      props.keyword
-    ).then((result: any) =>
-      props.onCategoryDeletion(result.data.content, result.data.totalPages)
-    );
+    props.onCategoryDeletionLoading();
+    await deleteCategory(props.id).then(() => {
+      getAllCategories(0, 10, "name", "asc", "")
+        .then((result: any) => props.onCategoryDeletion(result.data.content, result.data.totalPages))
+        .catch((error: any) => console.log(error));
+    })
+      .catch((error: any) => console.log(error));
   }
 
   if(imagePath === null) {
@@ -52,8 +49,7 @@ export default function CategoryItem(props: any) {
           )}
         </td>
         <td>
-          {/* add view all products */}
-          <Link to="#" id={styles.allProductsList}>
+          <Link to={"allProducts/" + props.name} id={styles.allProductsList}>
             <FontAwesomeIcon icon={faClipboardList} size="xl" />
           </Link>
           <Link to="editCategory" state={{ categoryId: props.id }} >

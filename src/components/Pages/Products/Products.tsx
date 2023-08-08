@@ -98,69 +98,82 @@ export default function Brands() {
   }, []);
 
   if (JSON.stringify(userInfo) === "{}") navigate("/");
-  if (userInfo.role !== "ADMINISTRATOR") {
+  if (userInfo.role === "CUSTOMER") {
     return <Forbidden />;
   } else {
     return (
       <>
         <Layout>
-        <div>
-            <div className={styles.optionsGrid}>
+          {noProductsFound === false && products.length !== 0 ? (
+            <div>
               <div>
+                <div className={styles.optionsGrid}>
+                  <div>
+                    <Link to="newProduct">
+                      <Button style={styles.circleButton}>
+                        <FontAwesomeIcon icon={faCirclePlus} size={"2xl"} />
+                      </Button>
+                    </Link>
+                  </div>
+                  <div id={styles.searchBar}>
+                    <SearchBar onSubmit={searchHandler} />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <table id={styles.table}>
+                  <thead id={styles.tableHead}>
+                    <tr>
+                      <th className={styles.tableRow}>
+                        <div className={styles.grid}>
+                          <h6 className={styles.fieldName}>
+                            Name
+                            <Button
+                              style={styles.buttonSort}
+                              onClick={() =>
+                                changeSortingHander(currentPage, "name")
+                              }
+                            >
+                              <FontAwesomeIcon icon={faSort} />
+                            </Button>
+                          </h6>
+                        </div>
+                      </th>
+                      <th className={styles.tableRow}>Image</th>
+                      <th className={styles.tableRow}>Options</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {products.map((brand: any, index: number) => {
+                      return (
+                        <DisplayProductItem
+                          key={index}
+                          keyId={index}
+                          id={brand.id}
+                          name={brand.name}
+                          imageName={brand.imageName}
+                          isWishlistAdmin={false}
+                        />
+                      );
+                    })}
+                  </tbody>
+                </table>
+                <Pagination size="lg" id={styles.pagination}>
+                  {paginationItems}
+                </Pagination>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <h3 id={styles.noProducts}>No Products Found</h3>
+              <div id={styles.noProductsButton}>
                 <Link to="newProduct">
                   <Button style={styles.circleButton}>
                     <FontAwesomeIcon icon={faCirclePlus} size={"2xl"} />
                   </Button>
                 </Link>
               </div>
-              <div id={styles.searchBar}>
-                <SearchBar onSubmit={searchHandler} />
-              </div>
             </div>
-          </div>
-          {(noProductsFound === false && products.length !== 0)? (
-            <div>
-              <table id={styles.table}>
-                <thead id={styles.tableHead}>
-                  <tr>
-                    <th className={styles.tableRow}>
-                      <div className={styles.grid}>
-                        <h6 className={styles.fieldName}>Name
-                        <Button
-                          style={styles.buttonSort}
-                          onClick={() =>
-                            changeSortingHander(currentPage, "name")
-                          }
-                        >
-                          <FontAwesomeIcon icon={faSort} />
-                        </Button></h6>
-                      </div>
-                    </th>
-                    <th className={styles.tableRow}>Image</th>
-                    <th className={styles.tableRow}>Options</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {products.map((brand: any, index: number) => {
-                    return (
-                      <DisplayProductItem
-                        key={index}
-                        keyId={index}
-                        id={brand.id}
-                        name={brand.name}
-                        imageName={brand.imageName}
-                        isWishlistAdmin={false}
-                      />
-                    );
-                  })}
-                </tbody>
-              </table>
-              <Pagination size="lg" id={styles.pagination}>
-                {paginationItems}
-              </Pagination>
-            </div>
-          ) : (
-            <h3 id={styles.noProducts}>Loading...</h3>
           )}
         </Layout>
       </>

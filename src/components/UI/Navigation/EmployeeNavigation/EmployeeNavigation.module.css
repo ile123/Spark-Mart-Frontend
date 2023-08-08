@@ -5,11 +5,9 @@
 }
 
 #navigationEmployee {
-    overflow: hidden;
-    position: absolute;
-    margin-left: 17rem;
-    margin-top: 2rem;
-    padding: -20px;
+    margin: 0 auto;
+    display: flex; 
+    justify-content: center;
 }
 
 .button {

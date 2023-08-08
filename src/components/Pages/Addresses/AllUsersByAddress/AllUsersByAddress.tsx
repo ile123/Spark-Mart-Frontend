@@ -11,6 +11,7 @@ import Button from "../../../UI/Button/Button";
 import { User } from "../../../types/User";
 import { useNavigate, useParams } from "react-router-dom";
 import { getAllUsersByAddress } from "../../../../services/address-Service";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
 
 export default function AllUsersByAddress() {
   const { id } = useParams();
@@ -24,6 +25,7 @@ export default function AllUsersByAddress() {
   const [users, setUsers] = useState<User[]>([{}]);
   const [totalPages, setTotalPages] = useState(0);
   const [noUsersFound, setNoUsersFound] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   let paginationItems = [];
   for (let number = 1; number <= totalPages; number++) {
@@ -39,9 +41,11 @@ export default function AllUsersByAddress() {
   }
 
   const changePageHandler = (page: number) => {
+    setLoading(true);
     setCurrentPage(page - 1);
     getAllUsersByAddress(id, page - 1, pageSize, sortBy, sortDir).then(
       (result: any) => {
+        setLoading(false);
         setUsers(result.data.content);
         setTotalPages(result.data.totalPages);
       }
@@ -49,6 +53,7 @@ export default function AllUsersByAddress() {
   };
 
   const changeSortingHander = (page: number, sortByField: string) => {
+    setLoading(true);
     const nextPage: number = page - 1 < 0 ? 0 : page - 1;
     setSortDir(sortDir === "asc" ? "desc" : "asc");
     setSortBy(sortByField);
@@ -60,6 +65,7 @@ export default function AllUsersByAddress() {
       sortByField,
       sortDir === "asc" ? "desc" : "asc"
     ).then((result: any) => {
+      setLoading(false);
       setUsers(result.data.content);
       setTotalPages(result.data.totalPages);
     });
@@ -68,19 +74,23 @@ export default function AllUsersByAddress() {
   useEffect(() => {
     getAllUsersByAddress(id, currentPage, pageSize, "firstName", "asc")
       .then((result: any) => {
-        if(result.data.content.length === 0) {
+        if (result.data.totalElements === 0) {
+            setLoading(false);
             setNoUsersFound(true);
         } else {
+            setLoading(false);
             setNoUsersFound(false);
+            setUsers(result.data.content);
+            setTotalPages(result.data.totalPages);
         }
-        setUsers(result.data.content);
-        setTotalPages(result.data.totalPages);
       })
       .catch(() => {
         setNoUsersFound(true);
       });
   }, []);
 
+  if (loading) return <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />;
+  
   if (JSON.stringify(userInfo) === "{}") navigate("/");
 
   if (userInfo.role !== "ADMINISTRATOR" && type !== "customer") {

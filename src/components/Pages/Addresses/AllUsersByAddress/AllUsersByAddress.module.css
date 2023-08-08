@@ -1,7 +1,7 @@
 #table {
-    margin-top: 10rem;
-    margin-bottom: 4rem;
-    margin-left: 9rem;
+    margin-top: 8%;
+    margin-bottom: 15rem;
+    margin-left: 17%;
     width: 80rem;
     text-align: center;
 }
@@ -22,7 +22,10 @@
 }
 
 #pagination {
-    margin-bottom: 10rem;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 7%;
+    margin-left: 47.2%;
     justify-content: center;
 }
 
@@ -43,8 +46,9 @@
 }
 
 #loading {
-    margin-left: 42rem;
-    margin-top: 17rem;
+    margin-left: 42%;
+    margin-top: 15%;
+    font-size: 20rem;
 }
 
 #optionsGrid {
@@ -77,14 +81,14 @@
 }
 
 #noUsers {
-    margin-left: 32rem;
-    margin-top: 18rem;
+    margin-left: 35%;
+    margin-top: 22%;
     font-size: 4rem;
     font-family: Technology;
 }
 
 #row {
-    background-color: rgb(230, 228, 228);
+    background-color: rgb(233, 252, 255);
     text-align: center;
     height: 4rem;
 }

@@ -8,10 +8,10 @@ import { getAllUsers } from "../../../services/user-Service";
 import UserItem from "../../UI/Items/UserItem/UserItem";
 import { Pagination } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSort, faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import { faSort, faCirclePlus, faCog } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../UI/Button/Button";
 import { User } from "../../../types/User";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import SearchBar from "../../UI/SearchBar/SearchBar";
 import { useNavigate } from "react-router-dom";
 
@@ -28,6 +28,7 @@ export default function Users() {
   const [users, setUsers] = useState<User[]>([{}]);
   const [totalPages, setTotalPages] = useState(0);
   const [noUsersFound, setNoUsersFound] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   let paginationItems = [];
   for (let number = 1; number <= totalPages; number++) {
@@ -43,12 +44,18 @@ export default function Users() {
   }
 
   const userDeletionHandler = (data: any, totalPages: number) => {
+    setLoading(true);
     setUsers(data);
     setTotalPages(totalPages);
     if(data.length == 0) {
       setNoUsersFound(true);
     }
+    setLoading(false);
   };
+
+  const userDeletionLoadingHandler = () => {
+    setLoading(true);
+  }
 
   const changePageHandler = (page: number) => {
     setCurrentPage(page - 1);
@@ -95,14 +102,22 @@ export default function Users() {
   useEffect(() => {
     getAllUsers(currentPage, pageSize, "firstName", "asc", type, "")
       .then((result: any) => {
-        setNoUsersFound(false);
-        setUsers(result.data.content);
-        setTotalPages(result.data.totalPages);
+        if (result.data.totalElements === 0) {
+          setLoading(false);
+          setNoUsersFound(true);
+        } else {
+          setLoading(false);
+          setNoUsersFound(false);
+          setUsers(result.data.content);
+          setTotalPages(result.data.totalPages);
+        }
       })
       .catch(() => {
         setNoUsersFound(true);
       });
   }, [type]);
+
+  if (loading) return <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
 
   if (JSON.stringify(userInfo) === "{}") navigate("/");
 
@@ -112,7 +127,7 @@ export default function Users() {
     return (
       <>
         <Layout>
-          {!noUsersFound && users.length != 0 ? (
+          {!noUsersFound ? (
             <div>
               <div>
                 <div id={styles.optionsGrid}>
@@ -206,6 +221,7 @@ export default function Users() {
                           phoneNumber={user.phoneNumber}
                           userType={type}
                           onUserDeletion={userDeletionHandler}
+                          onUserDeletionLoading={userDeletionLoadingHandler}
                         />
                       );
                     })}

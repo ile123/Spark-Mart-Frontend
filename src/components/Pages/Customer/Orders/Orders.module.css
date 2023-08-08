@@ -23,3 +23,9 @@
     align-items: center;
     padding-top: 4rem;
 }
+
+#loading {
+    margin-left: 42%;
+    margin-top: 15%;
+    font-size: 20rem;
+}

@@ -45,6 +45,8 @@ import Wishlist from "./components/Pages/Customer/Wishlist/Wishlist";
 import AllProductsByOrder from "./components/Pages/Customer/AllProductsByOrder/AllProductsByOrder";
 import ProductStatistics from "./components/Pages/Products/ProductStatistics/ProductStatistics";
 import 'chart.js/auto';
+import ProductsByBrands from "./components/Pages/Brands/ProductsByBrands/ProductsByBrands";
+import ProductsByCategories from "./components/Pages/Categories/ProductsByCategories/ProductsByCategories";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -60,10 +62,7 @@ const router = createBrowserRouter(
       <Route path="/addresses" element={<Outlet />}>
         <Route index element={<Addresses />} />
         <Route path="newAddress" element={<AddAddress />} />
-        <Route
-          path="getAllUsersByAddress/:id"
-          element={<AllUsersByAddress />}
-        />
+        <Route path="getAllUsersByAddress/:id" element={<AllUsersByAddress />} />
       </Route>
       <Route element={<ProtectedRoute />}>
         <Route path="/profile" element={<Outlet />}>
@@ -78,18 +77,18 @@ const router = createBrowserRouter(
         <Route path="newProduct" element={<AddProduct />} />
         <Route path="editProduct/:id" element={<EditProduct />} />
         <Route path="productStatictics/:id" element={<ProductStatistics />} />
-        {/* Add later */}
       </Route>
       <Route path="/adminBrands" element={<Outlet />}>
         <Route index element={<Brands />} />
         <Route path="newBrand" element={<AddBrand />} />
         <Route path="editBrand" element={<EditBrand />} />
+        <Route path="allProducts/:brand" element={<ProductsByBrands />} />
       </Route>
       <Route path="/adminCategories" element={<Outlet />}>
         <Route index element={<Categories />} />
         <Route path="newCategory" element={<AddCategory />} />
         <Route path="editCategory" element={<EditCategory />} />
-        {/* Add rest later */}
+        <Route path="allProducts/:category" element={<ProductsByCategories />} />
       </Route>
       <Route path="/brands" element={<Outlet />}>
         <Route index element={<CustomerBrand />} />
@@ -97,10 +96,7 @@ const router = createBrowserRouter(
       </Route>
       <Route path="/categories" element={<Outlet />}>
         <Route index element={<CustomerCategories />} />
-        <Route
-          path="allProducts/:category"
-          element={<AllProductsByCategory />}
-        />
+        <Route path="allProducts/:category" element={<AllProductsByCategory />} />
       </Route>
       <Route path="/product/:product" element={<ProductInformation />} />
       <Route path="/cart" element={<ShoppingCart />} />

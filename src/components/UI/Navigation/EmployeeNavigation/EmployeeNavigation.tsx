@@ -22,11 +22,9 @@ export default function EmployeeNavigation(props: any) {
         <Link to="/users/customer" className={styles.button}>
           Customers
         </Link>
-        {props.role === "ADMINISTRATOR" && (
-          <Link to="/addresses" className={styles.button}>
+        <Link to="/addresses" className={styles.button}>
             Addresses
-          </Link>
-        )}
+        </Link>
         <Link to="/adminProducts" className={styles.button}>
           Products
         </Link>
