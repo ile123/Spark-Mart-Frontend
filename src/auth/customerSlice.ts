@@ -44,7 +44,6 @@ const customerSlice = createSlice({
       const allCookies = cookies.getAll();
       if (!state.productsLoaded) {
         if (allCookies.hasOwnProperty(payload.userId)) {
-          console.log("IT HAS ENTERED 2");
           state.cart = allCookies[payload.userId];
           state.productsLoaded = true;
         }

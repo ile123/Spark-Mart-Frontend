@@ -1,8 +1,8 @@
 #card {
     margin-left: 25rem;
     width: 45%;
-    height: 38rem;
-    margin-top: 4.5rem;
+    height: 34rem;
+    margin-top: 8rem;
 }
 
 .grid {
@@ -35,8 +35,9 @@
 }
 
 #loading {
-    margin-left: 42rem;
-    margin-top: 17rem;
+    margin-left: 42%;
+    margin-top: 15%;
+    font-size: 20rem;
 }
 
 #button {
@@ -101,10 +102,4 @@
     box-shadow: 1px black;
     margin-left: 14rem;
     margin-bottom: 1rem;
-}
-
-#descriptionCategory {
-    margin-bottom: 2rem;
-    margin-top: 2rem;
-    margin-left: 16rem;
 }

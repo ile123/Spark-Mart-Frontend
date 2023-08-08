@@ -52,7 +52,9 @@ export default function AddUser() {
         } else {
           //@ts-ignore
           dispatch(registerUser(submitData));
-          navigate("/users/" + userType);
+          setTimeout(() => {
+            navigate("/users/" + userType);
+          }, 1200)
         }
       })
       .catch((error: any) => console.log(error));
@@ -94,7 +96,7 @@ export default function AddUser() {
             <BadgeIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Add New Employee
+            Add New User
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit(formSubmit, handleError)} sx={{ mt: 3 }}>
             <Grid container spacing={5}>
@@ -229,7 +231,7 @@ export default function AddUser() {
               type="submit"
               style={styles.button}
             >
-              {!loading ? "Sign Up" : <FontAwesomeIcon icon={faCog} size="xl" /> }
+              {!loading ? "Add User" : <FontAwesomeIcon icon={faCog} size="xl" /> }
             </Button>
           </Box>
         </Box>

@@ -96,3 +96,9 @@
     transform: scale(1.04);
     background-color: #21e065;
 }
+
+#loading {
+    margin-left: 42%;
+    margin-top: 15%;
+    font-size: 20rem;
+}

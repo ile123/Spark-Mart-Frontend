@@ -23,17 +23,14 @@ export default function BrandItem(props: any) {
     }
   };
 
-  async function deleteUserHandler() {
-    await deleteBrand(props.id);
-    await getAllBrands(
-      props.pageNo,
-      props.pageSize,
-      props.sortDir,
-      props.sortBy,
-      props.keyword
-    ).then((result: any) =>
-      props.onBrandDeletion(result.data.content, result.data.totalPages)
-    );
+  async function deleteBrandHandler() {
+    props.onBrandDeletionLoading();
+    await deleteBrand(props.id).then(() => {
+      getAllBrands(0, 10, "name", "asc", "")
+        .then((result: any) => props.onBrandDeletion(result.data.content, result.data.totalPages))
+        .catch((error: any) => console.log(error));
+    })
+      .catch((error: any) => console.log(error));
   }
 
   if(imagePath === null) {
@@ -52,14 +49,13 @@ export default function BrandItem(props: any) {
           )}
         </td>
         <td>
-          {/* add view all products */}
-          <Link to="#" id={styles.allProductsList}>
+          <Link to={"allProducts/" + props.name} id={styles.allProductsList}>
             <FontAwesomeIcon icon={faClipboardList} size="xl" />
           </Link>
           <Link to="editBrand" state={{ brandId: props.id }} >
             <FontAwesomeIcon icon={faEdit} size="xl" id={styles.editButton} />
           </Link>
-          <Button onClick={deleteUserHandler} style={styles.deleteButton}>
+          <Button onClick={deleteBrandHandler} style={styles.deleteButton}>
             <FontAwesomeIcon icon={faTrashCan} size="xl" id={styles.delete} />
           </Button>
         </td>
