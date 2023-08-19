@@ -12,12 +12,18 @@ export default function CustomerNavigation(props: any) {
         <Link to="/brands" className={styles.button}>
           Brands
         </Link>
+        <Link to="/categories" className={styles.button}>
+          Categories
+        </Link>
+        <Link to="/products" className={styles.button}>
+          Products
+        </Link>
         {JSON.stringify(props.user) !== '{}' && 
           <Link to="/orders" className={styles.button}>
             Orders
           </Link>
         }
-        <Link to="/about-us" className={styles.button}>
+        <Link to="/aboutUs" id={styles.aboutUsButton}>
           About Us
         </Link>
       </nav>

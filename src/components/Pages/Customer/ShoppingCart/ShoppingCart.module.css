@@ -7,8 +7,16 @@
 }
 
 #noProductsInCart {
-    margin-left: 25%;
-    margin-top: 25%;
+    margin-left: 33%;
+    margin-top: 22%;
+    font-size: 4rem;
+    font-family: Technology;;
+}
+
+#loading {
+    margin-left: 42%;
+    margin-top: 15%;
+    font-size: 20rem;
 }
 
 .grid {

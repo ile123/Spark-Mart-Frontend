@@ -19,8 +19,7 @@ export default function RegistrationPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    getValues,
+    formState: { errors }
   } = useForm();
 
   const [gender, setGender] = useState("");

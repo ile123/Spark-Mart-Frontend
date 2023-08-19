@@ -102,7 +102,7 @@ export default function Users() {
   useEffect(() => {
     getAllUsers(currentPage, pageSize, "firstName", "asc", type, "")
       .then((result: any) => {
-        if (result.data.totalElements === 0) {
+        if (result.data.numberOfElements === 0) {
           setLoading(false);
           setNoUsersFound(true);
         } else {

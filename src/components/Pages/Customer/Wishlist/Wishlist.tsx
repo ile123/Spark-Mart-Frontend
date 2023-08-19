@@ -7,6 +7,8 @@ import { Pagination } from "react-bootstrap";
 import Layout from "../../../UI/Layout/Layout";
 import DisplayProductItem from "../../../UI/Items/DisplayProductItem/DisplayProductItem";
 import { DisplayProduct } from "../../../../types/DisplayProduct";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
 
 export default function Wishlist() {
   const [currentPage, setCurrentPage] = useState(0);
@@ -16,6 +18,7 @@ export default function Wishlist() {
   const [products, setProducts] = useState<DisplayProduct[]>([]);
   const [totalPages, setTotalPages] = useState(0);
   const [noProductsFound, setNoProductsFound] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const { userInfo } = useSelector((state: any) => state.auth);
   const navigate = useNavigate();
@@ -33,12 +36,8 @@ export default function Wishlist() {
     );
   }
 
-  const orderDeletionHandler = (data: any, totalPages: number) => {
-    setProducts(data);
-    setTotalPages(totalPages);
-  };
-
   const changePageHandler = (page: number) => {
+    setLoading(true);
     setCurrentPage(page - 1);
     getAllWishlistsByUser(
       userInfo.userId,
@@ -49,25 +48,35 @@ export default function Wishlist() {
     ).then((result: any) => {
       setProducts(result.data.content);
       setTotalPages(result.data.totalPages);
+      setLoading(false);
     });
   };
 
   useEffect(() => {
     getAllWishlistsByUser(userInfo.userId, currentPage, pageSize, "name", "asc")
       .then((result: any) => {
-        setNoProductsFound(false);
-        setProducts(result.data.content);
-        setTotalPages(result.data.totalPages);
+        if (result.data.numberOfElements === 0) {
+          setNoProductsFound(true);
+          setLoading(false);
+        } else {
+          setNoProductsFound(false);
+          setProducts(result.data.content);
+          setTotalPages(result.data.totalPages);
+          setLoading(false);
+        }
       })
       .catch(() => {
         setNoProductsFound(true);
       });
   }, []);
 
+  if (loading)
+  return <FontAwesomeIcon icon={faCog} size="2xl" pulse id={styles.loading} />;
+
   return (
     <>
       <Layout>
-        {noProductsFound === false && products.length !== 0 ? (
+        {!noProductsFound ? (
           <div>
             <div id={styles.grid}>
               {products.map((product: DisplayProduct, index: number) => {
@@ -88,7 +97,7 @@ export default function Wishlist() {
             </div>
           </div>
         ) : (
-          <h3 id={styles.noProducts}>Loading...</h3>
+          <h3 id={styles.noProducts}>No Products Wishlisted</h3>
         )}
       </Layout>
     </>

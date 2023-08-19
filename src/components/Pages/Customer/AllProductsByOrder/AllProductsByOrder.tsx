@@ -5,66 +5,184 @@ import {
   getAllProductsByOrder,
   getOrderById,
 } from "../../../../services/customer-Service";
-import { Product } from "../../../../types/Product";
 import OrderProductItem from "../../../UI/Items/OrderProductItem/OrderProductItem";
 import { OrderProduct } from "../../../../types/OrderProduct";
 import { Order } from "../../../../types/Order";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
+import {
+  Grid,
+  Container,
+  Paper,
+  Typography
+} from "@mui/material";
 
 export default function AllProductsByOrder() {
   const { orderId } = useParams();
 
   const [products, setProducts] = useState<OrderProduct[]>([]);
-  const [order, setOrders] = useState<Order>({});
-  const [productsLoaded, setProductsLoaded] = useState(false);
+  const [order, setOrder] = useState<Order>({});
+  const [noProductsFound, setNoProductsFound] = useState(true);
+  const [loading, setLoading] = useState(false);
+
+  const productConfrimHandler = async(key: any) => {
+    delete products[key];
+    if(products.length === 0) setNoProductsFound(true);
+    setLoading(false);
+  }
+
+  const statusChangeLoadingHandler = () => {
+    setLoading(true);
+  }
 
   useEffect(() => {
     getOrderById(orderId)
-      .then((result: any) => setOrders(result.data))
+      .then((result: any) => setOrder(result.data))
       .catch((error: any) => console.log(error));
     getAllProductsByOrder(orderId)
       .then((result: any) => {
-        setProducts(result.data);
-        setProductsLoaded(true);
+        if (result.data.numberOfElements === 0) {
+          setNoProductsFound(true);
+          setLoading(true);
+        } else {
+          setProducts(result.data);
+          setNoProductsFound(false);
+          setLoading(false);
+        }
       })
-      .catch(() => setProductsLoaded(false));
+      .catch(() => {
+        setNoProductsFound(true);
+        setLoading(true);
+      });
   }, []);
+
+  if (loading) return <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />;
 
   return (
     <>
-      {productsLoaded ? (
-        <div id={styles.page}>
-          <h1>Products</h1>
-          <div id={styles.grid}>
-            <div className={styles.item}></div>
-            <div className={styles.item}>
-              <h4>Name</h4>
-            </div>
-            <div className={styles.item}>
-              <h4>Amount</h4>
-            </div>
-            <div className={styles.item}>
-              <h4>Arrival Date</h4>
-            </div>
-            <div className={styles.item}>
-              <h4>Has Arrived?</h4>
-            </div>
-          </div>
-          {products.map((product: OrderProduct, index: any) => {
+      {!noProductsFound ? (
+        <Container
+        sx={{
+          flexGrow: 1,
+          padding: 3,
+        }}
+      >
+        <Grid
+          container
+          direction={"column"}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          <Grid item sx={{
+            marginTop: "2rem"
+          }}>
+            <Typography
+              variant="h3"
+              sx={{
+                marginBottom: "1rem",
+              }}
+            >
+              Products
+            </Typography>
+            <Paper
+              sx={{
+                width: "80.2rem",
+                height: "40rem",
+                boxShadow: 2,
+                overflowY: "scroll",
+                left: 125,
+                position: "absolute",
+              }}
+            >
+              <Grid
+                container
+                sx={{
+                  marginTop: "2%",
+                  width: "78rem",
+                }}
+              >
+                <Grid item>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      marginLeft: "20rem",
+                      width: "8.5rem",
+                    }}
+                  >
+                    Product Name
+                  </Typography>
+                </Grid>
+                <Grid
+                  item
+                  sx={{
+                    marginLeft: "7.5rem",
+                    width: "8.5rem",
+                    textAlign: "center",
+                  }}
+                >
+                  <Typography variant="h6">Amount</Typography>
+                </Grid>
+                <Grid
+                  item
+                  sx={{
+                    marginLeft: "3.5rem",
+                    width: "8.5rem",
+                    textAlign: "center",
+                  }}
+                >
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      marginLeft: "2rem",
+                      width: "12rem",
+                      textAlign: "center",
+                    }}
+                  >
+                    Shipping Date
+                  </Typography>
+                </Grid>
+                <Grid
+                  item
+                  sx={{
+                    marginLeft: "4.5rem",
+                    width: "8.5rem",
+                    textAlign: "center",
+                  }}
+                >
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      marginLeft: "6rem",
+                      width: "12rem",
+                      textAlign: "center",
+                    }}
+                  >
+                    Status
+                  </Typography>
+                </Grid>
+              </Grid>
+              {products.map((product: OrderProduct, index: any) => {
             return (
               <OrderProductItem
                 key={index}
+                productKey={index}
                 orderProductId={product.id}
                 imageName={product.picture}
                 name={product.name}
                 amount={product.amount}
                 arrivalDate={product.arrivalDate}
                 orderStatus={order.status}
+                onProductConfirm={productConfrimHandler}
+                onProductStatusLoading={statusChangeLoadingHandler}
               />
             );
           })}
-        </div>
+            </Paper>
+          </Grid>
+        </Grid>
+      </Container>
       ) : (
-        <h3>LOADING...</h3>
+        <h3 id={styles.noProducts}>No Brands Found</h3>
       )}
     </>
   );

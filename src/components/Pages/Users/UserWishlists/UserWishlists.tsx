@@ -11,11 +11,14 @@ import Forbidden from '../../Errors/Forbidden/Forbidden';
 import Layout from '../../../UI/Layout/Layout';
 import Button from '../../../UI/Button/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSort } from '@fortawesome/free-solid-svg-icons';
+import { faSort, faCog } from '@fortawesome/free-solid-svg-icons';
 import ProductItem from '../../../UI/Items/ProductItem/ProductItem';
 
 export default function UserWishlists() {
-
+  const { userInfo } = useSelector((state: any) => state.auth);
+  const navigate = useNavigate();
+  if (JSON.stringify(userInfo) === "{}") navigate("/");
+  
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
   const [sortDir, setSortDir] = useState("asc");
@@ -23,9 +26,7 @@ export default function UserWishlists() {
   const [products, setProducts] = useState<Product[]>([]);
   const [totalPages, setTotalPages] = useState(0);
   const [noProductsFound, setNoProductsFound] = useState(false);
-
-  const { userInfo } = useSelector((state: any) => state.auth);
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   const {
     state: { userId },
@@ -44,22 +45,20 @@ export default function UserWishlists() {
     );
   }
 
-  const orderDeletionHandler = (data: any, totalPages: number) => {
-    setProducts(data);
-    setTotalPages(totalPages);
-  };
-
   const changePageHandler = (page: number) => {
+    setLoading(true);
     setCurrentPage(page - 1);
     getAllWishlistsByUser(userId, page - 1, pageSize, sortBy, sortDir).then(
       (result: any) => {
         setProducts(result.data.content);
         setTotalPages(result.data.totalPages);
+        setLoading(false);
       }
     );
   };
 
   const changeSortingHander = (page: number, sortByField: string) => {
+    setLoading(true);
     const nextPage: number = page - 1 < 0 ? 0 : page - 1;
     setSortDir(sortDir === "asc" ? "desc" : "asc");
     setSortBy(sortByField);
@@ -73,29 +72,37 @@ export default function UserWishlists() {
     ).then((result: any) => {
       setProducts(result.data.content);
       setTotalPages(result.data.totalPages);
+      setLoading(false);
     });
   };
 
   useEffect(() => {
     getAllWishlistsByUser(userId, currentPage, pageSize, "name", "asc")
       .then((result: any) => {
-        setNoProductsFound(false);
-        setProducts(result.data.content);
-        setTotalPages(result.data.totalPages);
+        if (result.data.numberOfElements === 0) {
+          setNoProductsFound(true);
+          setLoading(false);
+        } else {
+          setNoProductsFound(false);
+          setLoading(false);
+          setProducts(result.data.content);
+          setTotalPages(result.data.totalPages);
+        }
       })
       .catch(() => {
         setNoProductsFound(true);
       });
   }, []);
 
-  if (JSON.stringify(userInfo) === "{}") navigate("/");
+  if(loading) return <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
+
   if (userInfo.role !== "ADMINISTRATOR") {
     return <Forbidden />;
   } else {
     return (
       <>
         <Layout>
-          {(noProductsFound === false && products.length !== 0)? (
+          {!noProductsFound ? (
             <div>
               <table id={styles.table}>
                 <thead id={styles.tableHead}>
@@ -136,7 +143,7 @@ export default function UserWishlists() {
               </Pagination>
             </div>
           ) : (
-            <h3 id={styles.noProducts}>Loading...</h3>
+            <h3 id={styles.noProducts}>No wishlists found</h3>
           )}
         </Layout>
       </>

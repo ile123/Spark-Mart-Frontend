@@ -3,7 +3,7 @@ import styles from './ProductItem.module.css'
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClipboardList, faTrashCan, faEdit, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faEdit, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import Button from '../../Button/Button';
 
 export default function ProductItem(props: any) {
@@ -23,16 +23,13 @@ export default function ProductItem(props: any) {
   };
 
   async function deleteProductHandler() {
-    await deleteProduct(props.id);
-    await getAllProducts(
-      props.pageNo,
-      props.pageSize,
-      props.sortDir,
-      props.sortBy,
-      props.keyword
-    ).then((result: any) =>
-      props.onCategoryDeletion(result.data.content, result.data.totalPages)
-    );
+    props.onProductDeletionLoading();
+    await deleteProduct(props.id).then(() => {
+      getAllProducts(0, 10, "name", "asc", "")
+        .then((result: any) => props.onProductDeletion(result.data.content, result.data.totalPages))
+        .catch((error: any) => console.log(error));
+    })
+      .catch((error: any) => console.log(error));
   }
 
   if(imagePath === null) {
@@ -52,7 +49,6 @@ export default function ProductItem(props: any) {
         </td>
         { (props.isWishlistAdmin !== undefined && props.isWishlistAdmin !== true) &&
         <td>
-          {/* add view all products */}
           <Link to={"productStatictics/" + props.id}>
             <FontAwesomeIcon icon={faCircleInfo} size="xl"/>
           </Link>

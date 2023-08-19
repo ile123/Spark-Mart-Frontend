@@ -1,5 +1,4 @@
 //@ts-nocheck
-import { Card } from "react-bootstrap";
 import styles from "./Profile.module.css";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";

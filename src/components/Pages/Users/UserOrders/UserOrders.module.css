@@ -1,7 +1,7 @@
 #table {
-    margin-top: 10%;
+    margin-top: 9rem;
     margin-bottom: 4rem;
-    margin-left: 19rem;
+    margin-left: 8%;
     width: 80rem;
     text-align: center;
 }
@@ -22,7 +22,10 @@
 }
 
 #pagination {
-    margin-bottom: 10rem;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 7%;
+    margin-left: 47.2%;
     justify-content: center;
 }
 
@@ -33,7 +36,32 @@
 
 .fieldName {
     width: 7rem;
-    margin-left: 5rem;
+}
+
+#total {
+    width: 7rem;
+    margin-left: 3.5rem;
+}
+
+#orderDate {
+    width: 7rem;
+    margin-left: 3.5rem;
+}
+
+#shippingDate {
+    width: 6.5rem;
+    margin-left: 3rem;
+}
+
+#status {
+    width: 7rem;
+}
+
+#statusButtonSort {
+    background: none;
+    border: none;
+    margin-left: 0.5rem;
+    margin-right: 2.5rem;
 }
 
 #buttonSort {
@@ -73,9 +101,9 @@
     margin-top: 3rem;
 }
 
-#noUsers {
-    margin-left: 30rem;
-    margin-top: 8rem;
+#noOrders {
+    margin-left: 30%;
+    margin-top: 20%;
     font-size: 4rem;
     font-family: Technology;
 }
@@ -94,4 +122,18 @@
 #statusRow {
     padding-left: 2rem;
     width: 8.5rem;
+}
+
+#loading {
+    margin-left: 42%;
+    margin-top: 15%;
+    font-size: 20rem;
+}
+
+#pagination {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 7%;
+    margin-left: 47.2%;
+    justify-content: center;
 }

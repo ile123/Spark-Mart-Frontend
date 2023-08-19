@@ -24,27 +24,12 @@ export default function AddBrand() {
 
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [formErrors, setFormErrors] = useState<Errors>();
-  const [imageData, setImageData] = useState("");
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    setValue,
-    reset,
+    formState: { errors }
   } = useForm();
-
-  const handleImageUpload = (event: any) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      const base64String: any = reader.result;
-      setImageData(base64String);
-    };
-
-    reader.readAsDataURL(file);
-  };
 
   async function formSubmit(data: any) {
     if (data.image[0].size > 1048576) {

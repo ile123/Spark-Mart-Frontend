@@ -1,6 +1,6 @@
 import stlyes from "./ProtectedRoute.module.css";
 import { useSelector } from "react-redux";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Layout from "../../../UI/Layout/Layout";
 
 export default function ProtectedRoute() {

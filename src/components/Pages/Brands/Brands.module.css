@@ -1,7 +1,7 @@
 #table {
     margin-top: 1rem;
     margin-bottom: 15rem;
-    margin-left: 19rem;
+    margin-left: 8%;
     width: 80rem;
     text-align: center;
 }
@@ -51,9 +51,9 @@
     font-size: 20rem;
 }
 
-.optionsGrid {
-    margin-top: 7rem;
-    margin-left: 19.5rem;
+#optionsGrid {
+    margin-top: 9rem;
+    margin-left: 8%;
     display: flex;
     flex-direction: row;
 }
@@ -77,13 +77,13 @@
 }
 
 #noBrands {
-    margin-left: 38%;
+    margin-left: 36.5%;
     margin-top: 21%;
     font-size: 4rem;
     font-family: Technology;
 }
 
 #noBrandsButton {
-    margin-left: 46.5%;
+    margin-left: 47%;
     margin-top: 0.5rem;
 }

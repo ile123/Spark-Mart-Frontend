@@ -7,7 +7,7 @@ import { deleteCart, getFromCookiesToCart } from "../../../auth/customerSlice";
 import EmployeeNavigation from "../Navigation/EmployeeNavigation/EmployeeNavigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog, faCartShopping, faStar } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function Header() {
   const { userInfo, loading } = useSelector((state: any) => state.auth);

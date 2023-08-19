@@ -37,8 +37,7 @@ export default function EditBrand() {
     register,
     handleSubmit,
     formState: { errors },
-    setValue,
-    reset,
+    setValue
   } = useForm();
 
   async function submitForm(data: any) {
@@ -102,9 +101,7 @@ export default function EditBrand() {
   }, [brand]);
 
   if (JSON.stringify(brand) === "{}") {
-    return (
-      <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
-    );
+    return <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />;
   }
 
   return (
@@ -244,36 +241,3 @@ export default function EditBrand() {
     </>
   );
 }
-
-/**
- * <form onSubmit={handleSubmit(submitForm, handleError)}>
-        <Card id={styles.card}>
-          <Card.Header id={styles.header}>Add New Brand</Card.Header>
-          <Card.Body>
-            <h3 className={styles.label}>Name: </h3>
-            <input
-              type="text"
-              className={styles.input}
-              {...register("name", {
-                required: {
-                  value: true,
-                  message: "ERROR: Name is required!",
-                },
-              })}
-            />
-            <h3 className={styles.label}>Photo: </h3>
-            <input
-              type="file"
-              accept="image/*"
-              className={styles.input}
-              {...register("image")}
-            />
-          </Card.Body>
-          <Card.Footer id={styles.footer}>
-            <Button style={styles.button} type={"submit"}>
-              Submit
-            </Button>
-          </Card.Footer>
-        </Card>
-      </form>
- */

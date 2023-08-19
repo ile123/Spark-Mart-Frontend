@@ -1,4 +1,3 @@
-import { Card } from "react-bootstrap";
 import styles from "./AddCategory.module.css";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -25,15 +24,12 @@ export default function AddCategory() {
   const navigate = useNavigate();
 
   const [showErrorModal, setShowErrorModal] = useState(false);
-  const [formErrors, setFormErrors] = useState<Errors>();
-  const [imageData, setImageData] = useState("");
+  const [formErrors, setFormErrors] = useState<Errors>();  
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    setValue,
-    reset,
+    formState: { errors }
   } = useForm();
 
   async function formSubmit(data: any) {
@@ -227,46 +223,3 @@ export default function AddCategory() {
     </>
   );
 }
-
-/**
- * return (
-    <>
-      {showErrorModal && (
-        <ErrorModal errors={formErrors} onConfirm={errorHandler} />
-      )}
-      <form onSubmit={handleSubmit(submitForm, handleError)}>
-        <Card id={styles.card}>
-          <Card.Header id={styles.header}>Add New Category</Card.Header>
-          <Card.Body>
-            <h3 className={styles.label}>Name: </h3>
-            <input type="text" className={styles.input} {...register("name", {
-                required: {
-                    value: true,
-                    message: "ERROR: Name is required!"
-                }
-            })}/>
-            <h3 id={styles.descriptionCategory}>Description: </h3>
-            <input type="text" className={styles.input} {...register("description", {
-                required: {
-                    value: true,
-                    message: "ERROR: Description is required!"
-                }
-            })}/>
-            <h3 className={styles.label}>Photo: </h3>
-            <input type="file" accept="image/*" className={styles.input} {...register("image", {
-                required: {
-                    value: true,
-                    message: "ERROR: Photo is required!"
-                },
-            })}/>
-          </Card.Body>
-          <Card.Footer id={styles.footer}>
-            <Button style={styles.button} type={"submit"}>
-              Submit
-            </Button>
-          </Card.Footer>
-        </Card>
-      </form>
-    </>
-  );
- */

@@ -21,8 +21,7 @@ export default function EditAddress() {
     register,
     handleSubmit,
     formState: { errors },
-    setValue,
-    reset,
+    setValue
   } = useForm();
 
   async function formSubmit(data: any) {
@@ -244,94 +243,3 @@ export default function EditAddress() {
     </>
   );
 }
-
-/**
- * <form onSubmit={handleSubmit(submitForm, handleError)}>
-        <Card id={styles.card}>
-          <Card.Header id={styles.header}>Change Address</Card.Header>
-          <Card.Body>
-            <div className={styles.grid}>
-              <div className={styles.item}>
-                <h3 className={styles.label}>Street Address: </h3>
-                <input
-                  type="text"
-                  className={styles.input}
-                  defaultValue={address?.streetAddress}
-                  {...register("streetAddress", {
-                    required: {
-                      value: true,
-                      message: "ERROR: Street Address cannot be empty!",
-                    },
-                  })}
-                />
-              </div>
-              <div className={styles.item}>
-                <h3 className={styles.label}>City: </h3>
-                <input
-                  type="text"
-                  className={styles.input}
-                  defaultValue={address?.city}
-                  {...register("city", {
-                    required: {
-                      value: true,
-                      message: "ERROR: City cannot be empty!",
-                    },
-                  })}
-                />
-              </div>
-            </div>
-            <div className={styles.grid}>
-              <div className={styles.item}>
-                <h3 className={styles.label}>Postal Code: </h3>
-                <input
-                  type="text"
-                  className={styles.input}
-                  defaultValue={address?.postalCode}
-                  {...register("postalCode", {
-                    required: {
-                      value: true,
-                      message: "ERROR: Postal code cannot be empty!",
-                    },
-                  })}
-                />
-              </div>
-              <div className={styles.item}>
-                <h3 className={styles.label}>Province: </h3>
-                <input
-                  type="text"
-                  className={styles.input}
-                  defaultValue={address?.province}
-                  {...register("province", {
-                    required: {
-                      value: true,
-                      message: "ERROR: Province is required!",
-                    },
-                  })}
-                />
-              </div>
-            </div>
-            <div className={styles.grid}>
-              <div className={styles.item}>
-                <h3>Country: </h3>
-                <input
-                  type="text"
-                  className={styles.input}
-                  defaultValue={address?.country}
-                  {...register("country", {
-                    required: {
-                      value: true,
-                      message: "ERROR: Country is required!",
-                    },
-                  })}
-                />
-              </div>
-            </div>
-          </Card.Body>
-          <Card.Footer id={styles.footer}>
-            <Button style={styles.button} type={"submit"}>
-              Save Changes
-            </Button>
-          </Card.Footer>
-        </Card>
-      </form>
- */

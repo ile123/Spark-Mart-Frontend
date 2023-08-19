@@ -3,10 +3,8 @@ import styles from "./ProductInformation.module.css";
 import { useEffect, useState } from "react";
 import { getProductById } from "../../../../services/product-Service";
 import { Product } from "../../../../types/Product";
-import { Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
-import Button from "../../../UI/Button/Button";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
@@ -16,6 +14,20 @@ import {
 import { addToCart } from "../../../../auth/customerSlice";
 import ErrorModal from "../../../UI/ErrorModal/ErrorModal";
 import { Errors } from "../../../../types/Errors";
+import {
+  Grid,
+  Container,
+  Paper,
+  Box,
+  Typography,
+  IconButton,
+  Button,
+  List,
+  ListItem,
+  Divider,
+} from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 
 export default function ProductInformation() {
   const { product } = useParams();
@@ -25,16 +37,23 @@ export default function ProductInformation() {
 
   const [productDisplay, setProductDisplay] = useState<Product>();
   const [imagePath, setImagePath] = useState(null);
-  const [specifications, setSpecifications] = useState();
+  const [specifications, setSpecifications] = useState({});
   const [isAddedToWishlist, setIsAddedToWishlist] = useState(false);
   const [amountToBuy, setAmountToBuy] = useState(0);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [formErrors, setFormErrors] = useState<Errors>();
+  const [addedToCart, setAddedToCart] = useState("false");
+
+  const addedToCartJSON = {
+    true: "3rem",
+    false: "4rem"
+  }
 
   const subtractAmountHandler = () => {
     if (amountToBuy === 0) {
       return;
     }
+    setAddedToCart("false");
     setAmountToBuy(amountToBuy - 1);
   };
 
@@ -51,6 +70,7 @@ export default function ProductInformation() {
     if (amountToBuy === +productDisplay?.quantity) {
       return;
     }
+    setAddedToCart("false");
     setAmountToBuy(amountToBuy + 1);
   };
 
@@ -62,6 +82,7 @@ export default function ProductInformation() {
       setShowErrorModal(true);
       return;
     }
+    setAddedToCart("true");
     dispatch(
       addToCart({
         productId: productDisplay?.id,
@@ -116,81 +137,250 @@ export default function ProductInformation() {
         <ErrorModal errors={formErrors} onConfirm={errorHandler} />
       )}
       {productDisplay ? (
-        <Card id={styles.card}>
-          <div id={styles.upper_left}>
-            {imagePath ? (
-              <Card.Img variant="top" src={imagePath} height={320} />
-            ) : (
-              <FontAwesomeIcon icon={faCog} id={styles.loading} size="10x" />
-            )}
-          </div>
-          <div id={styles.upper_right}>
-            <h4 id={styles.name}>{productDisplay?.name}</h4>
-            <h5 id={styles.quantity}>
-              Amount left: {productDisplay?.quantity}
-            </h5>
-            <h4 id={styles.description}>{productDisplay?.description}</h4>
-
-            {JSON.stringify(userInfo) !== "{}" ? (
-              <div className={styles.grid}>
-                <div id={styles.amountGrid}>
-                  <Button style={styles.minusButton}>
-                    <FontAwesomeIcon
-                      icon={faMinus}
-                      size="2x"
-                      onClick={subtractAmountHandler}
+        <Container
+          sx={{
+            flexGrow: 1,
+            padding: 3,
+          }}
+        >
+          <Grid
+            container
+            spacing={2}
+            sx={{
+              marginTop: "5%",
+            }}
+            direction={"column"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
+            <Paper
+              sx={{
+                width: "70rem",
+                height: "40rem",
+                boxShadow: 3
+              }}
+            >
+              <Grid container>
+                <Grid item xs={6}>
+                  {imagePath ? (
+                    <Box
+                      component="img"
+                      sx={{
+                        height: 300,
+                        width: 500,
+                        marginTop: "1rem",
+                        marginLeft: "1rem",
+                        boxShadow: 1,
+                      }}
+                      alt={productDisplay.name}
+                      src={imagePath}
                     />
-                  </Button>
-                  <h4 id={styles.amountNumber}>{amountToBuy}</h4>
-                  <Button style={styles.plusButton}>
+                  ) : (
                     <FontAwesomeIcon
-                      icon={faPlus}
-                      size="2x"
-                      onClick={addAmountHandler}
+                      icon={faCog}
+                      id={styles.loading}
+                      size="10x"
                     />
-                  </Button>
-                </div>
-                <div>
-                  <Button
-                    style={styles.addToWishList}
-                    onClick={changeAddedToWishListHandler}
+                  )}
+                  <Divider
+                    sx={{
+                      marginTop: "1rem",
+                      marginBottom: "1rem",
+                      border: "1px solid black",
+                    }}
+                  />
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      textAlign: "center",
+                    }}
                   >
-                    {isAddedToWishlist ? (
-                      <h6 className={styles.wishListButtonText}>
-                        Remove From Wishlist
-                      </h6>
+                    {productDisplay.shortDescription}
+                  </Typography>
+                  <Divider
+                    sx={{
+                      marginTop: "1rem",
+                      marginBottom: "1rem",
+                      border: "1px solid black",
+                    }}
+                  />
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      textAlign: "center",
+                    }}
+                  >
+                    Price: {productDisplay.price} €
+                  </Typography>
+                  <Divider
+                    sx={{
+                      marginTop: "1rem",
+                      marginBottom: "1rem",
+                      border: "1px solid black",
+                    }}
+                  />
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      textAlign: "center",
+                    }}
+                  >
+                    {productDisplay.quantity !== 0 ? (
+                      <h6>Quantity Left: {productDisplay.quantity}</h6>
                     ) : (
-                      <h6 className={styles.wishListButtonText}>
-                        Add To Wishlist
-                      </h6>
+                      <h6>Out of stock</h6>
                     )}
-                  </Button>
-                  <Button style={styles.addToCart} onClick={addToCartHandler}>
-                    Add To Cart
-                  </Button>
-                </div>
-              </div>
-            ) : (
-              <h5 id={styles.notLoggedIn}>
-                You have to be logged in to purchase this item!
-              </h5>
-            )}
-          </div>
-          <div id={styles.bottom}>
-            <div id={styles.specifications}>
-              {Object.keys(specifications).map(
-                (specification: any, index: number) => (
-                  <div key={index}>
-                    <p>{specification}</p>
-                    <p>{specifications[specification]}</p>
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-        </Card>
+                  </Typography>
+                  {JSON.stringify(userInfo) !== "{}" ? (
+                    <Grid container sx={{
+                      alignItems: "center",
+                      position: "absolute",
+                      bottom: 0,
+                      marginBottom: "5.5%",
+                      marginLeft: "2%",
+                      width: "35rem",
+                      height: "3rem"
+                    }}>
+                      <Grid item sx={{
+                        marginLeft: addedToCartJSON[addedToCart]
+                      }}>
+                        <Button sx={{
+                          fontSize: "15px"
+                        }} onClick={addToCartHandler}>{addedToCart === "true" ? <Typography variant="h6" sx={{
+                          fontSize: "15px"
+                        }}>Added to cart</Typography> : <Typography variant="h6" sx={{
+                          fontSize: "15px"
+                        }}>Add to cart</Typography>}</Button>
+                      </Grid>
+                      <Grid item>
+                        <Grid container>
+                          <Grid item>
+                            <IconButton sx={{
+                              marginRight: "1rem"
+                            }} onClick={subtractAmountHandler}>
+                              <RemoveIcon />
+                            </IconButton>
+                          </Grid>
+                          <Grid item>
+                            <Typography variant="h4">{amountToBuy}</Typography>
+                          </Grid>
+                          <Grid item>
+                          <IconButton sx={{
+                            marginLeft: "1rem"
+                          }} onClick={addAmountHandler}>
+                              <AddIcon />
+                            </IconButton>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                      <Grid item>
+                        <Button sx={{
+                          fontSize: "10px"
+                        }} onClick={changeAddedToWishListHandler}>{isAddedToWishlist ? <Typography variant="h6" sx={{
+                          fontSize: "15px"
+                        }}>Remove from wishlist</Typography> : <Typography variant="h6" sx={{
+                          fontSize: "15px"
+                        }}>Add to wishlist</Typography>}</Button>
+                      </Grid>
+                    </Grid>
+                  ) : (
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        textAlign: "center",
+                        position: "absolute",
+                        bottom: 0,
+                        marginBottom: "5%",
+                        marginLeft: "2%",
+                      }}
+                    >
+                      Log in required in order to add to cart/wishlist this
+                      product
+                    </Typography>
+                  )}
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography
+                    variant="h4"
+                    sx={{
+                      textAlign: "center",
+                      marginTop: "1rem",
+                      marginBottom: "1rem",
+                    }}
+                  >
+                    {productDisplay.name}
+                  </Typography>
+                  <Divider
+                    variant="fullWidth"
+                    sx={{
+                      border: "1px solid black",
+                    }}
+                  />
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      marginTop: "1rem",
+                    }}
+                  >
+                    {productDisplay.description}
+                  </Typography>
+                  <Paper
+                    sx={{
+                      position: "absolute",
+                      bottom: 0,
+                      marginBottom: "5%",
+                      marginLeft: "2%",
+                      width: "31.5rem",
+                      height: "18.5rem",
+                      boxShadow: 2,
+                      overflowY: "scroll",
+                    }}
+                  >
+                    <List
+                      sx={{
+                        textAlign: "center",
+                      }}
+                    >
+                      {Object.keys(specifications).map(
+                        (key: any, index: any) => (
+                          <ListItem
+                            sx={{
+                              display: "flex",
+                              flexDirection: "row",
+                              justifyContent: "center",
+                            }}
+                            key={index}
+                          >
+                            <Typography
+                              variant="h6"
+                              sx={{
+                                marginTop: "1rem",
+                              }}
+                            >
+                              {key}:
+                            </Typography>
+                            <Typography
+                              variant="h6"
+                              sx={{
+                                marginTop: "1rem",
+                                marginLeft: "1rem",
+                              }}
+                            >
+                              {specifications[key]}
+                            </Typography>
+                          </ListItem>
+                          
+                        )
+                      )}
+                    </List>
+                  </Paper>
+                </Grid>
+              </Grid>
+            </Paper>
+          </Grid>
+        </Container>
       ) : (
-        <FontAwesomeIcon icon={faCog} size="2xl" id={styles.pageLoad} />
+        <FontAwesomeIcon icon={faCog} size="2xl" id={styles.loading} />
       )}
     </>
   );

@@ -1,7 +1,7 @@
 #table {
     margin-top: 1rem;
     margin-bottom: 15rem;
-    margin-left: 19rem;
+    margin-left: 8%;
     width: 80rem;
     text-align: center;
 }
@@ -35,7 +35,7 @@
 }
 
 .fieldName {
-    margin-left: 12.5rem;
+    margin-left: 17.5rem;
     width: 5rem;
 }
 
@@ -51,9 +51,9 @@
     font-size: 20rem;
 }
 
-.optionsGrid {
+#optionsGrid {
     margin-top: 7rem;
-    margin-left: 19.5rem;
+    margin-left: 8%;
     display: flex;
     flex-direction: row;
 }
@@ -72,12 +72,12 @@
 }
 
 #searchBar {
-    margin-left: 58.5rem;
+    margin-left: 64rem;
     margin-top: 3rem;
 }
 
 #noProducts {
-    margin-left: 37%;
+    margin-left: 35%;
     margin-top: 21%;
     font-size: 4rem;
     font-family: Technology;

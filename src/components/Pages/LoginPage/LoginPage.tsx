@@ -1,4 +1,3 @@
-import { Card } from "react-bootstrap";
 import styles from "./LoginPage.module.css";
 import Button from "../../UI/Button/Button";
 import { useEffect, useState } from "react";
@@ -10,8 +9,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { userLogin } from "../../../auth/authActions";
 import { Container, Box, Avatar, Typography, Grid, TextField, Select, MenuItem } from "@mui/material";
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import LoginIcon from '@mui/icons-material/Login';
 import { LoginOutlined } from "@mui/icons-material";
 
 export default function LoginPage() {
@@ -52,7 +49,7 @@ export default function LoginPage() {
 
   const submitForm = async(data: any) => {
     //@ts-ignore
-    await dispatch(userLogin(data));
+    dispatch(userLogin(data));
     while(loading) {
       continue;
     }

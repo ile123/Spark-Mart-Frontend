@@ -26,18 +26,18 @@ export default function DisplayCategoryItem(props: any) {
   }
   return(
   <>
-    <Card id={styles.card}>
-    {imagePath ? (
-          <Card.Img variant="top" src={imagePath} height={250} />
+    <Card id={styles.card} key={props.keyId}>
+        {imagePath ? (
+          <Card.Img variant="top" src={imagePath} height={190} id={styles.image}/>
         ) : (
           <FontAwesomeIcon icon={faCog} />
         )}
-        <Card.Title id={styles.title}>
+        <Card.Footer id={styles.footer}>
             <h3>
-              <Link to={"/categories/allProducts" + "/" + props.name} id={styles.button}>{props.name}</Link>
+              <Link to={"allProducts" + "/" + props.name} id={styles.button}>{props.name}</Link>
             </h3>
-        </Card.Title>
-    </Card>
+          </Card.Footer>
+      </Card>
   </>
   );
 }

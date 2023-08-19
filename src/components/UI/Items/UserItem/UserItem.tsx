@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./UserItem.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faEdit, faTrashCan, faHeart, faTableList } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrashCan, faHeart, faTableList } from "@fortawesome/free-solid-svg-icons";
 import { deleteUser, getAllUsers } from "../../../../services/user-Service";
 import Button from "../../Button/Button";
 

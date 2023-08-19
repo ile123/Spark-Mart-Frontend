@@ -1,7 +1,6 @@
 import styles from "./OrderProductItem.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { removeFromCart } from "../../../../auth/customerSlice";
 import { Card } from "react-bootstrap";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../Button/Button";
@@ -11,10 +10,10 @@ import { changeOrderProductStatus } from "../../../../services/customer-Service"
 export default function OrderProductItem(props: any) {
   const [imagePath, setImagePath] = useState(null);
 
-  const dispatch = useDispatch();
-
   const approveProductArrival = async() => {
+    props.onProductStatusLoading();
     await changeOrderProductStatus(props.orderProductId);
+    props.onProductConfirm(props.productKey);
   };
 
   const getImageUrl = async () => {
@@ -62,7 +61,7 @@ export default function OrderProductItem(props: any) {
               >
                 <FontAwesomeIcon icon={faCircleCheck} size="xl" color="black" />
               </Button>
-            ) : (<h3>Product has not been shipped</h3>)}
+            ) : (<h5>Product has not been shipped</h5>)}
           </div>
         </div>
       </Card>

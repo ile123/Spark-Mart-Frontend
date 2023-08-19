@@ -6,7 +6,6 @@ import ErrorModal from "../../UI/ErrorModal/ErrorModal";
 import { useNavigate } from "react-router-dom";
 import { changeUserPassword } from "../../../services/user-Service";
 import PasswordIcon from '@mui/icons-material/Password';
-import { Height } from "@mui/icons-material";
 
 export default function ChangePassword() {
   const {
@@ -18,8 +17,7 @@ export default function ChangePassword() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    getValues,
+    formState: { errors }
   } = useForm();
   const navigate = useNavigate();
 
@@ -171,51 +169,3 @@ export default function ChangePassword() {
     </>
   );
 }
-
-/**
- * <form onSubmit={handleSubmit(submitForm, handleError)}>
-        <Card id={styles.card}>
-          <Card.Footer>
-            <h3 id={styles.header}>Change Password</h3>
-          </Card.Footer>
-          <Card.Body>
-            <h3 className={styles.label}>Password: </h3>
-            <input
-              type="password"
-              className={styles.input}
-              {...register("password", {
-                required: {
-                  value: true,
-                  message: "ERROR: Password is required!",
-                },
-                pattern: {
-                  value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-                  message:
-                    "ERROR: Invalid password(It needs to contain 1 upper case letter, 1 lower case letter and a number, also min. lenght is 8)!",
-                },
-              })}
-            />
-            <h3 className={styles.label}>Repeat Password: </h3>
-            <input
-              type="password"
-              className={styles.input}
-              {...register("repeatPassword", {
-                validate: (match) => {
-                  const password = getValues("password");
-                  return match === password || "ERROR: Passwords should match!";
-                },
-                required: {
-                  value: true,
-                  message: "ERROR: Repeat password is required!",
-                },
-              })}
-            />
-          </Card.Body>
-          <Card.Footer>
-            <Button style={styles.button} type="submit">
-              Submit
-            </Button>
-          </Card.Footer>
-        </Card>
-      </form>
- */
