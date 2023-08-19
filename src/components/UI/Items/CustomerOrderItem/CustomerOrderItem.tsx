@@ -25,9 +25,15 @@ export default function CustomerOrderItem(props: any) {
             <h4>{props.status}</h4>
           </div>
           <div className={styles.item}>
-            <Link to={"allProductsByOrder/" + props.id}>
-                <FontAwesomeIcon icon={faClipboardList} size="xl" color="black" />
-            </Link>
+            {props.status !== "DELIVERED" && (
+              <Link to={"allProductsByOrder/" + props.id}>
+                <FontAwesomeIcon
+                  icon={faClipboardList}
+                  size="xl"
+                  color="black"
+                />
+              </Link>
+            )}
           </div>
         </div>
       </Card>

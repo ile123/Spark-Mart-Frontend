@@ -6,9 +6,11 @@
     height: 0 auto;
 }
 
-#noProductsInCart {
-    margin-left: 25%;
-    margin-top: 25%;
+#noProducts {
+    margin-left: 36.5%;
+    margin-top: 21%;
+    font-size: 4rem;
+    font-family: Technology;
 }
 
 #paymentCard {

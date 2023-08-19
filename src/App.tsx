@@ -47,6 +47,8 @@ import ProductStatistics from "./components/Pages/Products/ProductStatistics/Pro
 import 'chart.js/auto';
 import ProductsByBrands from "./components/Pages/Brands/ProductsByBrands/ProductsByBrands";
 import ProductsByCategories from "./components/Pages/Categories/ProductsByCategories/ProductsByCategories";
+import CustomerProducts from "./components/Pages/Customer/CustomerProducts/CustomerProducts";
+import AboutUs from "./components/Pages/AboutUs/AboutUs";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -98,13 +100,14 @@ const router = createBrowserRouter(
         <Route index element={<CustomerCategories />} />
         <Route path="allProducts/:category" element={<AllProductsByCategory />} />
       </Route>
+      <Route path="/products" element={<CustomerProducts />} />
       <Route path="/product/:product" element={<ProductInformation />} />
       <Route path="/cart" element={<ShoppingCart />} />
-      <Route path="/orders" element={<Orders />} />
       <Route path="/orders" element={<Outlet />}>
         <Route index element={<Orders />} />
         <Route path="allProductsByOrder/:orderId" element={<AllProductsByOrder />} />
       </Route>
+      <Route path="/aboutUs" element={<AboutUs />} />
       <Route path="/wishlists" element={<Wishlist />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegistrationPage />} />

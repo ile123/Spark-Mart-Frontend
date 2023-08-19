@@ -1,7 +1,7 @@
 #table {
     margin-top: 1rem;
     margin-bottom: 15rem;
-    margin-left: 19rem;
+    margin-left: 8%;
     width: 80rem;
     text-align: center;
 }
@@ -35,7 +35,7 @@
 }
 
 .fieldName {
-    margin-left: 12.5rem;
+    margin-left: 18rem;
     width: 5rem;
 }
 
@@ -72,7 +72,7 @@
 }
 
 #searchBar {
-    margin-left: 58.5rem;
+    margin-left: 53rem;
     margin-top: 3rem;
 }
 

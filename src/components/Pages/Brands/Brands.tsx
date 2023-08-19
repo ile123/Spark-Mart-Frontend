@@ -103,7 +103,7 @@ export default function Brands() {
   useEffect(() => {
     getAllBrands(currentPage, pageSize, "name", "asc", "")
       .then((result: any) => {
-        if (result.data.totalElements === 0) {
+        if (result.data.numberOfElements === 0) {
           setLoading(false);
           setNoBrandsFound(true);
         } else {
@@ -130,7 +130,7 @@ export default function Brands() {
           {!noBrandsFound ? (
             <div>
               <div>
-                <div className={styles.optionsGrid}>
+                <div id={styles.optionsGrid}>
                   <div>
                     <Link to="newBrand">
                       <Button style={styles.circleButton}>

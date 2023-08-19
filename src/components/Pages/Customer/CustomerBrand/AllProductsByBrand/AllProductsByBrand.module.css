@@ -68,3 +68,10 @@
     margin-bottom: 10rem;
     justify-content: center;
 }
+
+#noProducts {
+    margin-left: 35%;
+    margin-top: 21%;
+    font-size: 4rem;
+    font-family: Technology;
+}

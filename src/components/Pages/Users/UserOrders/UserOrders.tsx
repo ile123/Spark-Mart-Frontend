@@ -1,6 +1,5 @@
 import styles from "./UserOrders.module.css";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import Layout from "../../../UI/Layout/Layout";
 import Button from "../../../UI/Button/Button";
 import Forbidden from "../../Errors/Forbidden/Forbidden";
@@ -11,10 +10,17 @@ import { useSelector } from "react-redux";
 import { Pagination } from "react-bootstrap";
 import { getAllOrdersByUser } from "../../../../services/customer-Service";
 import { useLocation } from "react-router-dom";
-import { faSort } from "@fortawesome/free-solid-svg-icons";
+import { faSort, faCog } from "@fortawesome/free-solid-svg-icons";
 import OrderItem from "../../../UI/Items/OrderItem/OrderItem";
 
 export default function UserOrders() {
+  const { userInfo } = useSelector((state: any) => state.auth);
+  const navigate = useNavigate();
+  if (JSON.stringify(userInfo) === "{}") navigate("/");
+  const {
+    state: { userId },
+  } = useLocation();
+
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
   const [sortDir, setSortDir] = useState("asc");
@@ -22,13 +28,7 @@ export default function UserOrders() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [totalPages, setTotalPages] = useState(0);
   const [noOrdersFound, setNoOrdersFound] = useState(false);
-
-  const { userInfo } = useSelector((state: any) => state.auth);
-  const navigate = useNavigate();
-
-  const {
-    state: { userId },
-  } = useLocation();
+  const [loading, setLoading] = useState(true);
 
   let paginationItems = [];
   for (let number = 1; number <= totalPages; number++) {
@@ -42,23 +42,21 @@ export default function UserOrders() {
       </Pagination.Item>
     );
   }
-
-  const orderDeletionHandler = (data: any, totalPages: number) => {
-    setOrders(data);
-    setTotalPages(totalPages);
-  };
-
+  
   const changePageHandler = (page: number) => {
+    setLoading(true);
     setCurrentPage(page - 1);
     getAllOrdersByUser(userId, page - 1, pageSize, sortBy, sortDir).then(
       (result: any) => {
         setOrders(result.data.content);
         setTotalPages(result.data.totalPages);
+        setLoading(false);
       }
     );
   };
 
   const changeSortingHander = (page: number, sortByField: string) => {
+    setLoading(true);
     const nextPage: number = page - 1 < 0 ? 0 : page - 1;
     setSortDir(sortDir === "asc" ? "desc" : "asc");
     setSortBy(sortByField);
@@ -72,22 +70,29 @@ export default function UserOrders() {
     ).then((result: any) => {
       setOrders(result.data.content);
       setTotalPages(result.data.totalPages);
+      setLoading(false);
     });
   };
 
   useEffect(() => {
     getAllOrdersByUser(userId, currentPage, pageSize, "orderNO", "asc")
       .then((result: any) => {
-        setNoOrdersFound(false);
-        setOrders(result.data.content);
-        setTotalPages(result.data.totalPages);
+        if (result.data.numberOfElements === 0) {
+          setNoOrdersFound(true);
+          setLoading(false);
+        } else {
+          setNoOrdersFound(false);
+          setOrders(result.data.content);
+          setTotalPages(result.data.totalPages);
+          setLoading(false);
+        }
       })
       .catch(() => {
         setNoOrdersFound(true);
       });
   }, []);
-
-  if (JSON.stringify(userInfo) === "{}") navigate("/");
+  
+  if (loading) return <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
 
   if (userInfo.role !== "ADMINISTRATOR") {
     return <Forbidden />;
@@ -117,7 +122,7 @@ export default function UserOrders() {
                     </th>
                     <th className={styles.tableRow}>
                       <div className={styles.grid}>
-                        <h6 className={styles.fieldName}>
+                        <h6 id={styles.total}>
                           Total
                           <Button
                             style={styles.buttonSort}
@@ -132,7 +137,7 @@ export default function UserOrders() {
                     </th>
                     <th className={styles.tableRow}>
                       <div className={styles.grid}>
-                        <h6 className={styles.fieldName}>
+                        <h6 id={styles.orderDate}>
                           Order Date
                           <Button
                             style={styles.buttonSort}
@@ -147,7 +152,7 @@ export default function UserOrders() {
                     </th>
                     <th className={styles.tableRow}>
                       <div className={styles.grid}>
-                        <h6 className={styles.fieldName}>Shipping Date</h6>
+                        <h6 id={styles.shippingDate}>Shipping Date</h6>
                         <Button
                           style={styles.buttonSort}
                           onClick={() =>
@@ -162,7 +167,7 @@ export default function UserOrders() {
                       <div className={styles.grid}>
                         <h6 id={styles.status}>Status</h6>
                         <Button
-                          style={styles.buttonSort}
+                          style={styles.statusButtonSort}
                           onClick={() =>
                             changeSortingHander(currentPage, "status")
                           }
@@ -198,7 +203,7 @@ export default function UserOrders() {
               </Pagination>
             </div>
           ) : (
-            <h3 id={styles.noUsers}>No users were found!</h3>
+            <h3 id={styles.noOrders}>No orders were found!</h3>
           )}
         </Layout>
       </>

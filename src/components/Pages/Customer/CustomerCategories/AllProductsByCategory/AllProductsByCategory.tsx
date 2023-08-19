@@ -5,8 +5,9 @@ import { getAllProductsByCategory } from "../../../../../services/product-Servic
 import { DisplayProduct } from "../../../../../types/DisplayProduct";
 import { Pagination } from "react-bootstrap";
 import Layout from "../../../../UI/Layout/Layout";
-import SearchBar from "../../../../UI/SearchBar/SearchBar";
 import DisplayProductItem from "../../../../UI/Items/DisplayProductItem/DisplayProductItem";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
 
 export default function AllProductsByCategory() {
   const [currentPage, setCurrentPage] = useState(0);
@@ -17,22 +18,9 @@ export default function AllProductsByCategory() {
   const [products, setProducts] = useState<DisplayProduct[]>([]);
   const [totalPages, setTotalPages] = useState(0);
   const [noProductsFound, setNoProductsFound] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   const { category } = useParams();
-
-  const searchHandler = (searchString: string) => {
-    const keyword = searchString === undefined ? "" : searchString;
-    setSearchValue(keyword);
-    getAllProductsByCategory(0, pageSize, sortBy, sortDir, keyword, category)
-      .then((result: any) => {
-        setNoProductsFound(false);
-        setProducts(result.data.content);
-        setTotalPages(result.data.totalPages);
-      })
-      .catch(() => {
-        setNoProductsFound(true);
-      });
-  };
 
   const changePageHandler = (page: number) => {
     setNoProductsFound(true);
@@ -42,26 +30,6 @@ export default function AllProductsByCategory() {
       pageSize,
       sortBy,
       sortDir,
-      searchValue,
-      category
-    ).then((result: any) => {
-      setNoProductsFound(false);
-      setProducts(result.data.content);
-      setTotalPages(result.data.totalPages);
-    });
-  };
-
-  const changeSortingHander = (page: number, sortByField: string) => {
-    const nextPage: number = page - 1 < 0 ? 0 : page - 1;
-    setNoProductsFound(true);
-    setSortDir(sortDir === "asc" ? "desc" : "asc");
-    setSortBy(sortByField);
-    setCurrentPage(nextPage);
-    getAllProductsByCategory(
-      nextPage,
-      pageSize,
-      sortByField,
-      sortDir === "asc" ? "desc" : "asc",
       searchValue,
       category
     ).then((result: any) => {
@@ -94,18 +62,25 @@ export default function AllProductsByCategory() {
       category
     )
       .then((result: any) => {
-        setNoProductsFound(false);
-        setProducts(result.data.content);
-        setTotalPages(result.data.totalPages);
+        if (result.data.numberOfElements === 0) {
+          setLoading(false);
+          setNoProductsFound(true);
+        } else {
+          setNoProductsFound(false);
+          setProducts(result.data.content);
+          setTotalPages(result.data.totalPages);
+          setLoading(false);
+        }
       })
       .catch((error: any) => console.log(error));
   }, []);
 
+  if (loading) return <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />;
+
   return (
     <>
       <Layout>
-        <SearchBar onSubmit={searchHandler} />
-        {noProductsFound === false && products.length !== 0 ? (
+        {!noProductsFound ? (
           <div>
             <div className={styles.grid}>
               {products.map((category: any, index: number) => {
@@ -125,7 +100,7 @@ export default function AllProductsByCategory() {
             </Pagination>
           </div>
         ) : (
-          <h3 id={styles.noCategories}>Loading...</h3>
+          <h3 id={styles.noProducts}>No Products Found</h3>
         )}
       </Layout>
     </>

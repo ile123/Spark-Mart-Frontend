@@ -12,7 +12,8 @@ export default function CartProductItem(props: any) {
 
   const dispatch = useDispatch();
 
-   const removeFromCartHandler = () => {
+   const removeFromCartHandler = async() => {
+    props.onRemoveFromCartLoading();
     dispatch(removeFromCart({ userId: props.userId, productId: props.id }));
     props.onRemoveFromCart();
    }

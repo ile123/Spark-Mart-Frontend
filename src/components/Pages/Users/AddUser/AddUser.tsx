@@ -27,8 +27,7 @@ export default function AddUser() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    getValues,
+    formState: { errors }
   } = useForm();
 
   async function formSubmit(data: any) {

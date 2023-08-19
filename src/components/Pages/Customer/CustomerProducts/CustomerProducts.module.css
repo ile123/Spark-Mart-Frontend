@@ -1,0 +1,77 @@
+#card {
+    margin-left: 11rem;
+    margin-bottom: 3rem;
+    width: 19rem;
+    height: 17.5rem;
+    background-color: #92a1eb;
+}
+
+#footer {
+    padding-top: 0.5rem;
+    background-color: #92a1eb;
+    font-family: Technology;
+    text-align: center;
+}
+
+#image {
+    width: 18.9rem;
+    height: 15rem;
+}
+
+#button {
+    text-decoration: none;
+    font-size: 20px;
+    padding-bottom: 1px;
+    margin-bottom: 10px;
+    display: inline-block;
+    position: relative;
+    color: white;
+}
+
+#button:hover {
+    color: white;
+}
+  
+#button::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+  
+#button:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.grid {
+    margin-top: 8rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+#loading {
+    margin-left: 42%;
+    margin-top: 15%;
+    font-size: 20rem;
+}
+
+#pagination {
+    margin-bottom: 10rem;
+    justify-content: center;
+}
+
+#noProducts {
+    margin-left: 35%;
+    margin-top: 21%;
+    font-size: 4rem;
+    font-family: Technology;
+}

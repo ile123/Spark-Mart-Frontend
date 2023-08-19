@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Cookies from "universal-cookie";
-import jwt_decode from "jwt-decode";
 
 const cookies = new Cookies();
 
@@ -30,6 +29,7 @@ const customerSlice = createSlice({
       const json = state.cart;
       delete json[payload.productId];
       state.cart = json;
+      if(Object.keys(state.cart).length === 0) state.productsLoaded = false;
       cookies.set(payload.userId, JSON.stringify(json), {
         expires: new Date(Date.now() + 1_800_000),
         sameSite: "none",

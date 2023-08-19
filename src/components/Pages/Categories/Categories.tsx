@@ -103,7 +103,7 @@ export default function Categories() {
   useEffect(() => {
     getAllCategories(currentPage, pageSize, "name", "asc", "")
       .then((result: any) => {
-        if(result.data.totalElements === 0) {
+        if(result.data.numberOfElements === 0) {
           setLoading(false);
           setNoCategoriesFound(true);
         } else {
@@ -130,7 +130,7 @@ export default function Categories() {
           {!noCategoriesFound ? (
             <div>
               <div>
-                <div className={styles.optionsGrid}>
+                <div id={styles.optionsGrid}>
                   <div>
                     <Link to="newCategory">
                       <Button style={styles.circleButton}>

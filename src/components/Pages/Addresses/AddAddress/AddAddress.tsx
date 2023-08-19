@@ -17,9 +17,7 @@ export default function AddAddress() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    setValue,
-    reset,
+    formState: { errors }
   } = useForm();
 
   async function formSubmit(data: any) {
@@ -216,88 +214,3 @@ export default function AddAddress() {
     </>
   );
 }
-/**
- * <form onSubmit={handleSubmit(submitForm, handleError)}>
-        <Card id={styles.card}>
-          <Card.Header id={styles.header}>Add New Address</Card.Header>
-          <Card.Body>
-            <div className={styles.grid}>
-              <div className={styles.item}>
-                <h3 className={styles.label}>Street Address: </h3>
-                <input
-                  type="text"
-                  className={styles.input}
-                  {...register("streetAddress", {
-                    required: {
-                      value: true,
-                      message: "ERROR: Street Address cannot be empty!",
-                    },
-                  })}
-                />
-              </div>
-              <div className={styles.item}>
-                <h3 className={styles.label}>City: </h3>
-                <input
-                  type="text"
-                  className={styles.input}
-                  {...register("city", {
-                    required: {
-                      value: true,
-                      message: "ERROR: City cannot be empty!",
-                    },
-                  })}
-                />
-              </div>
-            </div>
-            <div className={styles.grid}>
-              <div className={styles.item}>
-                <h3 className={styles.label}>Postal Code: </h3>
-                <input
-                  type="text"
-                  className={styles.input}
-                  {...register("postalCode", {
-                    required: {
-                      value: true,
-                      message: "ERROR: Postal code cannot be empty!",
-                    },
-                  })}
-                />
-              </div>
-              <div className={styles.item}>
-                <h3 className={styles.label}>Province: </h3>
-                <input
-                  type="text"
-                  className={styles.input}
-                  {...register("province", {
-                    required: {
-                      value: true,
-                      message: "ERROR: Province is required!",
-                    },
-                  })}
-                />
-              </div>
-            </div>
-            <div className={styles.grid}>
-              <div className={styles.item}>
-                <h3>Country: </h3>
-                <input
-                  type="text"
-                  className={styles.input}
-                  {...register("country", {
-                    required: {
-                      value: true,
-                      message: "ERROR: Country is required!",
-                    },
-                  })}
-                />
-              </div>
-            </div>
-          </Card.Body>
-          <Card.Footer id={styles.footer}>
-            <Button style={styles.button} type={"submit"}>
-              Save Changes
-            </Button>
-          </Card.Footer>
-        </Card>
-      </form>
- */

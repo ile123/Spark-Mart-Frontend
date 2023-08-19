@@ -20,7 +20,6 @@ export default function EditUser() {
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
     setValue,
   } = useForm();
 

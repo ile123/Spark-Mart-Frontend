@@ -1,9 +1,9 @@
 import Layout from "../../../UI/Layout/Layout";
 import styles from "./ProductsByBrands.module.css";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Button from "../../../UI/Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSort, faCirclePlus, faCog } from "@fortawesome/free-solid-svg-icons";
+import { faSort, faCog } from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "../../../UI/SearchBar/SearchBar";
 import { useState, useEffect } from "react";
 import { getAllProductsByBrand } from "../../../../services/product-Service";
@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Forbidden from "../../Errors/Forbidden/Forbidden";
 import { DisplayProduct } from "../../../../types/DisplayProduct";
-import DisplayProductItem from "../../../UI/Items/DisplayProductItem/DisplayProductItem";
+import ProductItem from "../../../UI/Items/ProductItem/ProductItem";
 
 export default function ProductsByBrands() {
 
@@ -94,12 +94,13 @@ export default function ProductsByBrands() {
   useEffect(() => {
     getAllProductsByBrand(currentPage, pageSize, "name", "asc", "", brand)
       .then((result: any) => {
-        if(result.data.totalElements === 0) {
+        if(result.data.numberOfElements === 0) {
           setNoProductsFound(true);
           setLoading(false);
           return;
         }
         setLoading(false);
+        setNoProductsFound(false);
         setProducts(result.data.content);
         setTotalPages(result.data.totalPages);
       })
@@ -119,14 +120,7 @@ export default function ProductsByBrands() {
           {!noProductsFound ? (
             <div>
               <div>
-                <div className={styles.optionsGrid}>
-                  <div>
-                    <Link to="newProduct">
-                      <Button style={styles.circleButton}>
-                        <FontAwesomeIcon icon={faCirclePlus} size={"2xl"} />
-                      </Button>
-                    </Link>
-                  </div>
+                <div id={styles.optionsGrid}>
                   <div id={styles.searchBar}>
                     <SearchBar onSubmit={searchHandler} />
                   </div>
@@ -152,19 +146,18 @@ export default function ProductsByBrands() {
                         </div>
                       </th>
                       <th className={styles.tableRow}>Image</th>
-                      <th className={styles.tableRow}>Options</th>
                     </tr>
                   </thead>
                   <tbody>
                     {products.map((brand: any, index: number) => {
                       return (
-                        <DisplayProductItem
+                        <ProductItem
                           key={index}
                           keyId={index}
                           id={brand.id}
                           name={brand.name}
                           imageName={brand.imageName}
-                          isWishlistAdmin={false}
+                          isWishlistAdmin={true}
                         />
                       );
                     })}

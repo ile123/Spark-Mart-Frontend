@@ -1,7 +1,7 @@
 #table {
     margin-top: 1rem;
     margin-bottom: 15rem;
-    margin-left: 19rem;
+    margin-left: 8%;
     width: 80rem;
     text-align: center;
 }
@@ -52,8 +52,7 @@
 }
 
 #optionsGrid {
-    margin-top: 7rem;
-    margin-left: 19.5rem;
+    margin-top: 9rem;
     display: flex;
     flex-direction: row;
 }
@@ -61,7 +60,7 @@
 #circleButton {
     border: 1px solid black;
     background-color: #e6e9ff;
-    margin-left: 0.5rem;
+    margin-left: 9rem;
     width: 5rem;
     height: 5rem;
     border-radius: 100%;
@@ -78,13 +77,13 @@
 }
 
 #noAddresses {
-    margin-left: 28rem;
-    margin-top: 8rem;
+    margin-left: 36.5%;
+    margin-top: 21%;
     font-size: 4rem;
     font-family: Technology;
 }
 
 #noAddressesButton {
-    margin-left: 46.5%;
+    margin-left: 47%;
     margin-top: 0.5rem;
 }

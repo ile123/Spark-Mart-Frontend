@@ -3,7 +3,7 @@ import styles from "./Products.module.css";
 import { Link } from "react-router-dom";
 import Button from "../../UI/Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSort, faCirclePlus, faL } from "@fortawesome/free-solid-svg-icons";
+import { faSort, faCirclePlus, faCog } from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "../../UI/SearchBar/SearchBar";
 import { useState, useEffect } from "react";
 import { getAllProducts } from "../../../services/product-Service";
@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Forbidden from "../Errors/Forbidden/Forbidden";
 import { DisplayProduct } from "../../../types/DisplayProduct";
-import DisplayProductItem from "../../UI/Items/ProductItem/ProductItem";
+import ProductItem from "../../UI/Items/ProductItem/ProductItem";
 
 export default function Brands() {
   const { userInfo } = useSelector((state: any) => state.auth);
@@ -25,14 +25,16 @@ export default function Brands() {
   const [sortBy, setSortBy] = useState("name");
   const [products, setProducts] = useState<DisplayProduct[]>([]);
   const [totalPages, setTotalPages] = useState(0);
-  const [noProductsFound, setNoProductsFound] = useState(true);
+  const [noProductsFound, setNoProductsFound] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const searchHandler = (searchString: string) => {
+    setLoading(true);
     const keyword = searchString === undefined ? "" : searchString;
     setSearchValue(keyword);
     getAllProducts(0, pageSize, sortBy, sortDir, keyword)
       .then((result: any) => {
-        setNoProductsFound(false);
+        setLoading(false);
         setProducts(result.data.content);
         setTotalPages(result.data.totalPages);
       })
@@ -42,11 +44,11 @@ export default function Brands() {
   };
 
   const changePageHandler = (page: number) => {
-    setNoProductsFound(true);
+    setLoading(true);
     setCurrentPage(page - 1);
     getAllProducts(page - 1, pageSize, sortBy, sortDir, searchValue).then(
       (result: any) => {
-        setNoProductsFound(false);
+        setLoading(false);
         setProducts(result.data.content);
         setTotalPages(result.data.totalPages);
       }
@@ -54,8 +56,8 @@ export default function Brands() {
   };
 
   const changeSortingHander = (page: number, sortByField: string) => {
+    setLoading(true);
     const nextPage: number = page - 1 < 0 ? 0 : page - 1;
-    setNoProductsFound(true);
     setSortDir(sortDir === "asc" ? "desc" : "asc");
     setSortBy(sortByField);
     setCurrentPage(nextPage);
@@ -66,10 +68,23 @@ export default function Brands() {
       sortDir === "asc" ? "desc" : "asc",
       searchValue
     ).then((result: any) => {
-      setNoProductsFound(false);
+      setLoading(false);
       setProducts(result.data.content);
       setTotalPages(result.data.totalPages);
     });
+  };
+
+  const productDeletionLoadingHandler = () => {
+    setLoading(true);
+  }
+
+  const productDeletionHandler = (data: any, totalPages: any) => {
+    setProducts(data);
+    setTotalPages(totalPages);
+    if (data.length == 0) {
+      setNoProductsFound(true);
+    }
+    setLoading(false);
   };
 
   let paginationItems = [];
@@ -88,15 +103,22 @@ export default function Brands() {
   useEffect(() => {
     getAllProducts(currentPage, pageSize, "name", "asc", "")
       .then((result: any) => {
-        setNoProductsFound(false);
-        setProducts(result.data.content);
-        setTotalPages(result.data.totalPages);
+        if(result.data.numberOfElements === 0) {
+          setLoading(false);
+          setNoProductsFound(true);
+        } else {
+          setLoading(false);
+          setNoProductsFound(false);
+          setProducts(result.data.content);
+          setTotalPages(result.data.totalPages);
+        }
       })
       .catch(() => {
         setNoProductsFound(true);
       });
   }, []);
 
+  if(loading) return <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />;
   if (JSON.stringify(userInfo) === "{}") navigate("/");
   if (userInfo.role === "CUSTOMER") {
     return <Forbidden />;
@@ -104,10 +126,10 @@ export default function Brands() {
     return (
       <>
         <Layout>
-          {noProductsFound === false && products.length !== 0 ? (
+          {!noProductsFound ? (
             <div>
               <div>
-                <div className={styles.optionsGrid}>
+                <div id={styles.optionsGrid}>
                   <div>
                     <Link to="newProduct">
                       <Button style={styles.circleButton}>
@@ -146,13 +168,15 @@ export default function Brands() {
                   <tbody>
                     {products.map((brand: any, index: number) => {
                       return (
-                        <DisplayProductItem
+                        <ProductItem
                           key={index}
                           keyId={index}
                           id={brand.id}
                           name={brand.name}
                           imageName={brand.imageName}
                           isWishlistAdmin={false}
+                          onProductDeletion={productDeletionHandler}
+                          onProductDeletionLoading={productDeletionLoadingHandler}
                         />
                       );
                     })}
