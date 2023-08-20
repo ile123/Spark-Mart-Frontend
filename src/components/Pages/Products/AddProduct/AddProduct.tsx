@@ -5,15 +5,10 @@ import { useEffect, useState } from "react";
 import { DisplayBrand } from "../../../../types/DisplayBrand";
 import { DisplayCategory } from "../../../../types/DisplayCategory";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTrashCan,
-  faCog,
-} from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faCog } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import { Errors } from "../../../../types/Errors";
-import {
-  createNewProduct
-} from "../../../../services/product-Service";
+import { createNewProduct } from "../../../../services/product-Service";
 import { useNavigate } from "react-router-dom";
 import ErrorModal from "../../../UI/ErrorModal/ErrorModal";
 import AddBoxIcon from "@mui/icons-material/AddBox";
@@ -53,7 +48,7 @@ export default function AddProduct() {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   async function formSubmit(data: any) {
@@ -81,7 +76,7 @@ export default function AddProduct() {
     createNewProduct(params);
     setTimeout(() => {
       navigate("/adminProducts");
-    }, 1200)
+    }, 1200);
   }
 
   const handleNameSpecificationChange = (event: any) => {
@@ -231,7 +226,7 @@ export default function AddProduct() {
                     sx={{
                       marginTop: "1rem",
                       marginBottom: "1rem",
-                      marginLeft: "3rem"
+                      marginLeft: "3rem",
                     }}
                   >
                     <Grid item>
@@ -287,7 +282,7 @@ export default function AddProduct() {
                     sx={{
                       marginTop: "1rem",
                       marginBottom: "1rem",
-                      marginLeft: "3rem"
+                      marginLeft: "3rem",
                     }}
                   >
                     <Grid item>
@@ -334,7 +329,7 @@ export default function AddProduct() {
                     sx={{
                       marginTop: "1.5rem",
                       marginBottom: "1rem",
-                      marginLeft: "3rem"
+                      marginLeft: "3rem",
                     }}
                   >
                     <Grid item>
@@ -400,7 +395,7 @@ export default function AddProduct() {
                     sx={{
                       marginTop: "1.5rem",
                       marginBottom: "1rem",
-                      marginLeft: "3rem"
+                      marginLeft: "3rem",
                     }}
                   >
                     <Grid item>
@@ -443,20 +438,25 @@ export default function AddProduct() {
                       overflowY: "scroll",
                     }}
                   >
-                    <List sx={{
-                      textAlign: "center"
-                    }}>
+                    <List
+                      sx={{
+                        textAlign: "center",
+                      }}
+                    >
                       {Object.keys(specifications).map(
                         (key: any, index: any) => (
-                          <ListItem sx={{
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "center"
-                          }} key={index}>
+                          <ListItem
+                            sx={{
+                              display: "flex",
+                              flexDirection: "row",
+                              justifyContent: "center",
+                            }}
+                            key={index}
+                          >
                             <Typography
                               variant="h6"
                               sx={{
-                                marginTop: "1rem"
+                                marginTop: "1rem",
                               }}
                             >
                               {key}:
@@ -465,16 +465,25 @@ export default function AddProduct() {
                               variant="h6"
                               sx={{
                                 marginTop: "1rem",
-                                marginLeft: "1rem"
+                                marginLeft: "1rem",
                               }}
                             >
                               {specifications[key]}
                             </Typography>
-                            <Button onClick={() => deleteSpecificationField(key)} size="small" color="error" sx={{
-                              marginLeft: "0.5rem",
-                              marginTop: "1rem"
-                            }}>
-                              <FontAwesomeIcon icon={faTrashCan} color="red" size="xl" />
+                            <Button
+                              onClick={() => deleteSpecificationField(key)}
+                              size="small"
+                              color="error"
+                              sx={{
+                                marginLeft: "0.5rem",
+                                marginTop: "1rem",
+                              }}
+                            >
+                              <FontAwesomeIcon
+                                icon={faTrashCan}
+                                color="red"
+                                size="xl"
+                              />
                             </Button>
                           </ListItem>
                         )
@@ -491,7 +500,6 @@ export default function AddProduct() {
                           marginBottom: "1rem",
                           marginLeft: "4rem",
                           width: "10rem",
-
                         }}
                         onChange={handleNameSpecificationChange}
                       />
@@ -504,9 +512,11 @@ export default function AddProduct() {
                         sx={{
                           marginLeft: "2.5rem",
                           marginRight: "2rem",
-                          marginTop: "1.5rem"
+                          marginTop: "1.5rem",
                         }}
-                      >Add</Button>
+                      >
+                        Add
+                      </Button>
                     </Grid>
                     <Grid item>
                       <TextField

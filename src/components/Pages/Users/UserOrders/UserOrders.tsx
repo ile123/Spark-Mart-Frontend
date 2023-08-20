@@ -42,7 +42,7 @@ export default function UserOrders() {
       </Pagination.Item>
     );
   }
-  
+
   const changePageHandler = (page: number) => {
     setLoading(true);
     setCurrentPage(page - 1);
@@ -91,8 +91,11 @@ export default function UserOrders() {
         setNoOrdersFound(true);
       });
   }, []);
-  
-  if (loading) return <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
+
+  if (loading)
+    return (
+      <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
+    );
 
   if (userInfo.role !== "ADMINISTRATOR") {
     return <Forbidden />;

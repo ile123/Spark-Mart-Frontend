@@ -1,4 +1,4 @@
-import styles from './AddUser.module.css'
+import styles from "./AddUser.module.css";
 import Button from "../../../UI/Button/Button";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,8 +9,17 @@ import { registerUser } from "../../../../auth/authActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { Container, Box, Avatar, Typography, Grid, TextField, Select, MenuItem } from "@mui/material";
-import BadgeIcon from '@mui/icons-material/Badge';
+import {
+  Container,
+  Box,
+  Avatar,
+  Typography,
+  Grid,
+  TextField,
+  Select,
+  MenuItem,
+} from "@mui/material";
+import BadgeIcon from "@mui/icons-material/Badge";
 
 export default function AddUser() {
   const [showErrorModal, setShowErrorModal] = useState(false);
@@ -27,7 +36,7 @@ export default function AddUser() {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   async function formSubmit(data: any) {
@@ -53,7 +62,7 @@ export default function AddUser() {
           dispatch(registerUser(submitData));
           setTimeout(() => {
             navigate("/users/" + userType);
-          }, 1200)
+          }, 1200);
         }
       })
       .catch((error: any) => console.log(error));
@@ -86,18 +95,23 @@ export default function AddUser() {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <BadgeIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Add New User
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit(formSubmit, handleError)} sx={{ mt: 3 }}>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit(formSubmit, handleError)}
+            sx={{ mt: 3 }}
+          >
             <Grid container spacing={5}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -154,17 +168,19 @@ export default function AddUser() {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-              <Select
-                displayEmpty
-                required
-                fullWidth
-                value={gender}
-                onChange={(e: any) => setGender(e.target.value)}
-              >
-                <MenuItem disabled value="">Please Select a Gender</MenuItem>
-                <MenuItem value={"male"}>Male</MenuItem>
-                <MenuItem value={"female"}>Female</MenuItem>
-              </Select>
+                <Select
+                  displayEmpty
+                  required
+                  fullWidth
+                  value={gender}
+                  onChange={(e: any) => setGender(e.target.value)}
+                >
+                  <MenuItem disabled value="">
+                    Please Select a Gender
+                  </MenuItem>
+                  <MenuItem value={"male"}>Male</MenuItem>
+                  <MenuItem value={"female"}>Female</MenuItem>
+                </Select>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -226,11 +242,12 @@ export default function AddUser() {
                 />
               </Grid>
             </Grid>
-            <Button
-              type="submit"
-              style={styles.button}
-            >
-              {!loading ? "Add User" : <FontAwesomeIcon icon={faCog} size="xl" /> }
+            <Button type="submit" style={styles.button}>
+              {!loading ? (
+                "Add User"
+              ) : (
+                <FontAwesomeIcon icon={faCog} size="xl" />
+              )}
             </Button>
           </Box>
         </Box>

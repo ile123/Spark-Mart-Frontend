@@ -6,10 +6,19 @@ import ErrorModal from "../../../UI/ErrorModal/ErrorModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { getUserById, updateUser } from "../../../../services/user-Service";
-import { Grid, Container, Paper, Box, TextField, Button, Avatar, Typography } from "@mui/material";
+import {
+  Grid,
+  Container,
+  Paper,
+  Box,
+  TextField,
+  Button,
+  Avatar,
+  Typography,
+} from "@mui/material";
 import { User } from "../../../../types/User";
 import { Errors } from "../../../../types/Errors";
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 
 export default function EditUser() {
   const [showErrorModal, setShowErrorModal] = useState(false);
@@ -95,27 +104,42 @@ export default function EditUser() {
           justifyContent={"center"}
         >
           <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit(formSubmit, handleError)}
-              sx={{ mt: 3 }}
+            component="form"
+            noValidate
+            onSubmit={handleSubmit(formSubmit, handleError)}
+            sx={{ mt: 3 }}
+          >
+            <Avatar
+              sx={{
+                m: 1,
+                bgcolor: "secondary.main",
+                marginBottom: "1.5rem",
+                marginLeft: "40%",
+                width: "6rem",
+                height: "6rem",
+              }}
             >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main', marginBottom: "1.5rem", marginLeft: "40%", width: "6rem",
-              height: "6rem" }}>
-            <EditIcon sx={{
-              width: "5.5rem",
-              height: "5.5rem",
-            }}/>
-          </Avatar>
-          <Typography variant="h4" sx={{
-            marginBottom: "2rem",
-            textAlign: "center"
-          }}>
-            Edit User Profile
-          </Typography>
-          <Paper sx={{
-            width: "36rem"
-          }}>
+              <EditIcon
+                sx={{
+                  width: "5.5rem",
+                  height: "5.5rem",
+                }}
+              />
+            </Avatar>
+            <Typography
+              variant="h4"
+              sx={{
+                marginBottom: "2rem",
+                textAlign: "center",
+              }}
+            >
+              Edit User Profile
+            </Typography>
+            <Paper
+              sx={{
+                width: "36rem",
+              }}
+            >
               <Grid container spacing={4}>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -160,14 +184,14 @@ export default function EditUser() {
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <TextField
+                  <TextField
                     required
                     label="Phone Number"
                     autoComplete="off"
                     InputLabelProps={{ shrink: true }}
                     sx={{
                       marginLeft: "1rem",
-                      marginBottom: "1rem"
+                      marginBottom: "1rem",
                     }}
                     {...register("phoneNumber", {
                       required: {
@@ -179,45 +203,45 @@ export default function EditUser() {
                         message: "ERROR: Invalid phone number!",
                       },
                     })}
-                    >
-                    </TextField>
+                  ></TextField>
                 </Grid>
               </Grid>
-              
-          </Paper>
-          <Grid
-          container
-          spacing={2}
-          sx={{
-            marginTop: "0.2%",
-          }}
-          direction={"row"}
-          alignItems={"center"}
-          justifyContent={"center"}
-          >
-            <Grid item>
-              <Link to="/changePassword" state={{ userId: userId }}>
-                <Button variant="outlined"
-                sx={{
-                  marginRight: "14rem",
-                  paddingTop: "0.5rem"
-                }}
+            </Paper>
+            <Grid
+              container
+              spacing={2}
+              sx={{
+                marginTop: "0.2%",
+              }}
+              direction={"row"}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              <Grid item>
+                <Link to="/changePassword" state={{ userId: userId }}>
+                  <Button
+                    variant="outlined"
+                    sx={{
+                      marginRight: "14rem",
+                      paddingTop: "0.5rem",
+                    }}
+                  >
+                    Change Password
+                  </Button>
+                </Link>
+              </Grid>
+              <Grid item>
+                <Button
+                  variant="outlined"
+                  type="submit"
+                  sx={{
+                    paddingTop: "0.5rem",
+                  }}
                 >
-                  Change Password
+                  Save Changes
                 </Button>
-              </Link>
+              </Grid>
             </Grid>
-            <Grid item>
-              
-                <Button variant="outlined"
-                type="submit"
-                sx={{
-                  paddingTop: "0.5rem"
-                }}>
-                    Save Changes
-                </Button>
-            </Grid>
-          </Grid>
           </Box>
         </Grid>
       </Container>

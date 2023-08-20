@@ -75,7 +75,10 @@ export default function AllProductsByBrand() {
       .catch((error: any) => console.log(error));
   }, []);
 
-  if (loading) return <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />;
+  if (loading)
+    return (
+      <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
+    );
 
   return (
     <>

@@ -1,110 +1,109 @@
 #card {
-    margin-left: 25rem;
-    width: 45%;
-    height: 34rem;
-    margin-top: 8rem;
+  margin-left: 25rem;
+  width: 45%;
+  height: 34rem;
+  margin-top: 8rem;
 }
 
 .grid {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .item {
-    margin-top: 2rem;
-    margin-left: 5.5rem;
+  margin-top: 2rem;
+  margin-left: 5.5rem;
 }
 
 .label {
-    margin-bottom: 2rem;
-    margin-top: 2rem;
-    margin-left: 18rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-left: 18rem;
 }
 
-
 #header {
-    text-align: center;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    font-size: xx-large;
-    font-family: Technology;
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: xx-large;
+  font-family: Technology;
 }
 
 #body {
-    height: 39rem;
+  height: 39rem;
 }
 
 #loading {
-    margin-left: 42%;
-    margin-top: 15%;
-    font-size: 20rem;
+  margin-left: 42%;
+  margin-top: 15%;
+  font-size: 20rem;
 }
 
 #button {
-    text-decoration: none;
-    margin-left: 16rem;
-    display: inline-block;
-    outline: none;
-    cursor: pointer;
-    font-size: 14px;
-    line-height: 1;
-    border-radius: 500px;
-    transition-property: background-color,border-color,color,box-shadow,filter;
-    transition-duration: .3s;
-    border: 1px solid transparent;
-    letter-spacing: 2px;
-    min-width: 160px;
-    text-transform: uppercase;
-    white-space: normal;
-    font-weight: 700;
-    text-align: center;
-    padding: 5px 5px;
-    color: #fff;
-    background-color: #1ED760;
-    height: 48px;
+  text-decoration: none;
+  margin-left: 16rem;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 500px;
+  transition-property: background-color, border-color, color, box-shadow, filter;
+  transition-duration: 0.3s;
+  border: 1px solid transparent;
+  letter-spacing: 2px;
+  min-width: 160px;
+  text-transform: uppercase;
+  white-space: normal;
+  font-weight: 700;
+  text-align: center;
+  padding: 5px 5px;
+  color: #fff;
+  background-color: #1ed760;
+  height: 48px;
 }
 
 #button:hover {
-    transform: scale(1.04);
-    background-color: #21e065;
+  transform: scale(1.04);
+  background-color: #21e065;
 }
 
 #changePassword {
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    outline: none;
-    cursor: pointer;
-    font-size: 14px;
-    line-height: 1.2;
-    border-radius: 500px;
-    transition-property: background-color,border-color,color,box-shadow,filter;
-    transition-duration: .3s;
-    border: 1px solid transparent;
-    letter-spacing: 2px;
-    min-width: 160px;
-    text-transform: uppercase;
-    white-space: normal;
-    font-weight: 700;
-    text-align: center;
-    padding: 5px 5px;
-    color: #fff;
-    background-color: #f42525;
-    height: 48px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.2;
+  border-radius: 500px;
+  transition-property: background-color, border-color, color, box-shadow, filter;
+  transition-duration: 0.3s;
+  border: 1px solid transparent;
+  letter-spacing: 2px;
+  min-width: 160px;
+  text-transform: uppercase;
+  white-space: normal;
+  font-weight: 700;
+  text-align: center;
+  padding: 5px 5px;
+  color: #fff;
+  background-color: #f42525;
+  height: 48px;
 }
 
 #changePassword:hover {
-    transform: scale(1.04);
-    background-color: rgb(253, 8, 8);   
+  transform: scale(1.04);
+  background-color: rgb(253, 8, 8);
 }
 
 .input {
-    box-shadow: 1px black;
-    margin-left: 14rem;
-    margin-bottom: 1rem;
+  box-shadow: 1px black;
+  margin-left: 14rem;
+  margin-bottom: 1rem;
 }
 
 #loading {
-    margin-left: 42rem;
-    margin-top: 17rem;
+  margin-left: 42rem;
+  margin-top: 17rem;
 }

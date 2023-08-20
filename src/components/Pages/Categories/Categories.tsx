@@ -76,7 +76,7 @@ export default function Categories() {
 
   const categoryDeletionLoadingHandler = () => {
     setLoading(true);
-  }
+  };
 
   const categoryDeletionHandler = (data: any, totalPages: any) => {
     setCategories(data);
@@ -103,7 +103,7 @@ export default function Categories() {
   useEffect(() => {
     getAllCategories(currentPage, pageSize, "name", "asc", "")
       .then((result: any) => {
-        if(result.data.numberOfElements === 0) {
+        if (result.data.numberOfElements === 0) {
           setLoading(false);
           setNoCategoriesFound(true);
         } else {
@@ -118,7 +118,10 @@ export default function Categories() {
       });
   }, []);
 
-  if(loading) return <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />;
+  if (loading)
+    return (
+      <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
+    );
 
   if (JSON.stringify(userInfo) === "{}") navigate("/");
   if (userInfo.role === "CUSTOMER") {
@@ -178,7 +181,9 @@ export default function Categories() {
                           description={category.description}
                           imageName={category.imageName}
                           onCategoryDeletion={categoryDeletionHandler}
-                          onCategoryDeletionLoading={categoryDeletionLoadingHandler}
+                          onCategoryDeletionLoading={
+                            categoryDeletionLoadingHandler
+                          }
                         />
                       );
                     })}

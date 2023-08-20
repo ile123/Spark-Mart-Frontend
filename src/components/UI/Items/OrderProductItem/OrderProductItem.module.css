@@ -1,29 +1,29 @@
 #card {
-    height: 10rem;
-    width: 78rem;
-    margin-top: 2.5rem;
-    margin-left: 1rem;
-    margin-bottom: 2.5rem;
-    border-radius: 10px;
+  height: 10rem;
+  width: 78rem;
+  margin-top: 2.5rem;
+  margin-left: 1rem;
+  margin-bottom: 2.5rem;
+  border-radius: 10px;
 }
 
 #grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 20px;
 }
 
 .item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #deleteButton {
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    color: transparent;
-    margin-left: 2.5rem;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: transparent;
+  margin-left: 2.5rem;
 }

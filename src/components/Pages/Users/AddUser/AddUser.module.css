@@ -1,69 +1,72 @@
 #card {
-    margin-left: 25rem;
-    width: 45%;
-    height: 43rem;
-    margin-top: 2rem;
+  margin-left: 25rem;
+  width: 45%;
+  height: 43rem;
+  margin-top: 2rem;
 }
 
 #button {
-    margin-top: 1rem;
-    margin-left: 9rem;
-    text-align: center;
-    display: inline-block;
-    outline: none;
-    cursor: pointer;
-    border: 1px solid #0f62fe;
-    border-radius: 10px;
-    vertical-align: top;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    background-color: #00000000;
-    font-size: 14px;
-    letter-spacing: 0.16px;
-    min-height: 48px;
-    line-height: 1.29;
-    color: #0f62fe;
-    font-weight: 400;
-    transition: background 70ms cubic-bezier(0,0,.38,.9),box-shadow 70ms cubic-bezier(0,0,.38,.9),border-color 70ms cubic-bezier(0,0,.38,.9),outline 70ms cubic-bezier(0,0,.38,.9);
+  margin-top: 1rem;
+  margin-left: 9rem;
+  text-align: center;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid #0f62fe;
+  border-radius: 10px;
+  vertical-align: top;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: #00000000;
+  font-size: 14px;
+  letter-spacing: 0.16px;
+  min-height: 48px;
+  line-height: 1.29;
+  color: #0f62fe;
+  font-weight: 400;
+  transition: background 70ms cubic-bezier(0, 0, 0.38, 0.9),
+    box-shadow 70ms cubic-bezier(0, 0, 0.38, 0.9),
+    border-color 70ms cubic-bezier(0, 0, 0.38, 0.9),
+    outline 70ms cubic-bezier(0, 0, 0.38, 0.9);
 }
 
 #button:hover {
-    background-color: #0353e9;
-    color: #fff;
+  background-color: #0353e9;
+  color: #fff;
 }
 
 #pageName {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    text-align: center;
-    font-size: xx-large;
-    font-family: 'Courier New', Courier, monospace;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  text-align: center;
+  font-size: xx-large;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .label {
-    margin-bottom: 0.5rem;
-    margin-left: 3rem;
+  margin-bottom: 0.5rem;
+  margin-left: 3rem;
 }
 
 .input {
-    margin-bottom: 2rem;
-    margin-left: 3rem;
-    box-shadow: 1px black;
+  margin-bottom: 2rem;
+  margin-left: 3rem;
+  box-shadow: 1px black;
 }
 
 #inputs {
-    margin-top: 3.5rem;
+  margin-top: 3.5rem;
 }
 
 #genderSelect {
-    margin-left: 3rem;
-    text-align: center;
+  margin-left: 3rem;
+  text-align: center;
 }
 
 #loading {
-    margin-left: 42%;
-    margin-top: 15%;
-    font-size: 20rem;
+  margin-left: 42%;
+  margin-top: 15%;
+  font-size: 20rem;
 }

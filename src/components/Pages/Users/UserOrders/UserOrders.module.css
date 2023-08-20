@@ -1,139 +1,139 @@
 #table {
-    margin-top: 9rem;
-    margin-bottom: 4rem;
-    margin-left: 8%;
-    width: 80rem;
-    text-align: center;
+  margin-top: 9rem;
+  margin-bottom: 4rem;
+  margin-left: 8%;
+  width: 80rem;
+  text-align: center;
 }
 
 #tableHead {
-    background-color: #576298;
-    color: white;
-    height: 3rem;
-    width: 28rem;
+  background-color: #576298;
+  color: white;
+  height: 3rem;
+  width: 28rem;
 }
 
 .tableRow {
-    width: 35rem;
+  width: 35rem;
 }
 
 #optionsRow {
-    width: 55rem;
+  width: 55rem;
 }
 
 #pagination {
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 7%;
-    margin-left: 47.2%;
-    justify-content: center;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 7%;
+  margin-left: 47.2%;
+  justify-content: center;
 }
 
 .grid {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .fieldName {
-    width: 7rem;
+  width: 7rem;
 }
 
 #total {
-    width: 7rem;
-    margin-left: 3.5rem;
+  width: 7rem;
+  margin-left: 3.5rem;
 }
 
 #orderDate {
-    width: 7rem;
-    margin-left: 3.5rem;
+  width: 7rem;
+  margin-left: 3.5rem;
 }
 
 #shippingDate {
-    width: 6.5rem;
-    margin-left: 3rem;
+  width: 6.5rem;
+  margin-left: 3rem;
 }
 
 #status {
-    width: 7rem;
+  width: 7rem;
 }
 
 #statusButtonSort {
-    background: none;
-    border: none;
-    margin-left: 0.5rem;
-    margin-right: 2.5rem;
+  background: none;
+  border: none;
+  margin-left: 0.5rem;
+  margin-right: 2.5rem;
 }
 
 #buttonSort {
-    background: none;
-    border: none;
-    margin-left: 0.5rem;
+  background: none;
+  border: none;
+  margin-left: 0.5rem;
 }
 
 #loading {
-    margin-left: 42%;
-    margin-top: 15%;
-    font-size: 20rem;
+  margin-left: 42%;
+  margin-top: 15%;
+  font-size: 20rem;
 }
 
 #optionsGrid {
-    margin-top: 7rem;
-    margin-left: 19.5rem;
-    display: flex;
-    flex-direction: row;
+  margin-top: 7rem;
+  margin-left: 19.5rem;
+  display: flex;
+  flex-direction: row;
 }
 
 #circleButton {
-    border: 1px solid black;
-    background-color: #c4caeb;
-    margin-left: 0.5rem;
-    width: 5rem;
-    height: 5rem;
-    border-radius: 100%;
+  border: 1px solid black;
+  background-color: #c4caeb;
+  margin-left: 0.5rem;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 100%;
 }
 
 #circleButton:hover {
-    background-color: #9baaf4;
+  background-color: #9baaf4;
 }
 
 #searchBar {
-    margin-left: 58.5rem;
-    margin-top: 3rem;
+  margin-left: 58.5rem;
+  margin-top: 3rem;
 }
 
 #noOrders {
-    margin-left: 30%;
-    margin-top: 20%;
-    font-size: 4rem;
-    font-family: Technology;
+  margin-left: 30%;
+  margin-top: 20%;
+  font-size: 4rem;
+  font-family: Technology;
 }
 
 #status {
-    text-align: center;
-    width: 3rem;
-    margin-left: 5rem;
+  text-align: center;
+  width: 3rem;
+  margin-left: 5rem;
 }
 
 #orderNO {
-    margin-left: 5rem;
-    width: 9rem;
+  margin-left: 5rem;
+  width: 9rem;
 }
 
 #statusRow {
-    padding-left: 2rem;
-    width: 8.5rem;
+  padding-left: 2rem;
+  width: 8.5rem;
 }
 
 #loading {
-    margin-left: 42%;
-    margin-top: 15%;
-    font-size: 20rem;
+  margin-left: 42%;
+  margin-top: 15%;
+  font-size: 20rem;
 }
 
 #pagination {
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 7%;
-    margin-left: 47.2%;
-    justify-content: center;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 7%;
+  margin-left: 47.2%;
+  justify-content: center;
 }

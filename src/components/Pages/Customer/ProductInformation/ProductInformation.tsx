@@ -46,8 +46,8 @@ export default function ProductInformation() {
 
   const addedToCartJSON = {
     true: "3rem",
-    false: "4rem"
-  }
+    false: "4rem",
+  };
 
   const subtractAmountHandler = () => {
     if (amountToBuy === 0) {
@@ -157,7 +157,7 @@ export default function ProductInformation() {
               sx={{
                 width: "70rem",
                 height: "40rem",
-                boxShadow: 3
+                boxShadow: 3,
               }}
             >
               <Grid container>
@@ -232,32 +232,60 @@ export default function ProductInformation() {
                     )}
                   </Typography>
                   {JSON.stringify(userInfo) !== "{}" ? (
-                    <Grid container sx={{
-                      alignItems: "center",
-                      position: "absolute",
-                      bottom: 0,
-                      marginBottom: "5.5%",
-                      marginLeft: "2%",
-                      width: "35rem",
-                      height: "3rem"
-                    }}>
-                      <Grid item sx={{
-                        marginLeft: addedToCartJSON[addedToCart]
-                      }}>
-                        <Button sx={{
-                          fontSize: "15px"
-                        }} onClick={addToCartHandler}>{addedToCart === "true" ? <Typography variant="h6" sx={{
-                          fontSize: "15px"
-                        }}>Added to cart</Typography> : <Typography variant="h6" sx={{
-                          fontSize: "15px"
-                        }}>Add to cart</Typography>}</Button>
+                    <Grid
+                      container
+                      sx={{
+                        alignItems: "center",
+                        position: "absolute",
+                        bottom: 0,
+                        marginBottom: "5.5%",
+                        marginLeft: "2%",
+                        width: "35rem",
+                        height: "3rem",
+                      }}
+                    >
+                      <Grid
+                        item
+                        sx={{
+                          marginLeft: addedToCartJSON[addedToCart],
+                        }}
+                      >
+                        <Button
+                          sx={{
+                            fontSize: "15px",
+                          }}
+                          onClick={addToCartHandler}
+                        >
+                          {addedToCart === "true" ? (
+                            <Typography
+                              variant="h6"
+                              sx={{
+                                fontSize: "15px",
+                              }}
+                            >
+                              Added to cart
+                            </Typography>
+                          ) : (
+                            <Typography
+                              variant="h6"
+                              sx={{
+                                fontSize: "15px",
+                              }}
+                            >
+                              Add to cart
+                            </Typography>
+                          )}
+                        </Button>
                       </Grid>
                       <Grid item>
                         <Grid container>
                           <Grid item>
-                            <IconButton sx={{
-                              marginRight: "1rem"
-                            }} onClick={subtractAmountHandler}>
+                            <IconButton
+                              sx={{
+                                marginRight: "1rem",
+                              }}
+                              onClick={subtractAmountHandler}
+                            >
                               <RemoveIcon />
                             </IconButton>
                           </Grid>
@@ -265,22 +293,44 @@ export default function ProductInformation() {
                             <Typography variant="h4">{amountToBuy}</Typography>
                           </Grid>
                           <Grid item>
-                          <IconButton sx={{
-                            marginLeft: "1rem"
-                          }} onClick={addAmountHandler}>
+                            <IconButton
+                              sx={{
+                                marginLeft: "1rem",
+                              }}
+                              onClick={addAmountHandler}
+                            >
                               <AddIcon />
                             </IconButton>
                           </Grid>
                         </Grid>
                       </Grid>
                       <Grid item>
-                        <Button sx={{
-                          fontSize: "10px"
-                        }} onClick={changeAddedToWishListHandler}>{isAddedToWishlist ? <Typography variant="h6" sx={{
-                          fontSize: "15px"
-                        }}>Remove from wishlist</Typography> : <Typography variant="h6" sx={{
-                          fontSize: "15px"
-                        }}>Add to wishlist</Typography>}</Button>
+                        <Button
+                          sx={{
+                            fontSize: "10px",
+                          }}
+                          onClick={changeAddedToWishListHandler}
+                        >
+                          {isAddedToWishlist ? (
+                            <Typography
+                              variant="h6"
+                              sx={{
+                                fontSize: "15px",
+                              }}
+                            >
+                              Remove from wishlist
+                            </Typography>
+                          ) : (
+                            <Typography
+                              variant="h6"
+                              sx={{
+                                fontSize: "15px",
+                              }}
+                            >
+                              Add to wishlist
+                            </Typography>
+                          )}
+                        </Button>
                       </Grid>
                     </Grid>
                   ) : (
@@ -369,7 +419,6 @@ export default function ProductInformation() {
                               {specifications[key]}
                             </Typography>
                           </ListItem>
-                          
                         )
                       )}
                     </List>

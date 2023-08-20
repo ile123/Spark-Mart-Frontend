@@ -40,7 +40,7 @@ export default function AboutUs() {
           </Grid>
         </Grid>
         <Grid container>
-            <Grid item>
+          <Grid item>
             <Typography
               variant="h4"
               sx={{
@@ -51,7 +51,7 @@ export default function AboutUs() {
             >
               Made as a final thesis
             </Typography>
-            </Grid>
+          </Grid>
         </Grid>
       </Container>
     </>

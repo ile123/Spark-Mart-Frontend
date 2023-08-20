@@ -24,20 +24,22 @@ export default function DisplayProductItem(props: any) {
   if (imagePath === null) {
     getImageUrl();
   }
-  return(
-  <>
-    <Card id={styles.card}>
-    {imagePath ? (
+  return (
+    <>
+      <Card id={styles.card}>
+        {imagePath ? (
           <Card.Img variant="top" src={imagePath} height={250} />
         ) : (
           <FontAwesomeIcon icon={faCog} />
         )}
         <Card.Title>
           <h5 id={styles.title}>
-            <Link to={"/product/" + props.id} id={styles.button}>{props.name}</Link>
+            <Link to={"/product/" + props.id} id={styles.button}>
+              {props.name}
+            </Link>
           </h5>
         </Card.Title>
-    </Card>
-  </>
+      </Card>
+    </>
   );
 }

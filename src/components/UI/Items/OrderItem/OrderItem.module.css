@@ -1,49 +1,49 @@
 #row {
-    background-color: rgb(233, 252, 255);
-    text-align: center;
-    height: 4rem;
+  background-color: rgb(233, 252, 255);
+  text-align: center;
+  height: 4rem;
 }
 
 #button {
-    margin-right: 1rem;
-    text-decoration: none;
-    display: inline-block;
-    outline: none;
-    cursor: pointer;
-    font-size: 14px;
-    line-height: 1;
-    border-radius: 500px;
-    transition-property: background-color,border-color,color,box-shadow,filter;
-    transition-duration: .3s;
-    border: 1px solid transparent;
-    letter-spacing: 2px;
-    min-width: 160px;
-    text-transform: uppercase;
-    white-space: normal;
-    font-weight: 700;
-    text-align: center;
-    color: #fff;
-    background-color: #1ED760;
-    height: 48px;
+  margin-right: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 500px;
+  transition-property: background-color, border-color, color, box-shadow, filter;
+  transition-duration: 0.3s;
+  border: 1px solid transparent;
+  letter-spacing: 2px;
+  min-width: 160px;
+  text-transform: uppercase;
+  white-space: normal;
+  font-weight: 700;
+  text-align: center;
+  color: #fff;
+  background-color: #1ed760;
+  height: 48px;
 }
 
 #button:hover {
-    transform: scale(1.04);
-    background-color: #21e065;
+  transform: scale(1.04);
+  background-color: #21e065;
 }
 
 #customerRow {
-    margin-top: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 #orders {
-    color: rgb(93, 173, 14);
+  color: rgb(93, 173, 14);
 }
 
 #wishlists {
-    color: rgb(218, 154, 37);
+  color: rgb(218, 154, 37);
 }
 
 .buttonText {
-    font-size: medium;
+  font-size: medium;
 }

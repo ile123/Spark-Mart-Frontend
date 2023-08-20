@@ -1,92 +1,92 @@
 #header {
-    background-color: #2F3C7E;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 5rem;
-    display: grid;
-    color: #FBEAEB;
+  background-color: #2f3c7e;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 5rem;
+  display: grid;
+  color: #fbeaeb;
 }
 
 #sparkmart {
-    border: 3px solid #FBEAEB;
-    width: 13rem;
-    height: 2em;
-    padding-top: 8px;
-    text-align: center;
-    margin-top: 10px;
-    margin-left: 4rem;
+  border: 3px solid #fbeaeb;
+  width: 13rem;
+  height: 2em;
+  padding-top: 8px;
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 4rem;
 }
 
 #login {
-    margin-right: 2rem;
-    display: flex; 
-    justify-content: end;
+  margin-right: 2rem;
+  display: flex;
+  justify-content: end;
 }
 
 #logout {
-    margin-right: 2rem;
-    display: flex; 
-    justify-content: end;
+  margin-right: 2rem;
+  display: flex;
+  justify-content: end;
 }
 
 .button {
-    position: absolute;
-    text-decoration: none;
-    font-size: 20px;
-    padding-bottom: 1px;
-    margin-bottom: 10px;
-    display: inline-block;
-    position: relative;
-    color: white;
+  position: absolute;
+  text-decoration: none;
+  font-size: 20px;
+  padding-bottom: 1px;
+  margin-bottom: 10px;
+  display: inline-block;
+  position: relative;
+  color: white;
 }
 
 .button:hover {
-    color: white;
+  color: white;
 }
-  
+
 .button::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #ffffff;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #ffffff;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
 }
-  
+
 .button:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 #grid {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .item {
-    flex-basis: 33.33%;
-    align-items: center;
+  flex-basis: 33.33%;
+  align-items: center;
 }
 
 #loading {
-    margin: 0 auto;
-    margin-right: 6rem;
-    display: flex; 
-    justify-content: center;
+  margin: 0 auto;
+  margin-right: 6rem;
+  display: flex;
+  justify-content: center;
 }
 
 .profileName {
-    margin-top: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 #shopping {
-    margin-top: 0.5rem;
-    margin-right: 2rem;
+  margin-top: 0.5rem;
+  margin-right: 2rem;
 }

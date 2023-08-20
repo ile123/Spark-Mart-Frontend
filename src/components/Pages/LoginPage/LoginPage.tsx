@@ -8,7 +8,16 @@ import ErrorModal from "../../UI/ErrorModal/ErrorModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { userLogin } from "../../../auth/authActions";
-import { Container, Box, Avatar, Typography, Grid, TextField, Select, MenuItem } from "@mui/material";
+import {
+  Container,
+  Box,
+  Avatar,
+  Typography,
+  Grid,
+  TextField,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import { LoginOutlined } from "@mui/icons-material";
 
 export default function LoginPage() {
@@ -37,9 +46,7 @@ export default function LoginPage() {
     setShowErrorModal(false);
   };
 
-  const { loading, userInfo, error } = useSelector(
-    (state: any) => state.auth
-  );
+  const { loading, userInfo, error } = useSelector((state: any) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -47,16 +54,15 @@ export default function LoginPage() {
     if (JSON.stringify(userInfo) !== "{}") navigate("/");
   }, [navigate, userInfo]);
 
-  const submitForm = async(data: any) => {
+  const submitForm = async (data: any) => {
     //@ts-ignore
     dispatch(userLogin(data));
-    while(loading) {
+    while (loading) {
       continue;
     }
-    if(JSON.stringify(userInfo) != '{}') {
+    if (JSON.stringify(userInfo) != "{}") {
       navigate("/");
-    }
-    else {
+    } else {
       setFormErrors(["ERROR: Login failed!"]);
       setShowErrorModal(true);
       return;
@@ -72,18 +78,23 @@ export default function LoginPage() {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LoginOutlined />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit(submitForm, errorHandler)} noValidate sx={{ mt: 1 }}>
+          <Box
+            component="form"
+            onSubmit={handleSubmit(submitForm, errorHandler)}
+            noValidate
+            sx={{ mt: 1 }}
+          >
             <TextField
               margin="normal"
               required
@@ -114,7 +125,9 @@ export default function LoginPage() {
             </Button>
             <Grid container>
               <Grid item>
-                <Link to="/register" id={styles.registerLink}>Dont have an account? Register here</Link> 
+                <Link to="/register" id={styles.registerLink}>
+                  Dont have an account? Register here
+                </Link>
               </Grid>
             </Grid>
           </Box>

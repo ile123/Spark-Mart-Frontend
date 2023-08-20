@@ -1,5 +1,5 @@
 import Button from "../../UI/Button/Button";
-import styles from './RegistrationPage.module.css'
+import styles from "./RegistrationPage.module.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -9,8 +9,17 @@ import { registerUser } from "../../../auth/authActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { Container, Box, Avatar, Typography, Grid, TextField, Select, MenuItem } from "@mui/material";
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import {
+  Container,
+  Box,
+  Avatar,
+  Typography,
+  Grid,
+  TextField,
+  Select,
+  MenuItem,
+} from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 export default function RegistrationPage() {
   const [showErrorModal, setShowErrorModal] = useState(false);
@@ -19,13 +28,13 @@ export default function RegistrationPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   const [gender, setGender] = useState("");
 
   async function formSubmit(data: any) {
-    if(gender == "") {
+    if (gender == "") {
       setFormErrors(["ERROR: Gender is required!"]);
       setShowErrorModal(true);
     }
@@ -88,22 +97,27 @@ export default function RegistrationPage() {
       {showErrorModal && (
         <ErrorModal errors={formErrors} onConfirm={errorHandler} />
       )}
-       <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs">
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit(formSubmit, handleError)} sx={{ mt: 3 }}>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit(formSubmit, handleError)}
+            sx={{ mt: 3 }}
+          >
             <Grid container spacing={5}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -160,17 +174,19 @@ export default function RegistrationPage() {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-              <Select
-                displayEmpty
-                required
-                fullWidth
-                value={gender}
-                onChange={(e: any) => setGender(e.target.value)}
-              >
-                <MenuItem disabled value="">Please Select a Gender</MenuItem>
-                <MenuItem value={"male"}>Male</MenuItem>
-                <MenuItem value={"female"}>Female</MenuItem>
-              </Select>
+                <Select
+                  displayEmpty
+                  required
+                  fullWidth
+                  value={gender}
+                  onChange={(e: any) => setGender(e.target.value)}
+                >
+                  <MenuItem disabled value="">
+                    Please Select a Gender
+                  </MenuItem>
+                  <MenuItem value={"male"}>Male</MenuItem>
+                  <MenuItem value={"female"}>Female</MenuItem>
+                </Select>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -232,11 +248,12 @@ export default function RegistrationPage() {
                 />
               </Grid>
             </Grid>
-            <Button
-              type="submit"
-              style={styles.button}
-            >
-              {!loading ? "Sign Up" : <FontAwesomeIcon icon={faCog} size="xl" /> }
+            <Button type="submit" style={styles.button}>
+              {!loading ? (
+                "Sign Up"
+              ) : (
+                <FontAwesomeIcon icon={faCog} size="xl" />
+              )}
             </Button>
           </Box>
         </Box>

@@ -47,7 +47,7 @@ export default function Users() {
     setLoading(true);
     setUsers(data);
     setTotalPages(totalPages);
-    if(data.length == 0) {
+    if (data.length == 0) {
       setNoUsersFound(true);
     }
     setLoading(false);
@@ -55,7 +55,7 @@ export default function Users() {
 
   const userDeletionLoadingHandler = () => {
     setLoading(true);
-  }
+  };
 
   const changePageHandler = (page: number) => {
     setCurrentPage(page - 1);
@@ -117,7 +117,10 @@ export default function Users() {
       });
   }, [type]);
 
-  if (loading) return <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
+  if (loading)
+    return (
+      <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
+    );
 
   if (JSON.stringify(userInfo) === "{}") navigate("/");
 

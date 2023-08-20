@@ -1,24 +1,24 @@
-import { Product } from '../../../../types/Product';
-import styles from './UserWishlists.module.css'
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
-import { Pagination } from 'react-bootstrap';
-import { getAllWishlistsByUser } from '../../../../services/customer-Service';
-import { useEffect } from 'react';
-import Forbidden from '../../Errors/Forbidden/Forbidden';
-import Layout from '../../../UI/Layout/Layout';
-import Button from '../../../UI/Button/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSort, faCog } from '@fortawesome/free-solid-svg-icons';
-import ProductItem from '../../../UI/Items/ProductItem/ProductItem';
+import { Product } from "../../../../types/Product";
+import styles from "./UserWishlists.module.css";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { Pagination } from "react-bootstrap";
+import { getAllWishlistsByUser } from "../../../../services/customer-Service";
+import { useEffect } from "react";
+import Forbidden from "../../Errors/Forbidden/Forbidden";
+import Layout from "../../../UI/Layout/Layout";
+import Button from "../../../UI/Button/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSort, faCog } from "@fortawesome/free-solid-svg-icons";
+import ProductItem from "../../../UI/Items/ProductItem/ProductItem";
 
 export default function UserWishlists() {
   const { userInfo } = useSelector((state: any) => state.auth);
   const navigate = useNavigate();
   if (JSON.stringify(userInfo) === "{}") navigate("/");
-  
+
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
   const [sortDir, setSortDir] = useState("asc");
@@ -94,7 +94,10 @@ export default function UserWishlists() {
       });
   }, []);
 
-  if(loading) return <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
+  if (loading)
+    return (
+      <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
+    );
 
   if (userInfo.role !== "ADMINISTRATOR") {
     return <Forbidden />;
@@ -109,15 +112,17 @@ export default function UserWishlists() {
                   <tr>
                     <th className={styles.tableRow}>
                       <div className={styles.grid}>
-                        <h6 className={styles.fieldName}>Name
-                        <Button
-                          style={styles.buttonSort}
-                          onClick={() =>
-                            changeSortingHander(currentPage, "name")
-                          }
-                        >
-                          <FontAwesomeIcon icon={faSort} />
-                        </Button></h6>
+                        <h6 className={styles.fieldName}>
+                          Name
+                          <Button
+                            style={styles.buttonSort}
+                            onClick={() =>
+                              changeSortingHander(currentPage, "name")
+                            }
+                          >
+                            <FontAwesomeIcon icon={faSort} />
+                          </Button>
+                        </h6>
                       </div>
                     </th>
                     <th className={styles.tableRow}>Image</th>

@@ -29,15 +29,22 @@ export default function DisplayBrandItem(props: any) {
     <>
       <Card id={styles.card} key={props.keyId}>
         {imagePath ? (
-          <Card.Img variant="top" src={imagePath} height={190} id={styles.image}/>
+          <Card.Img
+            variant="top"
+            src={imagePath}
+            height={190}
+            id={styles.image}
+          />
         ) : (
           <FontAwesomeIcon icon={faCog} />
         )}
         <Card.Footer id={styles.footer}>
-            <h3>
-              <Link to={"allProducts" + "/" + props.name} id={styles.button}>{props.name}</Link>
-            </h3>
-          </Card.Footer>
+          <h3>
+            <Link to={"allProducts" + "/" + props.name} id={styles.button}>
+              {props.name}
+            </Link>
+          </h3>
+        </Card.Footer>
       </Card>
     </>
   );

@@ -6,7 +6,11 @@ import { logout } from "../../../auth/authSlice";
 import { deleteCart, getFromCookiesToCart } from "../../../auth/customerSlice";
 import EmployeeNavigation from "../Navigation/EmployeeNavigation/EmployeeNavigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog, faCartShopping, faStar } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCog,
+  faCartShopping,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
 
 export default function Header() {
@@ -55,12 +59,16 @@ export default function Header() {
               <div id={styles.logout}>
                 {userInfo.role === "CUSTOMER" && (
                   <div id={styles.shopping}>
-                  <Link to="/cart">
-                    <FontAwesomeIcon icon={faCartShopping} size="xl" color="white" />
-                  </Link>
-                  <Link to="/wishlists">
-                    <FontAwesomeIcon icon={faStar} size="xl" color="white" />
-                  </Link>
+                    <Link to="/cart">
+                      <FontAwesomeIcon
+                        icon={faCartShopping}
+                        size="xl"
+                        color="white"
+                      />
+                    </Link>
+                    <Link to="/wishlists">
+                      <FontAwesomeIcon icon={faStar} size="xl" color="white" />
+                    </Link>
                   </div>
                 )}
                 <Link to="/profile" className={styles.button}>

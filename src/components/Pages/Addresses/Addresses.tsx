@@ -66,12 +66,13 @@ export default function Addresses() {
       sortByField,
       sortDir === "asc" ? "desc" : "asc",
       searchValue
-    ).then((result: any) => {
-      setLoading(false);
-      setAddresses(result.data.content);
-      setTotalPages(result.data.totalPages);
-    })
-    .catch(() => setNoAddressesFound(true));
+    )
+      .then((result: any) => {
+        setLoading(false);
+        setAddresses(result.data.content);
+        setTotalPages(result.data.totalPages);
+      })
+      .catch(() => setNoAddressesFound(true));
   };
 
   const searchHandler = (searchString: string) => {
@@ -107,7 +108,10 @@ export default function Addresses() {
       });
   }, []);
 
-  if (loading) return <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />;
+  if (loading)
+    return (
+      <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
+    );
 
   if (JSON.stringify(userInfo) === "{}") navigate("/");
 

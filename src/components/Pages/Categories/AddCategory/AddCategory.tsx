@@ -24,12 +24,12 @@ export default function AddCategory() {
   const navigate = useNavigate();
 
   const [showErrorModal, setShowErrorModal] = useState(false);
-  const [formErrors, setFormErrors] = useState<Errors>();  
+  const [formErrors, setFormErrors] = useState<Errors>();
 
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   async function formSubmit(data: any) {
@@ -46,7 +46,7 @@ export default function AddCategory() {
     createNewCategory(params);
     setTimeout(() => {
       navigate("/adminCategories");
-    }, 1200)
+    }, 1200);
   }
 
   const handleError = (errors: any) => {
@@ -175,7 +175,7 @@ export default function AddCategory() {
                   container
                   spacing={2}
                   sx={{
-                    marginBottom: "1rem"
+                    marginBottom: "1rem",
                   }}
                   direction={"row"}
                   alignItems={"center"}
@@ -186,10 +186,10 @@ export default function AddCategory() {
                       placeholder="Enter description here...."
                       {...register("description", {
                         required: {
-                            value: true,
-                            message: "ERROR: Description is required!"
-                        }
-                    })}
+                          value: true,
+                          message: "ERROR: Description is required!",
+                        },
+                      })}
                     />
                   </Grid>
                 </Grid>

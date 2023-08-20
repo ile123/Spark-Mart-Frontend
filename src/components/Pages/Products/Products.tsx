@@ -76,7 +76,7 @@ export default function Brands() {
 
   const productDeletionLoadingHandler = () => {
     setLoading(true);
-  }
+  };
 
   const productDeletionHandler = (data: any, totalPages: any) => {
     setProducts(data);
@@ -103,7 +103,7 @@ export default function Brands() {
   useEffect(() => {
     getAllProducts(currentPage, pageSize, "name", "asc", "")
       .then((result: any) => {
-        if(result.data.numberOfElements === 0) {
+        if (result.data.numberOfElements === 0) {
           setLoading(false);
           setNoProductsFound(true);
         } else {
@@ -118,7 +118,10 @@ export default function Brands() {
       });
   }, []);
 
-  if(loading) return <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />;
+  if (loading)
+    return (
+      <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
+    );
   if (JSON.stringify(userInfo) === "{}") navigate("/");
   if (userInfo.role === "CUSTOMER") {
     return <Forbidden />;
@@ -176,7 +179,9 @@ export default function Brands() {
                           imageName={brand.imageName}
                           isWishlistAdmin={false}
                           onProductDeletion={productDeletionHandler}
-                          onProductDeletionLoading={productDeletionLoadingHandler}
+                          onProductDeletionLoading={
+                            productDeletionLoadingHandler
+                          }
                         />
                       );
                     })}

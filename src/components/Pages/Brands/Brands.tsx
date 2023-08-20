@@ -76,7 +76,7 @@ export default function Brands() {
 
   const brandDeletionLoadingHandler = () => {
     setLoading(true);
-  }
+  };
 
   const brandDeletionHandler = (data: any, totalPages: any) => {
     setBrands(data);
@@ -118,7 +118,10 @@ export default function Brands() {
       });
   }, []);
 
-  if (loading) return <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />;
+  if (loading)
+    return (
+      <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
+    );
 
   if (JSON.stringify(userInfo) === "{}") navigate("/");
   if (userInfo.role === "CUSTOMER") {
