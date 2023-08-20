@@ -1,38 +1,38 @@
 #footer {
-    margin-top: auto;
-    background-color: #2F3C7E;
-    width: 100%;
-    position: absolute;
-    bottom: 0rem;
-    left: 0rem;
-    display: grid;
-    height: 5.5rem;
-    color: #FBEAEB;
+  margin-top: auto;
+  background-color: #2f3c7e;
+  width: 100%;
+  position: absolute;
+  bottom: 0rem;
+  left: 0rem;
+  display: grid;
+  height: 5.5rem;
+  color: #fbeaeb;
 }
 
 #grid {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .item {
-    flex-basis: 33.33%;
+  flex-basis: 33.33%;
 }
 
 #email {
-    margin-top: 1rem;
-    margin-left: 4rem;
-    width: 16rem;
+  margin-top: 1rem;
+  margin-left: 4rem;
+  width: 16rem;
 }
 
 #thunderbolt {
-    display: block;
-    margin: auto;
+  display: block;
+  margin: auto;
 }
 
 #copyright {
-    margin-top: 1.5rem;
-    width: 16rem;
-    float: right;
+  margin-top: 1.5rem;
+  width: 16rem;
+  float: right;
 }

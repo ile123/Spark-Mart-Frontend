@@ -15,7 +15,6 @@ import { DisplayProduct } from "../../../../types/DisplayProduct";
 import ProductItem from "../../../UI/Items/ProductItem/ProductItem";
 
 export default function ProductsByBrands() {
-
   const { brand } = useParams();
 
   const { userInfo } = useSelector((state: any) => state.auth);
@@ -49,13 +48,18 @@ export default function ProductsByBrands() {
   const changePageHandler = (page: number) => {
     setLoading(true);
     setCurrentPage(page - 1);
-    getAllProductsByBrand(page - 1, pageSize, sortBy, sortDir, searchValue, brand).then(
-      (result: any) => {
-        setLoading(false);
-        setProducts(result.data.content);
-        setTotalPages(result.data.totalPages);
-      }
-    );
+    getAllProductsByBrand(
+      page - 1,
+      pageSize,
+      sortBy,
+      sortDir,
+      searchValue,
+      brand
+    ).then((result: any) => {
+      setLoading(false);
+      setProducts(result.data.content);
+      setTotalPages(result.data.totalPages);
+    });
   };
 
   const changeSortingHander = (page: number, sortByField: string) => {
@@ -94,7 +98,7 @@ export default function ProductsByBrands() {
   useEffect(() => {
     getAllProductsByBrand(currentPage, pageSize, "name", "asc", "", brand)
       .then((result: any) => {
-        if(result.data.numberOfElements === 0) {
+        if (result.data.numberOfElements === 0) {
           setNoProductsFound(true);
           setLoading(false);
           return;
@@ -109,7 +113,10 @@ export default function ProductsByBrands() {
       });
   }, []);
 
-  if(loading) return <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />;
+  if (loading)
+    return (
+      <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
+    );
   if (JSON.stringify(userInfo) === "{}") navigate("/");
   if (userInfo.role === "CUSTOMER") {
     return <Forbidden />;

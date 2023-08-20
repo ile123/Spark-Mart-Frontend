@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { useEffect, useState } from "react";
 import Layout from "../../../UI/Layout/Layout";
-import styles from './AllUsersByAddress.module.css'
+import styles from "./AllUsersByAddress.module.css";
 import { useSelector } from "react-redux";
 import Forbidden from "../../Errors/Forbidden/Forbidden";
 import { Pagination } from "react-bootstrap";
@@ -75,13 +75,13 @@ export default function AllUsersByAddress() {
     getAllUsersByAddress(id, currentPage, pageSize, "firstName", "asc")
       .then((result: any) => {
         if (result.data.totalElements === 0) {
-            setLoading(false);
-            setNoUsersFound(true);
+          setLoading(false);
+          setNoUsersFound(true);
         } else {
-            setLoading(false);
-            setNoUsersFound(false);
-            setUsers(result.data.content);
-            setTotalPages(result.data.totalPages);
+          setLoading(false);
+          setNoUsersFound(false);
+          setUsers(result.data.content);
+          setTotalPages(result.data.totalPages);
         }
       })
       .catch(() => {
@@ -89,8 +89,11 @@ export default function AllUsersByAddress() {
       });
   }, []);
 
-  if (loading) return <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />;
-  
+  if (loading)
+    return (
+      <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
+    );
+
   if (JSON.stringify(userInfo) === "{}") navigate("/");
 
   if (userInfo.role !== "ADMINISTRATOR" && type !== "customer") {

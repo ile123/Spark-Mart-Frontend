@@ -7,10 +7,13 @@ export default function Home() {
 
   return (
     <Layout>
-      {(JSON.stringify(userInfo) === '{}' || userInfo.role === 'CUSTOMER') ? (
+      {JSON.stringify(userInfo) === "{}" || userInfo.role === "CUSTOMER" ? (
         <div id={styles.videoContainer}>
           <video autoPlay muted loop id={styles.video}>
-            <source src="src/assets/videos/sprark_mart_home_page_looping_video_2.mp4" type="video/mp4" />
+            <source
+              src="src/assets/videos/sprark_mart_home_page_looping_video_2.mp4"
+              type="video/mp4"
+            />
           </video>
           <div id={styles.videoText}>
             <h1>Welcome to Spark Mart</h1>

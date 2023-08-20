@@ -147,11 +147,14 @@ export default function ViewUser() {
                 </Typography>
               </div>
             ) : (
-              <Typography variant="h4" sx={{
-                textAlign: "center",
-                marginTop: "11%",
-                marginBottom: "10%"
-              }}>
+              <Typography
+                variant="h4"
+                sx={{
+                  textAlign: "center",
+                  marginTop: "11%",
+                  marginBottom: "10%",
+                }}
+              >
                 No Address
               </Typography>
             )}

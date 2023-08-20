@@ -4,10 +4,7 @@ import { useForm } from "react-hook-form";
 import { Errors } from "../../../../types/Errors";
 import { useNavigate } from "react-router-dom";
 import ErrorModal from "../../../UI/ErrorModal/ErrorModal";
-import {
-  getBrandById,
-  updateBrand,
-} from "../../../../services/brand-Service";
+import { getBrandById, updateBrand } from "../../../../services/brand-Service";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { useLocation } from "react-router-dom";
@@ -23,7 +20,7 @@ import {
   Button,
   IconButton,
 } from "@mui/material";
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 
 export default function EditBrand() {
@@ -37,7 +34,7 @@ export default function EditBrand() {
     register,
     handleSubmit,
     formState: { errors },
-    setValue
+    setValue,
   } = useForm();
 
   async function submitForm(data: any) {
@@ -101,7 +98,9 @@ export default function EditBrand() {
   }, [brand]);
 
   if (JSON.stringify(brand) === "{}") {
-    return <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />;
+    return (
+      <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
+    );
   }
 
   return (

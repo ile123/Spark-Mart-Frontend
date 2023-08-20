@@ -12,20 +12,24 @@ export default function CustomerCategories() {
   const [list, setList] = useState<Category[]>([]);
 
   useEffect(() => {
-      getAllCategories(0, 1000, "name", "asc", "")
-        .then((result: any) => setList(result.data.content))
-        .catch((error: any) => console.log(error));
+    getAllCategories(0, 1000, "name", "asc", "")
+      .then((result: any) => setList(result.data.content))
+      .catch((error: any) => console.log(error));
   }, []);
 
   return (
     <Layout>
-      {((JSON.stringify(userInfo) === '{}') || (userInfo.role === 'CUSTOMER' && list.length !== 0)) ? (
+      {JSON.stringify(userInfo) === "{}" ||
+      (userInfo.role === "CUSTOMER" && list.length !== 0) ? (
         <div className={styles.grid}>
           {list.map((category: DisplayCategory, index: number) => {
-            return <DisplayCategoryItem 
-              key={index} 
-              name={category.name} 
-              imageName={category.imageName} />
+            return (
+              <DisplayCategoryItem
+                key={index}
+                name={category.name}
+                imageName={category.imageName}
+              />
+            );
           })}
         </div>
       ) : (

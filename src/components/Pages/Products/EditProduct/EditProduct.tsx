@@ -8,7 +8,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faCog } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import { Errors } from "../../../../types/Errors";
-import { updateProduct, getProductById } from "../../../../services/product-Service";
+import {
+  updateProduct,
+  getProductById,
+} from "../../../../services/product-Service";
 import { useNavigate } from "react-router-dom";
 import ErrorModal from "../../../UI/ErrorModal/ErrorModal";
 import { Product } from "../../../../types/Product";
@@ -94,7 +97,7 @@ export default function EditProduct() {
     updateProduct(params);
     setTimeout(() => {
       navigate("/adminProducts");
-    }, 1200)
+    }, 1200);
   }
 
   const handleNameSpecificationChange = (event: any) => {
@@ -175,9 +178,9 @@ export default function EditProduct() {
   }, []);
 
   if (loading)
-  return (
-    <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
-  );
+    return (
+      <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
+    );
 
   return (
     <>
@@ -250,7 +253,7 @@ export default function EditProduct() {
                     sx={{
                       marginTop: "1rem",
                       marginBottom: "1rem",
-                      marginLeft: "3rem"
+                      marginLeft: "3rem",
                     }}
                   >
                     <Grid item>
@@ -306,7 +309,7 @@ export default function EditProduct() {
                     sx={{
                       marginTop: "1rem",
                       marginBottom: "1rem",
-                      marginLeft: "3rem"
+                      marginLeft: "3rem",
                     }}
                   >
                     <Grid item>
@@ -353,7 +356,7 @@ export default function EditProduct() {
                     sx={{
                       marginTop: "1.5rem",
                       marginBottom: "1rem",
-                      marginLeft: "3rem"
+                      marginLeft: "3rem",
                     }}
                   >
                     <Grid item>
@@ -421,7 +424,7 @@ export default function EditProduct() {
                     sx={{
                       marginTop: "1.5rem",
                       marginBottom: "1rem",
-                      marginLeft: "3rem"
+                      marginLeft: "3rem",
                     }}
                   >
                     <Grid item>
@@ -464,20 +467,25 @@ export default function EditProduct() {
                       overflowY: "scroll",
                     }}
                   >
-                    <List sx={{
-                      textAlign: "center"
-                    }}>
+                    <List
+                      sx={{
+                        textAlign: "center",
+                      }}
+                    >
                       {Object.keys(specifications).map(
                         (key: any, index: any) => (
-                          <ListItem sx={{
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "center"
-                          }} key={index}>
+                          <ListItem
+                            sx={{
+                              display: "flex",
+                              flexDirection: "row",
+                              justifyContent: "center",
+                            }}
+                            key={index}
+                          >
                             <Typography
                               variant="h6"
                               sx={{
-                                marginTop: "1rem"
+                                marginTop: "1rem",
                               }}
                             >
                               {key}:
@@ -486,16 +494,25 @@ export default function EditProduct() {
                               variant="h6"
                               sx={{
                                 marginTop: "1rem",
-                                marginLeft: "1rem"
+                                marginLeft: "1rem",
                               }}
                             >
                               {specifications[key]}
                             </Typography>
-                            <Button onClick={() => deleteSpecificationField(key)} size="small" color="error" sx={{
-                              marginLeft: "0.5rem",
-                              marginTop: "1rem"
-                            }}>
-                              <FontAwesomeIcon icon={faTrashCan} color="red" size="xl" />
+                            <Button
+                              onClick={() => deleteSpecificationField(key)}
+                              size="small"
+                              color="error"
+                              sx={{
+                                marginLeft: "0.5rem",
+                                marginTop: "1rem",
+                              }}
+                            >
+                              <FontAwesomeIcon
+                                icon={faTrashCan}
+                                color="red"
+                                size="xl"
+                              />
                             </Button>
                           </ListItem>
                         )
@@ -512,7 +529,6 @@ export default function EditProduct() {
                           marginBottom: "1rem",
                           marginLeft: "4rem",
                           width: "10rem",
-
                         }}
                         onChange={handleNameSpecificationChange}
                       />
@@ -525,9 +541,11 @@ export default function EditProduct() {
                         sx={{
                           marginLeft: "2.5rem",
                           marginRight: "2rem",
-                          marginTop: "1.5rem"
+                          marginTop: "1.5rem",
                         }}
-                      >Add</Button>
+                      >
+                        Add
+                      </Button>
                     </Grid>
                     <Grid item>
                       <TextField

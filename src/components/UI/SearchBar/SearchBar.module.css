@@ -1,25 +1,25 @@
 #grid {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 #searchBar {
-    display: inline-block;
-    border-radius: 20px;
-    overflow: hidden;
-    background-color: #e6e9ff;
-    text-indent: 10px;
+  display: inline-block;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #e6e9ff;
+  text-indent: 10px;
 }
 
 #searchButton {
-    border: 1px solid black;
-    background-color: #e6e9ff;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 100%;
-    margin-left: 0.5rem;
+  border: 1px solid black;
+  background-color: #e6e9ff;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  margin-left: 0.5rem;
 }
 
 #searchButton:hover {
-    background-color: #d2d8f7;
+  background-color: #d2d8f7;
 }

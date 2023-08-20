@@ -1,5 +1,5 @@
 import Layout from "../../../UI/Layout/Layout";
-import styles from './ProductsByCategories.module.css'
+import styles from "./ProductsByCategories.module.css";
 import { useParams } from "react-router-dom";
 import Button from "../../../UI/Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,7 +15,6 @@ import { DisplayProduct } from "../../../../types/DisplayProduct";
 import ProductItem from "../../../UI/Items/ProductItem/ProductItem";
 
 export default function ProductsByCategories() {
-
   const { category } = useParams();
 
   const { userInfo } = useSelector((state: any) => state.auth);
@@ -49,13 +48,18 @@ export default function ProductsByCategories() {
   const changePageHandler = (page: number) => {
     setLoading(true);
     setCurrentPage(page - 1);
-    getAllProductsByCategory(page - 1, pageSize, sortBy, sortDir, searchValue, category).then(
-      (result: any) => {
-        setLoading(false);
-        setProducts(result.data.content);
-        setTotalPages(result.data.totalPages);
-      }
-    );
+    getAllProductsByCategory(
+      page - 1,
+      pageSize,
+      sortBy,
+      sortDir,
+      searchValue,
+      category
+    ).then((result: any) => {
+      setLoading(false);
+      setProducts(result.data.content);
+      setTotalPages(result.data.totalPages);
+    });
   };
 
   const changeSortingHander = (page: number, sortByField: string) => {
@@ -90,11 +94,11 @@ export default function ProductsByCategories() {
       </Pagination.Item>
     );
   }
-  
+
   useEffect(() => {
     getAllProductsByCategory(currentPage, pageSize, "name", "asc", "", category)
       .then((result: any) => {
-        if(result.data.totalElements === 0) {
+        if (result.data.totalElements === 0) {
           setNoProductsFound(true);
           setLoading(false);
           return;
@@ -109,7 +113,10 @@ export default function ProductsByCategories() {
       });
   }, []);
 
-  if(loading) return <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />;
+  if (loading)
+    return (
+      <FontAwesomeIcon id={styles.loading} icon={faCog} pulse size="10x" />
+    );
   if (JSON.stringify(userInfo) === "{}") navigate("/");
   if (userInfo.role === "CUSTOMER") {
     return <Forbidden />;

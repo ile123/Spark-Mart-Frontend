@@ -28,7 +28,7 @@ export default function AddBrand() {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   async function formSubmit(data: any) {

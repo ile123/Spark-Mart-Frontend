@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import styles from "./CustomerNavigation.module.css";
 
 export default function CustomerNavigation(props: any) {
-
   return (
     <>
       <nav id={styles.navigation}>
@@ -18,11 +17,11 @@ export default function CustomerNavigation(props: any) {
         <Link to="/products" className={styles.button}>
           Products
         </Link>
-        {JSON.stringify(props.user) !== '{}' && 
+        {JSON.stringify(props.user) !== "{}" && (
           <Link to="/orders" className={styles.button}>
             Orders
           </Link>
-        }
+        )}
         <Link to="/aboutUs" id={styles.aboutUsButton}>
           About Us
         </Link>

@@ -18,7 +18,7 @@ export default function OrderItem(props: any) {
     case "PROCESSING":
       buttonText = "PROCESSING TO SHIPPED";
       break;
-    case "SHIPPED": 
+    case "SHIPPED":
       buttonText = "ORDER SHIPPED";
       break;
   }
@@ -51,7 +51,7 @@ export default function OrderItem(props: any) {
           ) : (
             <Button
               variant="contained"
-              disabled={status === "SHIPPED" || status==="DELIVERED"}
+              disabled={status === "SHIPPED" || status === "DELIVERED"}
               onClick={changeStateHandler}
               sx={{
                 height: "3rem",

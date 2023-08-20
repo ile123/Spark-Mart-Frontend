@@ -1,102 +1,102 @@
 .grid {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .item {
-    margin-left: 1rem;
+  margin-left: 1rem;
 }
 
 .cardItem {
-    text-align: center;
-    margin-top: 2.5rem;
-    margin-left: 2rem;
+  text-align: center;
+  margin-top: 2.5rem;
+  margin-left: 2rem;
 }
 
 .card {
-    height: 30rem;
-    width: 30rem;
+  height: 30rem;
+  width: 30rem;
 }
 
 #userCard {
-    margin-left: 15rem;
-    margin-top: 4rem;
-    height: 42rem;
-    width: 30rem;
+  margin-left: 15rem;
+  margin-top: 4rem;
+  height: 42rem;
+  width: 30rem;
 }
 
 #addressCard {
-    margin-left: 5rem;
-    margin-top: 4rem;
-    height: 42rem;
-    width: 30rem;
+  margin-left: 5rem;
+  margin-top: 4rem;
+  height: 42rem;
+  width: 30rem;
 }
 
 #cards {
-    margin-left: 16rem;
-    margin-top: 9rem;
+  margin-left: 16rem;
+  margin-top: 9rem;
 }
 
 .title {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    text-align: center;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 .nameItem {
-    margin-top: 2.5rem;
-    margin-left: 5rem;
+  margin-top: 2.5rem;
+  margin-left: 5rem;
 }
 
 .infoField {
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 25px;
-    text-align: center;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 25px;
+  text-align: center;
 }
 
 .label {
-    margin-top: 0.7rem;
-    margin-left: 1rem;
+  margin-top: 0.7rem;
+  margin-left: 1rem;
 }
 
 .button {
-    text-decoration: none;
-    margin-left: 9rem;
-    display: inline-block;
-    outline: none;
-    cursor: pointer;
-    font-size: 14px;
-    line-height: 1;
-    border-radius: 500px;
-    transition-property: background-color,border-color,color,box-shadow,filter;
-    transition-duration: .3s;
-    border: 1px solid transparent;
-    letter-spacing: 2px;
-    min-width: 160px;
-    text-transform: uppercase;
-    white-space: normal;
-    font-weight: 700;
-    text-align: center;
-    padding: 17px 48px;
-    color: #fff;
-    background-color: #1ED760;
-    height: 48px;
+  text-decoration: none;
+  margin-left: 9rem;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 500px;
+  transition-property: background-color, border-color, color, box-shadow, filter;
+  transition-duration: 0.3s;
+  border: 1px solid transparent;
+  letter-spacing: 2px;
+  min-width: 160px;
+  text-transform: uppercase;
+  white-space: normal;
+  font-weight: 700;
+  text-align: center;
+  padding: 17px 48px;
+  color: #fff;
+  background-color: #1ed760;
+  height: 48px;
 }
 
 .button:hover {
-    transform: scale(1.04);
-    background-color: #21e065;
+  transform: scale(1.04);
+  background-color: #21e065;
 }
 
 #loading {
-    margin-left: 42%;
-    margin-top: 15%;
-    font-size: 20rem;
+  margin-left: 42%;
+  margin-top: 15%;
+  font-size: 20rem;
 }
 
 #noAddress {
-    margin-top: 14rem;
-    margin-left: 8.5rem;
-    font-family: Technology;
+  margin-top: 14rem;
+  margin-left: 8.5rem;
+  font-family: Technology;
 }

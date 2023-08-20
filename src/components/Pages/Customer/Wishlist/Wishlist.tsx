@@ -71,7 +71,9 @@ export default function Wishlist() {
   }, []);
 
   if (loading)
-  return <FontAwesomeIcon icon={faCog} size="2xl" pulse id={styles.loading} />;
+    return (
+      <FontAwesomeIcon icon={faCog} size="2xl" pulse id={styles.loading} />
+    );
 
   return (
     <>

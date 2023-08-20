@@ -1,26 +1,26 @@
 #row {
-    background-color: rgb(233, 252, 255);
-    text-align: center;
-    height: 4rem;
+  background-color: rgb(233, 252, 255);
+  text-align: center;
+  height: 4rem;
 }
 
 #delete {
-    color: red;
+  color: red;
 }
 
 #deleteButton {
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    color: transparent;
-    margin-left: 1.5rem;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: transparent;
+  margin-left: 1.5rem;
 }
 
 #allProductsList {
-    margin-left: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 #editButton {
-    color: rgb(110, 169, 20);
+  color: rgb(110, 169, 20);
 }

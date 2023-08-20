@@ -1,16 +1,16 @@
 #delete {
-    color: red;
+  color: red;
 }
 
 #deleteButton {
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    color: transparent;
-    margin-left: 1.5rem;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: transparent;
+  margin-left: 1.5rem;
 }
 
 #row {
-    background-color: rgb(233, 252, 255);
+  background-color: rgb(233, 252, 255);
 }

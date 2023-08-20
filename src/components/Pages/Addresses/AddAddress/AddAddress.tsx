@@ -2,13 +2,21 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import ErrorModal from "../../../UI/ErrorModal/ErrorModal";
-import { Grid, Container, Paper, Box, TextField, Avatar, Typography, Button } from "@mui/material";
+import {
+  Grid,
+  Container,
+  Paper,
+  Box,
+  TextField,
+  Avatar,
+  Typography,
+  Button,
+} from "@mui/material";
 import { createNewAddress } from "../../../../services/address-Service";
 import { Errors } from "../../../../types/Errors";
-import HomeIcon from '@mui/icons-material/Home';
+import HomeIcon from "@mui/icons-material/Home";
 
 export default function AddAddress() {
-
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [formErrors, setFormErrors] = useState<Errors>();
 
@@ -17,7 +25,7 @@ export default function AddAddress() {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   async function formSubmit(data: any) {
@@ -72,27 +80,42 @@ export default function AddAddress() {
           justifyContent={"center"}
         >
           <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit(formSubmit, handleError)}
-              sx={{ mt: 3 }}
+            component="form"
+            noValidate
+            onSubmit={handleSubmit(formSubmit, handleError)}
+            sx={{ mt: 3 }}
+          >
+            <Avatar
+              sx={{
+                m: 1,
+                bgcolor: "secondary.main",
+                marginBottom: "1.5rem",
+                marginLeft: "40%",
+                width: "6rem",
+                height: "6rem",
+              }}
             >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main', marginBottom: "1.5rem", marginLeft: "40%", width: "6rem",
-              height: "6rem" }}>
-            <HomeIcon sx={{
-              width: "5.5rem",
-              height: "5.5rem",
-            }}/>
-          </Avatar>
-          <Typography variant="h4" sx={{
-            marginBottom: "2rem",
-            textAlign: "center"
-          }}>
-            Add New Address
-          </Typography>
-          <Paper sx={{
-            width: "36rem"
-          }}>
+              <HomeIcon
+                sx={{
+                  width: "5.5rem",
+                  height: "5.5rem",
+                }}
+              />
+            </Avatar>
+            <Typography
+              variant="h4"
+              sx={{
+                marginBottom: "2rem",
+                textAlign: "center",
+              }}
+            >
+              Add New Address
+            </Typography>
+            <Paper
+              sx={{
+                width: "36rem",
+              }}
+            >
               <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -119,7 +142,7 @@ export default function AddAddress() {
                     InputLabelProps={{ shrink: true }}
                     sx={{
                       marginLeft: "1rem",
-                      marginBottom: "1rem"
+                      marginBottom: "1rem",
                     }}
                     {...register("city", {
                       required: {
@@ -130,14 +153,14 @@ export default function AddAddress() {
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <TextField
+                  <TextField
                     required
                     label="Postal Code"
                     autoComplete="off"
                     InputLabelProps={{ shrink: true }}
                     sx={{
                       marginLeft: "1rem",
-                      marginBottom: "1rem"
+                      marginBottom: "1rem",
                     }}
                     {...register("postalCode", {
                       required: {
@@ -145,18 +168,17 @@ export default function AddAddress() {
                         message: "ERROR: Postal code cannot be empty!",
                       },
                     })}
-                    >
-                    </TextField>
+                  ></TextField>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <TextField
+                  <TextField
                     required
                     label="Province"
                     autoComplete="off"
                     InputLabelProps={{ shrink: true }}
                     sx={{
                       marginLeft: "1rem",
-                      marginBottom: "1rem"
+                      marginBottom: "1rem",
                     }}
                     {...register("province", {
                       required: {
@@ -164,18 +186,17 @@ export default function AddAddress() {
                         message: "ERROR: Province is required!",
                       },
                     })}
-                    >
-                    </TextField>
+                  ></TextField>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <TextField
+                  <TextField
                     required
                     label="Country"
                     autoComplete="off"
                     InputLabelProps={{ shrink: true }}
                     sx={{
                       marginLeft: "1rem",
-                      marginBottom: "1rem"
+                      marginBottom: "1rem",
                     }}
                     {...register("country", {
                       required: {
@@ -183,31 +204,32 @@ export default function AddAddress() {
                         message: "ERROR: Country is required!",
                       },
                     })}
-                    >
-                    </TextField>
+                  ></TextField>
                 </Grid>
               </Grid>
-          </Paper>
-          <Grid
-          container
-          spacing={2}
-          sx={{
-            marginTop: "0.2%",
-          }}
-          direction={"row"}
-          alignItems={"center"}
-          justifyContent={"center"}
-          >
-            <Grid item>
-                <Button variant="outlined"
-                type="submit"
-                sx={{
-                  paddingTop: "0.5rem"
-                }}>
-                    Submit
+            </Paper>
+            <Grid
+              container
+              spacing={2}
+              sx={{
+                marginTop: "0.2%",
+              }}
+              direction={"row"}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              <Grid item>
+                <Button
+                  variant="outlined"
+                  type="submit"
+                  sx={{
+                    paddingTop: "0.5rem",
+                  }}
+                >
+                  Submit
                 </Button>
+              </Grid>
             </Grid>
-          </Grid>
           </Box>
         </Grid>
       </Container>

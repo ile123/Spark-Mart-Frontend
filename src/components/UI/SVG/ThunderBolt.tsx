@@ -1,14 +1,23 @@
-
 export default function ThunderBolt(props: any) {
-    const height = props.height;
-    const width = props.width;
-    return(
-        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-            width={width} height={height} viewBox="0 0 1280.000000 1280.000000"
-            preserveAspectRatio="xMidYMid meet" id={props.id}>
-            <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)"
-            fill="#000000" stroke="none">
-            <path d="M6110 12794 c-137 -9 -342 -26 -420 -35 -1670 -194 -3226 -1044
+  const height = props.height;
+  const width = props.width;
+  return (
+    <svg
+      version="1.0"
+      xmlns="http://www.w3.org/2000/svg"
+      width={width}
+      height={height}
+      viewBox="0 0 1280.000000 1280.000000"
+      preserveAspectRatio="xMidYMid meet"
+      id={props.id}
+    >
+      <g
+        transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)"
+        fill="#000000"
+        stroke="none"
+      >
+        <path
+          d="M6110 12794 c-137 -9 -342 -26 -420 -35 -1670 -194 -3226 -1044
             -4256 -2324 -729 -907 -1206 -2001 -1369 -3139 -48 -339 -59 -512 -59 -896 0
             -384 11 -557 59 -896 126 -878 441 -1737 918 -2504 415 -666 927 -1227 1550
             -1696 851 -642 1883 -1075 2937 -1233 350 -52 537 -65 930 -65 393 0 580 13
@@ -23,8 +32,9 @@ export default function ThunderBolt(props: any) {
             -325 936 -175 1718 -321 1737 -324 49 -7 145 10 192 34 99 51 171 151 187 260
             11 77 7 100 -53 349 -26 107 -74 303 -106 435 -75 311 -95 393 -509 2110 -192
             798 -366 1518 -386 1600 -20 83 -47 195 -61 250 -13 55 -26 111 -29 125 -7 30
-            -43 99 652 -1260z"/>
-            </g>
-        </svg>
-    );
+            -43 99 652 -1260z"
+        />
+      </g>
+    </svg>
+  );
 }

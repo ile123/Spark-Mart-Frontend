@@ -10,7 +10,7 @@ import { changeOrderProductStatus } from "../../../../services/customer-Service"
 export default function OrderProductItem(props: any) {
   const [imagePath, setImagePath] = useState(null);
 
-  const approveProductArrival = async() => {
+  const approveProductArrival = async () => {
     props.onProductStatusLoading();
     await changeOrderProductStatus(props.orderProductId);
     props.onProductConfirm(props.productKey);
@@ -61,7 +61,9 @@ export default function OrderProductItem(props: any) {
               >
                 <FontAwesomeIcon icon={faCircleCheck} size="xl" color="black" />
               </Button>
-            ) : (<h5>Product has not been shipped</h5>)}
+            ) : (
+              <h5>Product has not been shipped</h5>
+            )}
           </div>
         </div>
       </Card>

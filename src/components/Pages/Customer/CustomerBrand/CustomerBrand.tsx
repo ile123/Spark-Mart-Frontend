@@ -8,13 +8,12 @@ import { faCog } from "@fortawesome/free-solid-svg-icons";
 import DisplayBrandItem from "../../../UI/Items/DisplayBrandItem/DisplayBrandItem";
 
 export default function CustomerBrand() {
-
   const [list, setList] = useState<DisplayBrand[]>([]);
 
   useEffect(() => {
-      getAllBrands(0, 1000, "name", "asc", "")
-        .then((result: any) => setList( result.data.content))
-        .catch((error: any) => console.log(error));
+    getAllBrands(0, 1000, "name", "asc", "")
+      .then((result: any) => setList(result.data.content))
+      .catch((error: any) => console.log(error));
   }, []);
 
   if (list.length === 0) {
@@ -26,19 +25,19 @@ export default function CustomerBrand() {
   return (
     <>
       <Layout>
-          <div className={styles.grid}>
-            {list.map((brand: DisplayBrand, index: number) => {
-              return (
-                <DisplayBrandItem 
-                  key={index}
-                  keyId={index}
-                  id={brand.id}
-                  name={brand.name}
-                  imageName={brand.imageName}
-                />
-              );
-            })}
-          </div>
+        <div className={styles.grid}>
+          {list.map((brand: DisplayBrand, index: number) => {
+            return (
+              <DisplayBrandItem
+                key={index}
+                keyId={index}
+                id={brand.id}
+                name={brand.name}
+                imageName={brand.imageName}
+              />
+            );
+          })}
+        </div>
       </Layout>
     </>
   );

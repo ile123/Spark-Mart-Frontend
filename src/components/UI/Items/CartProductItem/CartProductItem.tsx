@@ -12,11 +12,11 @@ export default function CartProductItem(props: any) {
 
   const dispatch = useDispatch();
 
-   const removeFromCartHandler = async() => {
+  const removeFromCartHandler = async () => {
     props.onRemoveFromCartLoading();
     dispatch(removeFromCart({ userId: props.userId, productId: props.id }));
     props.onRemoveFromCart();
-   }
+  };
 
   const getImageUrl = async () => {
     try {
@@ -56,9 +56,9 @@ export default function CartProductItem(props: any) {
             <h4>{props.price}$</h4>
           </div>
           <div className={styles.item}>
-          <Button onClick={removeFromCartHandler} style={styles.deleteButton}>
-            <FontAwesomeIcon icon={faTrashCan} size="xl" id={styles.delete} />
-          </Button>
+            <Button onClick={removeFromCartHandler} style={styles.deleteButton}>
+              <FontAwesomeIcon icon={faTrashCan} size="xl" id={styles.delete} />
+            </Button>
           </div>
         </div>
       </Card>

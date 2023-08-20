@@ -1,48 +1,48 @@
 #navigationAdmin {
-    margin: 0 auto;
-    display: flex; 
-    justify-content: center;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
 }
 
 #navigationEmployee {
-    margin: 0 auto;
-    display: flex; 
-    justify-content: center;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
 }
 
 .button {
-    position: absolute;
-    text-decoration: none;
-    font-size: 20px;
-    padding-bottom: 1px;
-    margin-bottom: 10px;
-    display: inline-block;
-    position: relative;
-    color: white;
+  position: absolute;
+  text-decoration: none;
+  font-size: 20px;
+  padding-bottom: 1px;
+  margin-bottom: 10px;
+  display: inline-block;
+  position: relative;
+  color: white;
 }
 
 .button:hover {
-    color: white;
+  color: white;
 }
-  
+
 .button::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #ffffff;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #ffffff;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
 }
-  
+
 .button:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 a + a {
-    margin-left: 2rem;
+  margin-left: 2rem;
 }

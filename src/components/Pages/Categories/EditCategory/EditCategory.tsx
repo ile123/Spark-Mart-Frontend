@@ -4,7 +4,10 @@ import { useForm } from "react-hook-form";
 import { Errors } from "../../../../types/Errors";
 import { useNavigate } from "react-router-dom";
 import ErrorModal from "../../../UI/ErrorModal/ErrorModal";
-import { getCategoryById, updateCategory } from "../../../../services/category-Service";
+import {
+  getCategoryById,
+  updateCategory,
+} from "../../../../services/category-Service";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { useLocation } from "react-router-dom";
@@ -34,7 +37,7 @@ export default function EditCategory() {
     register,
     handleSubmit,
     formState: { errors },
-    setValue
+    setValue,
   } = useForm();
 
   async function formSubmit(data: any) {
@@ -42,7 +45,7 @@ export default function EditCategory() {
       const params = {
         id: categoryId,
         name: data.name,
-        description: data.description
+        description: data.description,
       };
       updateCategory(params);
       setTimeout(() => {
@@ -89,7 +92,7 @@ export default function EditCategory() {
 
   useEffect(() => {
     getCategoryById(categoryId).then((result: any) => {
-        setCategory(result.data);
+      setCategory(result.data);
     });
   }, []);
 
@@ -111,7 +114,7 @@ export default function EditCategory() {
       {showErrorModal && (
         <ErrorModal errors={formErrors} onConfirm={errorHandler} />
       )}
-       <Container
+      <Container
         sx={{
           flexGrow: 1,
           padding: 3,
@@ -211,7 +214,7 @@ export default function EditCategory() {
                   container
                   spacing={2}
                   sx={{
-                    marginBottom: "1rem"
+                    marginBottom: "1rem",
                   }}
                   direction={"row"}
                   alignItems={"center"}
@@ -222,10 +225,10 @@ export default function EditCategory() {
                       placeholder="Enter description here...."
                       {...register("description", {
                         required: {
-                            value: true,
-                            message: "ERROR: Description is required!"
-                        }
-                    })}
+                          value: true,
+                          message: "ERROR: Description is required!",
+                        },
+                      })}
                     />
                   </Grid>
                 </Grid>

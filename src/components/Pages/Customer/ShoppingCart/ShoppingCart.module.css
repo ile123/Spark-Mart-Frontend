@@ -1,86 +1,86 @@
 #page {
-    position: absolute;
-    top: 15%;
-    left: 20%;
-    width: 65%;
-    height: 0 auto;
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 65%;
+  height: 0 auto;
 }
 
 #noProductsInCart {
-    margin-left: 33%;
-    margin-top: 22%;
-    font-size: 4rem;
-    font-family: Technology;;
+  margin-left: 33%;
+  margin-top: 22%;
+  font-size: 4rem;
+  font-family: Technology;
 }
 
 #loading {
-    margin-left: 42%;
-    margin-top: 15%;
-    font-size: 20rem;
+  margin-left: 42%;
+  margin-top: 15%;
+  font-size: 20rem;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
 }
 
 #paymentCard {
-    height: 30rem;
-    width: 50rem;
-    margin-bottom: 4rem;
-    margin-left: 14rem;
+  height: 30rem;
+  width: 50rem;
+  margin-bottom: 4rem;
+  margin-left: 14rem;
 }
 
 #paymentTitle {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-top: 1rem;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-top: 1rem;
 }
 
 .paymentGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
 }
 
 .paymentGridItem {
-    margin-left: 8.2rem;
-    margin-top: 3rem;
+  margin-left: 8.2rem;
+  margin-top: 3rem;
 }
 
-#submitButton{
-    width: 12rem;
-    text-decoration: none;
-    margin-left: 19rem;
-    margin-top: 5rem;
-    display: inline-block;
-    outline: none;
-    cursor: pointer;
-    font-size: 14px;
-    line-height: 1;
-    border-radius: 500px;
-    transition-property: background-color,border-color,color,box-shadow,filter;
-    transition-duration: .3s;
-    border: 1px solid transparent;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    white-space: normal;
-    font-weight: 700;
-    text-align: center;
-    padding: 5px 5px;
-    color: #fff;
-    background-color: #1ED760;
-    height: 48px;
+#submitButton {
+  width: 12rem;
+  text-decoration: none;
+  margin-left: 19rem;
+  margin-top: 5rem;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 500px;
+  transition-property: background-color, border-color, color, box-shadow, filter;
+  transition-duration: 0.3s;
+  border: 1px solid transparent;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  white-space: normal;
+  font-weight: 700;
+  text-align: center;
+  padding: 5px 5px;
+  color: #fff;
+  background-color: #1ed760;
+  height: 48px;
 }
 
 #submitButton:hover {
-    transform: scale(1.04);
-    background-color: #21e065;
+  transform: scale(1.04);
+  background-color: #21e065;
 }
 
 #loading {
-    margin-left: 42%;
-    margin-top: 15%;
-    font-size: 20rem;
+  margin-left: 42%;
+  margin-top: 15%;
+  font-size: 20rem;
 }

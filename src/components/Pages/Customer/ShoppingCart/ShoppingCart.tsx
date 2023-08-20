@@ -17,7 +17,7 @@ import {
   Box,
   TextField,
   Typography,
-  Button
+  Button,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { removeFromCart } from "../../../../auth/customerSlice";
@@ -38,7 +38,7 @@ export default function ShoppingCart() {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   async function formSubmit(data: any) {
@@ -139,7 +139,9 @@ export default function ShoppingCart() {
   }, []);
 
   if (loading)
-    return <FontAwesomeIcon icon={faCog} size="2xl" pulse id={styles.loading} />;
+    return (
+      <FontAwesomeIcon icon={faCog} size="2xl" pulse id={styles.loading} />
+    );
 
   if (noProductsFound)
     return <h3 id={styles.noProductsInCart}>The cart is empty!</h3>;
@@ -161,9 +163,12 @@ export default function ShoppingCart() {
           alignItems={"center"}
           justifyContent={"center"}
         >
-          <Grid item sx={{
-            marginTop: "2rem"
-          }}>
+          <Grid
+            item
+            sx={{
+              marginTop: "2rem",
+            }}
+          >
             <Typography
               variant="h3"
               sx={{
@@ -272,111 +277,118 @@ export default function ShoppingCart() {
             >
               <Typography variant="h3">Total: {totalPrice}$</Typography>
             </Grid>
-            <Box sx={{
-              marginLeft: "8rem"
-            }}
+            <Box
+              sx={{
+                marginLeft: "8rem",
+              }}
               component="form"
               noValidate
               onSubmit={handleSubmit(formSubmit, handleError)}
             >
-            <Grid item>
-              <Paper
-                sx={{
-                  marginTop: "33rem",
-                  marginLeft: "15%",
-                  width: "38rem",
-                  height: "13rem",
-                }}
-              >
-                <Grid container spacing={3}>
-                  <Grid item>
-                    <TextField
-                      required
-                      fullWidth
-                      label="Card Number"
-                      autoComplete="off"
-                      {...register("cardNumber", {
-                        required: "Card Number is required!",
-                        pattern: {
-                          value: /^[0-9]{9,14}$/,
-                          message: "Invalid Card Number!",
-                        },
-                      })}
-                      sx={{
-                        marginLeft: "2rem",
-                        marginTop: "1rem"
-                      }}
-                    />
+              <Grid item>
+                <Paper
+                  sx={{
+                    marginTop: "33rem",
+                    marginLeft: "15%",
+                    width: "38rem",
+                    height: "13rem",
+                  }}
+                >
+                  <Grid container spacing={3}>
+                    <Grid item>
+                      <TextField
+                        required
+                        fullWidth
+                        label="Card Number"
+                        autoComplete="off"
+                        {...register("cardNumber", {
+                          required: "Card Number is required!",
+                          pattern: {
+                            value: /^[0-9]{9,14}$/,
+                            message: "Invalid Card Number!",
+                          },
+                        })}
+                        sx={{
+                          marginLeft: "2rem",
+                          marginTop: "1rem",
+                        }}
+                      />
+                    </Grid>
+                    <Grid item>
+                      <TextField
+                        required
+                        fullWidth
+                        label="CVC"
+                        autoComplete="off"
+                        {...register("cvc", {
+                          required: "CVC is required!",
+                          pattern: {
+                            value: /^[0-9]{3,4}$/,
+                            message: "Invalid CVC!",
+                          },
+                        })}
+                        sx={{
+                          marginLeft: "2rem",
+                          marginTop: "1rem",
+                        }}
+                      />
+                    </Grid>
                   </Grid>
-                  <Grid item>
-                    <TextField
-                      required
-                      fullWidth
-                      label="CVC"
-                      autoComplete="off"
-                      {...register("cvc", {
-                        required: "CVC is required!",
-                        pattern: {
-                          value: /^[0-9]{3,4}$/,
-                          message: "Invalid CVC!",
-                        },
-                      })}
-                      sx={{
-                        marginLeft: "2rem",
-                        marginTop: "1rem"
-                      }}
-                    />
+                  <Grid container spacing={3}>
+                    <Grid item>
+                      <TextField
+                        required
+                        fullWidth
+                        label="Month"
+                        autoComplete="off"
+                        {...register("month", {
+                          required: "Month is required!",
+                          pattern: {
+                            value: /^(0?[1-9]|1[0-2])$/,
+                            message: "Invalid Month!",
+                          },
+                        })}
+                        sx={{
+                          marginLeft: "2rem",
+                          marginTop: "1rem",
+                        }}
+                      />
+                    </Grid>
+                    <Grid item>
+                      <TextField
+                        required
+                        fullWidth
+                        label="Year"
+                        autoComplete="off"
+                        {...register("year", {
+                          required: "Year is required!",
+                          pattern: {
+                            value: /^(20\d{2}|2[2-9]\d{1})$/,
+                            message: "Invalid Year!",
+                          },
+                        })}
+                        sx={{
+                          marginLeft: "2rem",
+                          marginTop: "1rem",
+                        }}
+                      />
+                    </Grid>
                   </Grid>
-                </Grid>
-                <Grid container spacing={3}>
-                  <Grid item>
-                    <TextField
-                      required
-                      fullWidth
-                      label="Month"
-                      autoComplete="off"
-                      {...register("month", {
-                        required: "Month is required!",
-                        pattern: {
-                          value: /^(0?[1-9]|1[0-2])$/,
-                          message: "Invalid Month!",
-                        },
-                      })}
-                      sx={{
-                        marginLeft: "2rem",
-                        marginTop: "1rem"
-                      }}
-                    />
-                  </Grid>
-                  <Grid item>
-                    <TextField
-                      required
-                      fullWidth
-                      label="Year"
-                      autoComplete="off"
-                      {...register("year", {
-                        required: "Year is required!",
-                        pattern: {
-                          value: /^(20\d{2}|2[2-9]\d{1})$/,
-                          message: "Invalid Year!",
-                        },
-                      })}
-                      sx={{
-                        marginLeft: "2rem",
-                        marginTop: "1rem"
-                      }}
-                    />
-                  </Grid>
-                </Grid>
-              </Paper>
-            </Grid>
-            <Grid item>
-            <Button variant="contained" type="submit" sx={{
-                marginTop: "2rem",
-                marginBottom: "2rem",
-                marginLeft: "20rem"
-              }}>Buy Products</Button>
-            </Grid>
+                </Paper>
+              </Grid>
+              <Grid item>
+                <Button
+                  variant="contained"
+                  type="submit"
+                  sx={{
+                    marginTop: "2rem",
+                    marginBottom: "2rem",
+                    marginLeft: "20rem",
+                  }}
+                >
+                  Buy Products
+                </Button>
+              </Grid>
             </Box>
           </Grid>
         </Grid>
