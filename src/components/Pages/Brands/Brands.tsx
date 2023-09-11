@@ -37,6 +37,7 @@ export default function Brands() {
         setLoading(false);
         setBrands(result.data.content);
         setTotalPages(result.data.totalPages);
+        setCurrentPage(0);
       })
       .catch(() => {
         setNoBrandsFound(true);
@@ -81,6 +82,7 @@ export default function Brands() {
   const brandDeletionHandler = (data: any, totalPages: any) => {
     setBrands(data);
     setTotalPages(totalPages);
+    setCurrentPage(0);
     if (data.length == 0) {
       setNoBrandsFound(true);
     }

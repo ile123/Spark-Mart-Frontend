@@ -84,6 +84,7 @@ export default function Addresses() {
         setLoading(false);
         setAddresses(result.data.content);
         setTotalPages(result.data.totalPages);
+        setCurrentPage(0);
       })
       .catch(() => {
         setNoAddressesFound(true);

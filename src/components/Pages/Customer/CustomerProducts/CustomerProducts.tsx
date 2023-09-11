@@ -10,7 +10,7 @@ import DisplayProductItem from "../../../UI/Items/DisplayProductItem/DisplayProd
 
 export default function CustomerProducts() {
   const [currentPage, setCurrentPage] = useState(0);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(9);
   const [searchValue, setSearchValue] = useState("");
   const [sortDir, setSortDir] = useState("asc");
   const [sortBy, setSortBy] = useState("name");

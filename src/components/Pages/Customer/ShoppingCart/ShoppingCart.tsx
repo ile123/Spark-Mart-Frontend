@@ -21,6 +21,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { removeFromCart } from "../../../../auth/customerSlice";
+import CartProductItem from "../../../UI/Items/CartProductItem/CartProductItem";
 
 export default function ShoppingCart() {
   const { cart } = useSelector((state: any) => state.customer);

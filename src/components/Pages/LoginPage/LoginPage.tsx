@@ -60,13 +60,15 @@ export default function LoginPage() {
     while (loading) {
       continue;
     }
-    if (JSON.stringify(userInfo) != "{}") {
-      navigate("/");
-    } else {
-      setFormErrors(["ERROR: Login failed!"]);
-      setShowErrorModal(true);
-      return;
-    }
+    setTimeout(() => {
+      if (JSON.stringify(userInfo) != "{}") {
+        navigate("/");
+      } else {
+        setFormErrors(["ERROR: Login failed!"]);
+        setShowErrorModal(true);
+        return;
+      }
+    }, 2500);
   };
 
   return (

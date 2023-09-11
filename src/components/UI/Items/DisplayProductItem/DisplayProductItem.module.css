@@ -6,6 +6,14 @@
   background-color: #92a1eb;
 }
 
+#wishlistCard {
+  margin-left: 11rem;
+  margin-bottom: 3rem;
+  width: 17rem;
+  height: 22.5rem;
+  background-color: #92a1eb;
+}
+
 #footer {
   padding-top: 0.5rem;
   height: 2rem;
@@ -87,4 +95,20 @@
 #button:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
+}
+
+#removeIcon {
+  color: red;
+  margin-top: 0.2rem;
+}
+
+#footer {
+  background-color: #bfc7f3;
+  height: 2.61rem;
+}
+
+#removeButton {
+  border: none;
+  outline: none;
+  background-color: transparent;
 }

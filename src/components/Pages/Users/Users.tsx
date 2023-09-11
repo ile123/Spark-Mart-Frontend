@@ -47,6 +47,7 @@ export default function Users() {
     setLoading(true);
     setUsers(data);
     setTotalPages(totalPages);
+    setCurrentPage(0);
     if (data.length == 0) {
       setNoUsersFound(true);
     }
@@ -93,6 +94,7 @@ export default function Users() {
         setNoUsersFound(false);
         setUsers(result.data.content);
         setTotalPages(result.data.totalPages);
+        setCurrentPage(0);
       })
       .catch(() => {
         setNoUsersFound(true);

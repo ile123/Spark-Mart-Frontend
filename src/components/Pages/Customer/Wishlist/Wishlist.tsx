@@ -12,7 +12,7 @@ import { faCog } from "@fortawesome/free-solid-svg-icons";
 
 export default function Wishlist() {
   const [currentPage, setCurrentPage] = useState(0);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(12);
   const [sortDir, setSortDir] = useState("asc");
   const [sortBy, setSortBy] = useState("name");
   const [products, setProducts] = useState<DisplayProduct[]>([]);
@@ -52,6 +52,19 @@ export default function Wishlist() {
     });
   };
 
+  const removeFromWishlistLoadingHandler = () => {
+    setLoading(true);
+  }
+
+  const removeFromWishlistHandler = (data: any, totalPages: any) => {
+    setProducts(data);
+    setTotalPages(totalPages);
+    if(data.length === 0) {
+      setNoProductsFound(true);
+    }
+    setLoading(false);
+  }
+
   useEffect(() => {
     getAllWishlistsByUser(userInfo.userId, currentPage, pageSize, "name", "asc")
       .then((result: any) => {
@@ -86,8 +99,12 @@ export default function Wishlist() {
                   <DisplayProductItem
                     key={index}
                     id={product.id}
+                    userId={userInfo.userId}
                     name={product.name}
                     imageName={product.imageName}
+                    isWishlistSite={true}
+                    onRemoveFromWishlist={removeFromWishlistHandler}
+                    onRemoveFromWishlistLoading={removeFromWishlistLoadingHandler}
                   />
                 );
               })}

@@ -37,6 +37,7 @@ export default function Categories() {
         setLoading(false);
         setCategories(result.data.content);
         setTotalPages(result.data.totalPages);
+        setCurrentPage(0);
       })
       .catch(() => {
         setNoCategoriesFound(true);
@@ -81,6 +82,8 @@ export default function Categories() {
   const categoryDeletionHandler = (data: any, totalPages: any) => {
     setCategories(data);
     setTotalPages(totalPages);
+    setCurrentPage(0);
+    setCurrentPage(0);
     if (data.length == 0) {
       setNoCategoriesFound(true);
     }

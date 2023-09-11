@@ -70,7 +70,7 @@ export default function Orders() {
                   marginBottom: "1rem",
                 }}
               >
-                Products
+                Orders
               </Typography>
               <Paper
                 sx={{
