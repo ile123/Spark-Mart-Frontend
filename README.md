@@ -16,6 +16,6 @@ Spark Mart is a webshop application specialized in selling various electronic de
 - **Frontend:** TypeScript, React
 - **DB:** MySQL
 
-This is the backend part of the project.
+This is the frontend part of the project.
 
 *Made by: Ilario Batistic*, *Owned by: SOSS*
