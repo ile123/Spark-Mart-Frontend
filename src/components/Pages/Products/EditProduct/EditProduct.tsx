@@ -73,31 +73,50 @@ export default function EditProduct() {
   }, [product]);
 
   async function formSubmit(data: any) {
-    if (data.image[0].size > 512000) {
-      setFormErrors(["ERROR: Maximum image size exceeded(500kb)!"]);
-      setShowErrorModal(true);
-      return;
+    if (data.image[0] === undefined) {
+      const params = {
+        id: id,
+        name: data.name,
+        description: data.description,
+        shortDescription: data.shortDescription,
+        specifications: JSON.stringify(specifications),
+        price: data.price,
+        quantity: data.quantity,
+        brand: brand,
+        category: category,
+      };
+      updateProduct(params);
+      setTimeout(() => {
+        navigate("/adminProducts");
+      }, 1200);
+    } else {
+      if (data.image[0].size > 1048576) {
+        setFormErrors(["ERROR: Maximum image size exceeded(1MB)!"]);
+        setShowErrorModal(true);
+        return;
+      }
+      if (JSON.stringify(specifications) === "{}") {
+        setFormErrors(["ERROR: Specifications cannot be empty!"]);
+        setShowErrorModal(true);
+        return;
+      }
+      const params = {
+        id: id,
+        name: data.name,
+        description: data.description,
+        shortDescription: data.shortDescription,
+        specifications: JSON.stringify(specifications),
+        price: data.price,
+        image: data.image[0],
+        quantity: data.quantity,
+        brand: brand,
+        category: category,
+      };
+      updateProduct(params);
+      setTimeout(() => {
+        navigate("/adminProducts");
+      }, 1200);
     }
-    if (JSON.stringify(specifications) === "{}") {
-      setFormErrors(["ERROR: Specifications cannot be empty!"]);
-      setShowErrorModal(true);
-      return;
-    }
-    const params = {
-      name: data.name,
-      description: data.description,
-      shortDescription: data.shortDescription,
-      specifications: JSON.stringify(specifications),
-      price: data.price,
-      image: data.image[0],
-      quantity: data.quantity,
-      brand: brand,
-      category: category,
-    };
-    updateProduct(params);
-    setTimeout(() => {
-      navigate("/adminProducts");
-    }, 1200);
   }
 
   const handleNameSpecificationChange = (event: any) => {
@@ -234,7 +253,7 @@ export default function EditProduct() {
                   textAlign: "center",
                 }}
               >
-                Add New Product
+                Edit Product
               </Typography>
               <Paper
                 sx={{
@@ -288,12 +307,7 @@ export default function EditProduct() {
                           hidden
                           accept="image/*"
                           type="file"
-                          {...register("image", {
-                            required: {
-                              value: true,
-                              message: "ERROR: Photo is required!",
-                            },
-                          })}
+                          {...register("image")}
                         />
                         <AddAPhotoIcon
                           sx={{

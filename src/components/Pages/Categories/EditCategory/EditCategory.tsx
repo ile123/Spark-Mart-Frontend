@@ -160,7 +160,7 @@ export default function EditCategory() {
                 textAlign: "center",
               }}
             >
-              Add New Category
+              Edit Category
             </Typography>
             <Paper
               sx={{

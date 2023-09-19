@@ -154,7 +154,7 @@ export default function EditBrand() {
                 textAlign: "center",
               }}
             >
-              Add New Brand
+              Edit Brand
             </Typography>
             <Paper
               sx={{
@@ -195,12 +195,7 @@ export default function EditBrand() {
                       hidden
                       accept="image/*"
                       type="file"
-                      {...register("image", {
-                        required: {
-                          value: true,
-                          message: "ERROR: Photo is required!",
-                        },
-                      })}
+                      {...register("image")}
                     />
                     <AddAPhotoIcon
                       sx={{
